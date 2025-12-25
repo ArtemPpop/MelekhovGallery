@@ -38,6 +38,8 @@ class Artwork(models.Model):
     title = models.CharField(max_length=255)
     year = models.PositiveIntegerField(null=True, blank=True)
 
+
+
     genre = models.ForeignKey(
         Genre,
         on_delete=models.SET_NULL,
@@ -73,11 +75,13 @@ class Artwork(models.Model):
     )
 
     image = models.ImageField(
-        upload_to='artworks/images/'
+        upload_to='images/',
+    null=True,
+    blank=True
     )
 
     preview = models.ImageField(
-        upload_to='artworks/previews/',
+        upload_to='previews/',
         blank=True,
         null=True
     )
@@ -87,6 +91,8 @@ class Artwork(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
+        verbose_name = "Произведение"
+        verbose_name_plural = "Произведения"
         ordering = ['-year', 'title']
 
     def __str__(self):
