@@ -74,6 +74,7 @@ INSTALLED_APPS = [
     'apps.events',
     'apps.pages',
     'apps.accounts',
+    'apps.contact',
 
     'storages',
     "corsheaders",

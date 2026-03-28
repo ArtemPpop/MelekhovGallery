@@ -72,17 +72,20 @@ class Artwork(models.Model):
         blank=True
     )
 
-    image = models.ImageField(
-        upload_to='images/',
-    null=True,
-    blank=True
-    )
-
-    preview = models.ImageField(
-        upload_to='previews/',
+    image = models.URLField(blank=True, null=True)
+    image_upload = models.ImageField(
+        upload_to="artworks/",
         blank=True,
         null=True
     )
+
+    preview = models.URLField(blank=True, null=True)
+    preview_upload = models.ImageField(
+        upload_to="previews/",
+        blank=True,
+        null=True
+    )
+
     is_published = models.BooleanField(default=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
