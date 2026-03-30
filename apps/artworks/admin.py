@@ -37,7 +37,7 @@ class ArtworkAdminForm(forms.ModelForm):
 @admin.register(Artwork)
 class ArtworkAdmin(admin.ModelAdmin):
 
-    form = ArtworkAdminForm  # ← ВОТ ЭТО ВАЖНО
+    form = ArtworkAdminForm
 
     list_display = (
         'title',
