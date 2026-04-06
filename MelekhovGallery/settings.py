@@ -25,9 +25,9 @@ load_dotenv(BASE_DIR / '.env')
 SECRET_KEY = 'django-insecure-zy^q12#_nsvi+6&5^ar)6_6*2x0d8fj-$-bplr=n=adfi1elqk'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv("DEBUG", "True") == "True"
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "").split(",")
 
 
 # Application definition
@@ -135,6 +135,7 @@ WSGI_APPLICATION = 'MelekhovGallery.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
+
 
 DATABASES = {
     'default': {
