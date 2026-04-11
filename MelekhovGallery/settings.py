@@ -57,7 +57,16 @@ MEDIA_URL = f"{AWS_S3_ENDPOINT_URL}/{AWS_STORAGE_BUCKET_NAME}/"
 
 print("BUCKET:", AWS_STORAGE_BUCKET_NAME)
 
-CORS_ALLOW_ALL_ORIGINS = True  # для теста
+
+# CORS_ALLOW_ALL_ORIGINS = True  # для теста
+CORS_ALLOWED_ORIGINS = ["http://localhost:5173",]
+CSRF_TRUSTED_ORIGINS = ["http://localhost:5173",]
+SESSION_COOKIE_DOMAIN = "localhost"
+CSRF_COOKIE_DOMAIN = "localhost"
+SESSION_COOKIE_SAMESITE = "Lax"
+CORS_ALLOW_CREDENTIALS = True
+SESSION_COOKIE_SECURE = False  # True только на https
+CSRF_COOKIE_SECURE = False
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -75,6 +84,7 @@ INSTALLED_APPS = [
     'apps.pages',
     'apps.accounts',
     'apps.contact',
+    'apps.shop',
 
     'storages',
     "corsheaders",
@@ -89,7 +99,16 @@ REST_FRAMEWORK = {
     
     "DEFAULT_FILTER_BACKENDS": [
         "django_filters.rest_framework.DjangoFilterBackend"
-    ]
+    ],
+
+    'DEFAULT_THROTTLE_CLASSES': [
+        'rest_framework.throttling.UserRateThrottle',
+        'rest_framework.throttling.AnonRateThrottle',
+    ],
+    'DEFAULT_THROTTLE_RATES': {
+        'user': '100/min',
+        'anon': '50/min',
+    }
 }
 
 SIMPLE_JWT = {
@@ -101,16 +120,17 @@ AUTH_USER_MODEL = "accounts.User"
 
 
 MIDDLEWARE = [
+
+    "corsheaders.middleware.CorsMiddleware",
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    "corsheaders.middleware.CorsMiddleware",
+
 ]
-CORS_ALLOW_ALL_ORIGINS = True
 
 ROOT_URLCONF = 'MelekhovGallery.urls'
 

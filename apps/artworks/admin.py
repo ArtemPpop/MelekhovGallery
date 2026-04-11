@@ -7,7 +7,6 @@ from .services.s3_service import get_s3_images
 
 # --- ФОРМА ---
 class ArtworkAdminForm(forms.ModelForm):
-
     s3_image = forms.ChoiceField(
         choices=[],
         required=False,
@@ -20,17 +19,32 @@ class ArtworkAdminForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+
+        # загрузка S3 файлов
         self.fields["s3_image"].choices = [("", "----")] + get_s3_images()
 
-    def clean(self):
-        cleaned_data = super().clean()
+        # 🔥 если редактирование — показываем текущий
+        if self.instance and self.instance.image:
+            self.fields["s3_image"].initial = self.instance.image
 
-        s3_image = cleaned_data.get("s3_image")
+    def save(self, commit=True):
+        instance = super().save(commit=False)
+
+        s3_image = self.cleaned_data.get("s3_image")
 
         if s3_image:
-            cleaned_data["image"] = s3_image
+            instance.image = s3_image  # 🔥 ключевая строка
 
-        return cleaned_data
+        # 🔥 защита от пустого изображения
+        if not instance.image and not instance.image_upload:
+            raise forms.ValidationError(
+                "Выберите изображение из S3 или загрузите файл"
+            )
+
+        if commit:
+            instance.save()
+
+        return instance
 
 
 # --- ADMIN ---
@@ -38,7 +52,7 @@ class ArtworkAdminForm(forms.ModelForm):
 class ArtworkAdmin(admin.ModelAdmin):
 
     form = ArtworkAdminForm
-
+    exclude = ("image", "preview")
     list_display = (
         'title',
         'year',
