@@ -42,21 +42,14 @@ class Artwork(models.Model):
     genre = models.ForeignKey("Genre", on_delete=models.SET_NULL, null=True, related_name='artworks')
     technique = models.ForeignKey("Technique", on_delete=models.SET_NULL, null=True)
     artwork_type = models.ForeignKey("ArtworkType", on_delete=models.SET_NULL, null=True)
-
     description = models.TextField(blank=True)
-
     width_cm = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
     height_cm = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
-
     image = models.CharField(max_length=500, blank=True, null=True)
-
     image_upload = models.ImageField(upload_to="artworks/", blank=True, null=True)
-
     preview = models.CharField(max_length=500, blank=True, null=True)
     preview_upload = models.ImageField(upload_to="previews/", blank=True, null=True)
-
     is_published = models.BooleanField(default=True)
-
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
