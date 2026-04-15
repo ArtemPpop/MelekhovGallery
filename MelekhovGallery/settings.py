@@ -58,10 +58,15 @@ MEDIA_URL = f"{AWS_S3_ENDPOINT_URL}/{AWS_STORAGE_BUCKET_NAME}/"
 print("BUCKET:", AWS_STORAGE_BUCKET_NAME)
 
 
-CORS_ALLOWED_ORIGINS = ["http://localhost:5173",]
-CSRF_TRUSTED_ORIGINS = ["http://localhost:5173",]
-SESSION_COOKIE_DOMAIN = "localhost"
-CSRF_COOKIE_DOMAIN = "localhost"
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+    "http://82.97.252.48",
+    "http://localhost:8000",
+]
+CSRF_TRUSTED_ORIGINS = CORS_ALLOWED_ORIGINS.copy()
+# SESSION_COOKIE_DOMAIN = "localhost"
+# CSRF_COOKIE_DOMAIN = "localhost"
 SESSION_COOKIE_SAMESITE = "Lax"
 CORS_ALLOW_CREDENTIALS = True
 SESSION_COOKIE_SECURE = False
@@ -121,10 +126,10 @@ AUTH_USER_MODEL = "accounts.User"
 MIDDLEWARE = [
 
     "corsheaders.middleware.CorsMiddleware",
-    'django.middleware.csrf.CsrfViewMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
