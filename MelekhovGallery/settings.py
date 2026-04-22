@@ -110,9 +110,21 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     "corsheaders.middleware.CorsMiddleware",
 ]
-CORS_ALLOW_ALL_ORIGINS = True
 
-ROOT_URLCONF = 'MelekhovGallery.urls'
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+    "http://82.97.252.48",
+]
+CSRF_TRUSTED_ORIGINS = CORS_ALLOWED_ORIGINS.copy()
+# SESSION_COOKIE_DOMAIN = "82.97.252.48"
+# CSRF_COOKIE_DOMAIN = "82.97.252.48"
+SESSION_COOKIE_SAMESITE = "Lax"
+CORS_ALLOW_CREDENTIALS = True
+SESSION_COOKIE_SECURE = False
+CSRF_COOKIE_SECURE = False
+
+# ROOT_URLCONF = 'MelekhovGallery.urls'
 
 TEMPLATES = [
     {
