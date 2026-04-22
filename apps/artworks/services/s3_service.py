@@ -2,8 +2,8 @@ import boto3
 from django.conf import settings
 
 
-def get_s3_images():
 
+def get_s3_images():
     s3 = boto3.client(
         "s3",
         endpoint_url=settings.AWS_S3_ENDPOINT_URL,
@@ -13,7 +13,8 @@ def get_s3_images():
     )
 
     response = s3.list_objects_v2(
-        Bucket=settings.AWS_STORAGE_BUCKET_NAME
+        Bucket=settings.AWS_STORAGE_BUCKET_NAME,
+        Prefix="images/"
     )
 
     files = []
@@ -22,7 +23,7 @@ def get_s3_images():
         key = obj["Key"]
 
         if key.lower().endswith((".jpg", ".png", ".jpeg", ".webp")):
-            url = f"{settings.AWS_S3_ENDPOINT_URL}/{settings.AWS_STORAGE_BUCKET_NAME}/{key}"
-            files.append((url, key))
+            filename = key.split("/")[-1]  # 👈 только имя файла
+            files.append((key, filename))  # value = key, label = имя
 
     return files
