@@ -53,10 +53,10 @@ document.addEventListener("DOMContentLoaded", function () {
             // выбрать в select
             select.value = option.value;
 
-            // 🔥 ОБНОВИТЬ ПРЕВЬЮ СРАЗУ
+            //  ОБНОВИТЬ ПРЕВЬЮ СРАЗУ
             livePreview.src = img.src;
 
-            // 🔥 триггер change (важно для Django)
+            //  триггер change (важно для Django)
             select.dispatchEvent(new Event("change"));
         });
 

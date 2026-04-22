@@ -21,14 +21,14 @@ class ArtworkAdminForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        # 🔥 загружаем S3
+        #  загружаем S3
         self.fields["s3_image"].choices = [("", "----")] + get_s3_images()
 
-        # 🔥 если редактирование — подставляем текущее
+        #  если редактирование — подставляем текущее
         if self.instance and self.instance.image:
             self.fields["s3_image"].initial = self.instance.image
 
-        # 🔥 JS preview при выборе
+        #  JS preview при выборе
         self.fields["s3_image"].widget.attrs.update({
             "onchange": "updatePreview(this)"
         })
@@ -59,7 +59,7 @@ class ArtworkAdmin(admin.ModelAdmin):
 
     list_display = (
         'title',
-        'preview_image',  # 🔥 превью в списке
+        'preview_image',  #  превью в списке
         'year',
         'artwork_type',
         'genre',
@@ -88,7 +88,7 @@ class ArtworkAdmin(admin.ModelAdmin):
 
     ordering = ('-year', 'title')
 
-    # 🔥 ПРЕВЬЮ
+    #  ПРЕВЬЮ
     def preview_image(self, obj):
         if obj.image:
             url = obj.get_image_url()
@@ -100,7 +100,7 @@ class ArtworkAdmin(admin.ModelAdmin):
 
     preview_image.short_description = "Превью"
 
-    # 🔥 JS подключение
+    #  JS подключение
     class Media:
         js = ("admin/js/image_preview.js",)
 
