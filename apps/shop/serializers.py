@@ -5,11 +5,11 @@ from .models import ProductVariant,  CartItem,Order,Product
 
 
 class ProductVariantSerializer(serializers.ModelSerializer):
-    # product = ProductSerializer()
+    product_name = serializers.CharField(source="product.name")
 
     class Meta:
         model = ProductVariant
-        fields = ["id", "product", 'size', "color", "stock"]
+        fields = ["id", "product_name", 'size', "color", "stock"]
 
 class ProductSerializer(serializers.ModelSerializer):
     image_url = serializers.SerializerMethodField()

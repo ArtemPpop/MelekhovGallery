@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django import forms
+from django.utils.html import format_html
 
 from .models import Artwork, Genre, Technique, ArtworkType
 from .services.s3_service import get_s3_images
@@ -20,12 +21,17 @@ class ArtworkAdminForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        # загрузка S3 файлов
+        # 🔥 загружаем S3
         self.fields["s3_image"].choices = [("", "----")] + get_s3_images()
 
-        # 🔥 если редактирование — показываем текущий
+        # 🔥 если редактирование — подставляем текущее
         if self.instance and self.instance.image:
             self.fields["s3_image"].initial = self.instance.image
+
+        # 🔥 JS preview при выборе
+        self.fields["s3_image"].widget.attrs.update({
+            "onchange": "updatePreview(this)"
+        })
 
     def save(self, commit=True):
         instance = super().save(commit=False)
@@ -33,13 +39,10 @@ class ArtworkAdminForm(forms.ModelForm):
         s3_image = self.cleaned_data.get("s3_image")
 
         if s3_image:
-            instance.image = s3_image  # 🔥 ключевая строка
+            instance.image = s3_image  # сохраняем key
 
-        # 🔥 защита от пустого изображения
-        if not instance.image and not instance.image_upload:
-            raise forms.ValidationError(
-                "Выберите изображение из S3 или загрузите файл"
-            )
+        if not instance.image:
+            raise forms.ValidationError("Выберите изображение")
 
         if commit:
             instance.save()
@@ -50,18 +53,21 @@ class ArtworkAdminForm(forms.ModelForm):
 # --- ADMIN ---
 @admin.register(Artwork)
 class ArtworkAdmin(admin.ModelAdmin):
-
     form = ArtworkAdminForm
+
     exclude = ("image", "preview")
+
     list_display = (
         'title',
+        'preview_image',  # 🔥 превью в списке
         'year',
         'artwork_type',
         'genre',
         'technique',
         'is_published',
-        'created_at',
     )
+
+    readonly_fields = ("preview_image",)
 
     list_filter = (
         'is_published',
@@ -81,6 +87,22 @@ class ArtworkAdmin(admin.ModelAdmin):
     )
 
     ordering = ('-year', 'title')
+
+    # 🔥 ПРЕВЬЮ
+    def preview_image(self, obj):
+        if obj.image:
+            url = obj.get_image_url()
+            return format_html(
+                '<img id="preview-img" src="{}" style="height:120px; border-radius:8px;" />',
+                url
+            )
+        return "Нет изображения"
+
+    preview_image.short_description = "Превью"
+
+    # 🔥 JS подключение
+    class Media:
+        js = ("admin/js/image_preview.js",)
 
 
 # --- СПРАВОЧНИКИ ---

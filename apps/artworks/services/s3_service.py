@@ -23,6 +23,7 @@ def get_s3_images():
         key = obj["Key"]
 
         if key.lower().endswith((".jpg", ".png", ".jpeg", ".webp")):
-            files.append((key, key))  #  теперь только key
+            filename = key.split("/")[-1]  # 👈 только имя файла
+            files.append((key, filename))  # value = key, label = имя
 
     return files
