@@ -6,6 +6,11 @@ class ArtworkSerializer(serializers.ModelSerializer):
     genre = serializers.CharField(source='genre.name')
     technique = serializers.CharField(source='technique.name')
 
+    image_url = serializers.SerializerMethodField()
+
+    def get_image_url(self, obj):
+        return obj.get_image_url()
+
     class Meta:
         model = Artwork
         fields = (
@@ -15,7 +20,7 @@ class ArtworkSerializer(serializers.ModelSerializer):
             'artwork_type',
             'genre',
             'technique',
-            'image',
+            'image_url',
             'is_published',
             'created_at',
         )

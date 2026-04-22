@@ -57,6 +57,7 @@ MEDIA_URL = f"{AWS_S3_ENDPOINT_URL}/{AWS_STORAGE_BUCKET_NAME}/"
 
 print("BUCKET:", AWS_STORAGE_BUCKET_NAME)
 
+CORS_ALLOW_ALL_ORIGINS = True  # для теста
 
 INSTALLED_APPS = [
     'django.contrib.admin',
