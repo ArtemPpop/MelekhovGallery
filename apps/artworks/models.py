@@ -56,7 +56,6 @@ class Artwork(models.Model):
         if not self.image:
             return None
 
-        # если уже полный URL
         if self.image.startswith("http"):
             return self.image
 
