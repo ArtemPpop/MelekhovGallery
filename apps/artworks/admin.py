@@ -28,10 +28,6 @@ class ArtworkAdminForm(forms.ModelForm):
         if self.instance and self.instance.image:
             self.fields["s3_image"].initial = self.instance.image
 
-        #  JS preview при выборе
-        self.fields["s3_image"].widget.attrs.update({
-            "onchange": "updatePreview(this)"
-        })
 
     def save(self, commit=True):
         instance = super().save(commit=False)
@@ -93,7 +89,7 @@ class ArtworkAdmin(admin.ModelAdmin):
         if obj.image:
             url = obj.get_image_url()
             return format_html(
-                '<img src="{}" style="height:120px; border-radius:8px;" />',
+                '<img id="preview-img" src="{}" style="height:120px; border-radius:8px;" />',
                 url
             )
         return "Нет изображения"
