@@ -93,7 +93,7 @@ class ArtworkAdmin(admin.ModelAdmin):
         if obj.image:
             url = obj.get_image_url()
             return format_html(
-                '<img id="preview-img" src="{}" style="height:120px; border-radius:8px;" />',
+                '<img src="{}" style="height:120px; border-radius:8px;" />',
                 url
             )
         return "Нет изображения"
