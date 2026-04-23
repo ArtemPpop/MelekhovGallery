@@ -6,8 +6,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const options = Array.from(select.options).filter(o => o.value);
 
-    let visibleCount = 20;
     let filtered = [...options];
+    let currentPage = 0;
+    const perPage = 25;
 
     //  КНОПКА
     const button = document.createElement("button");
@@ -15,24 +16,43 @@ document.addEventListener("DOMContentLoaded", function () {
     button.type = "button";
     button.style.marginTop = "10px";
 
-    //  ПОИСК
+    //  ПОИСК (фикс ширины)
     const search = document.createElement("input");
     search.placeholder = "Поиск...";
     search.style.display = "none";
     search.style.marginTop = "10px";
-    search.style.padding = "5px";
-    search.style.width = "300px";
+    search.style.padding = "6px";
+    search.style.width = "250px";
 
-    //  КОНТЕЙНЕР
+    //  КОНТЕЙНЕР СЕТКИ
     const container = document.createElement("div");
     container.style.display = "none";
-    container.style.gridTemplateColumns = "repeat(auto-fill, 120px)";
+    container.style.gridTemplateColumns = "repeat(5, 1fr)";
     container.style.gap = "10px";
     container.style.marginTop = "10px";
+
+    //  ПАГИНАЦИЯ
+    const pagination = document.createElement("div");
+    pagination.style.marginTop = "10px";
+    pagination.style.display = "none";
+
+    const prevBtn = document.createElement("button");
+    prevBtn.innerText = "←";
+
+    const nextBtn = document.createElement("button");
+    nextBtn.innerText = "→";
+
+    const pageInfo = document.createElement("span");
+    pageInfo.style.margin = "0 10px";
+
+    pagination.appendChild(prevBtn);
+    pagination.appendChild(pageInfo);
+    pagination.appendChild(nextBtn);
 
     select.parentNode.appendChild(button);
     select.parentNode.appendChild(search);
     select.parentNode.appendChild(container);
+    select.parentNode.appendChild(pagination);
 
     let opened = false;
 
@@ -40,30 +60,33 @@ document.addEventListener("DOMContentLoaded", function () {
     function render() {
         container.innerHTML = "";
 
-        filtered.slice(0, visibleCount).forEach(option => {
+        const start = currentPage * perPage;
+        const pageItems = filtered.slice(start, start + perPage);
+
+        pageItems.forEach(option => {
+            const wrapper = document.createElement("div");
+            wrapper.style.textAlign = "center";
+
             const img = document.createElement("img");
             img.src = option.value;
-            img.loading = "lazy";
-
-            img.style.width = "120px";
-            img.style.height = "120px";
+            img.style.width = "100%";
+            img.style.height = "100px";
             img.style.objectFit = "cover";
             img.style.cursor = "pointer";
-            img.style.borderRadius = "8px";
-            img.style.transition = "0.2s";
+            img.style.borderRadius = "6px";
             img.style.border = option.selected
                 ? "2px solid #007bff"
                 : "2px solid transparent";
 
-            // hover эффект
-            img.addEventListener("mouseenter", () => {
-                img.style.transform = "scale(1.05)";
-            });
-            img.addEventListener("mouseleave", () => {
-                img.style.transform = "scale(1)";
-            });
+            // название
+            const label = document.createElement("div");
+            label.innerText = option.text;
+            label.style.fontSize = "12px";
+            label.style.marginTop = "4px";
+            label.style.whiteSpace = "nowrap";
+            label.style.overflow = "hidden";
+            label.style.textOverflow = "ellipsis";
 
-            // выбор
             img.addEventListener("click", () => {
                 container.querySelectorAll("img").forEach(i => {
                     i.style.border = "2px solid transparent";
@@ -76,8 +99,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (preview) preview.src = option.value;
             });
 
-            container.appendChild(img);
+            wrapper.appendChild(img);
+            wrapper.appendChild(label);
+            container.appendChild(wrapper);
         });
+
+        const totalPages = Math.ceil(filtered.length / perPage);
+        pageInfo.innerText = `Страница ${currentPage + 1} / ${totalPages}`;
     }
 
     //  ОТКРЫТИЕ
@@ -86,6 +114,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         container.style.display = opened ? "grid" : "none";
         search.style.display = opened ? "block" : "none";
+        pagination.style.display = opened ? "block" : "none";
 
         if (opened) render();
     });
@@ -98,23 +127,21 @@ document.addEventListener("DOMContentLoaded", function () {
             o.text.toLowerCase().includes(q)
         );
 
-        visibleCount = 20;
+        currentPage = 0;
         render();
     });
 
-    //  LAZY LOAD (SCROLL)
-    container.addEventListener("scroll", () => {
-        container.style.maxHeight = "400px";
-        container.style.overflowY = "auto";
-        if (
+    //  ПАГИНАЦИЯ
+    prevBtn.addEventListener("click", () => {
+        if (currentPage > 0) {
+            currentPage--;
+            render();
+        }
+    });
 
-            container.scrollTop + container.clientHeight >=
-            container.scrollHeight - 50
-
-        )
-
-        {
-            visibleCount += 20;
+    nextBtn.addEventListener("click", () => {
+        if ((currentPage + 1) * perPage < filtered.length) {
+            currentPage++;
             render();
         }
     });
