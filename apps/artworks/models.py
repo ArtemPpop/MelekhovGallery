@@ -56,8 +56,11 @@ class Artwork(models.Model):
         if not self.image:
             return None
 
-        encoded = quote(self.image)
-        return f"{settings.AWS_S3_ENDPOINT_URL}/{settings.AWS_STORAGE_BUCKET_NAME}/{encoded}"
+        # если уже полный URL
+        if self.image.startswith("http"):
+            return self.image
+
+        return f"{settings.AWS_S3_ENDPOINT_URL}/{settings.AWS_STORAGE_BUCKET_NAME}/{quote(self.image)}"
 
     class Meta:
         verbose_name = "Произведение"
