@@ -28,7 +28,8 @@ SECRET_KEY = 'django-insecure-zy^q12#_nsvi+6&5^ar)6_6*2x0d8fj-$-bplr=n=adfi1elqk
 DEBUG = os.getenv("DEBUG", "True") == "True"
 
 ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "").split(",")
-
+DATA_UPLOAD_MAX_MEMORY_SIZE = 52428800
+FILE_UPLOAD_MAX_MEMORY_SIZE = 52428800
 
 # Application definition
 STORAGES = {
