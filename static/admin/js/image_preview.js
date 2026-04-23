@@ -28,9 +28,9 @@ document.addEventListener("DOMContentLoaded", function () {
     container.style.gridTemplateColumns = "repeat(auto-fill, 120px)"; //  адаптив
     container.style.gap = "10px";
     container.style.marginTop = "10px";
-    container.style.justifyContent = "start"; // 🔥 фикс
-    container.style.overflowX = "auto";       // 🔥 фикс
-    container.style.maxWidth = "700px";       // 🔥 чтобы не ломало админку
+    container.style.justifyContent = "start";
+    container.style.overflowX = "auto";
+    container.style.maxWidth = "700px";
 
     // ПАГИНАЦИЯ
     const prevBtn = document.createElement("button");
