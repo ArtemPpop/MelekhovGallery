@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
     prevBtn.type = "button";
     const nextBtn = document.createElement("button");
     nextBtn.innerText = "→";
-    prevBtn.type = "button";
+    nextBtn.type = "button";
     const pageInfo = document.createElement("span");
 
     //  ОБЩИЙ КОНТЕЙНЕР ДЛЯ КНОПОК
