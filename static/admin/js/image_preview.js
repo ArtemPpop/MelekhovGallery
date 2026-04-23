@@ -2,16 +2,28 @@ document.addEventListener("DOMContentLoaded", function () {
     const select = document.querySelector("#id_s3_image");
     if (!select) return;
 
-    // скрываем select
     select.style.display = "none";
 
-    // кнопка открытия
+    const options = Array.from(select.options).filter(o => o.value);
+
+    let visibleCount = 20;
+    let filtered = [...options];
+
+    //  КНОПКА
     const button = document.createElement("button");
-    button.innerText = "Выбрать из S3";
+    button.innerText = "📂 Выбрать из S3";
     button.type = "button";
     button.style.marginTop = "10px";
 
-    // контейнер
+    //  ПОИСК
+    const search = document.createElement("input");
+    search.placeholder = "Поиск...";
+    search.style.display = "none";
+    search.style.marginTop = "10px";
+    search.style.padding = "5px";
+    search.style.width = "300px";
+
+    //  КОНТЕЙНЕР
     const container = document.createElement("div");
     container.style.display = "none";
     container.style.gridTemplateColumns = "repeat(auto-fill, 120px)";
@@ -19,58 +31,91 @@ document.addEventListener("DOMContentLoaded", function () {
     container.style.marginTop = "10px";
 
     select.parentNode.appendChild(button);
+    select.parentNode.appendChild(search);
     select.parentNode.appendChild(container);
 
-    let loaded = false;
+    let opened = false;
 
-    button.addEventListener("click", () => {
-        container.style.display = "grid";
+    //  РЕНДЕР
+    function render() {
+        container.innerHTML = "";
 
-        if (loaded) return;
-        loaded = true;
-
-        // 🔥 ограничение (чтобы не лагало)
-        const options = Array.from(select.options).slice(0, 100);
-
-        options.forEach(option => {
-            if (!option.value) return;
-
+        filtered.slice(0, visibleCount).forEach(option => {
             const img = document.createElement("img");
-            img.src = option.value; // уже полный URL
-            img.loading = "lazy"; // 🔥 важно
+            img.src = option.value;
+            img.loading = "lazy";
 
             img.style.width = "120px";
             img.style.height = "120px";
             img.style.objectFit = "cover";
             img.style.cursor = "pointer";
             img.style.borderRadius = "8px";
-            img.style.border = "2px solid transparent";
+            img.style.transition = "0.2s";
+            img.style.border = option.selected
+                ? "2px solid #007bff"
+                : "2px solid transparent";
 
-            // если уже выбрано
-            if (option.selected) {
-                img.style.border = "2px solid #007bff";
-            }
+            // hover эффект
+            img.addEventListener("mouseenter", () => {
+                img.style.transform = "scale(1.05)";
+            });
+            img.addEventListener("mouseleave", () => {
+                img.style.transform = "scale(1)";
+            });
 
+            // выбор
             img.addEventListener("click", () => {
-                // снять выделение
                 container.querySelectorAll("img").forEach(i => {
                     i.style.border = "2px solid transparent";
                 });
 
-                // выделить
                 img.style.border = "2px solid #007bff";
-
-                // установить значение
                 select.value = option.value;
 
-                // 🔥 обновить превью
                 const preview = document.querySelector("#preview-img");
-                if (preview) {
-                    preview.src = option.value;
-                }
+                if (preview) preview.src = option.value;
             });
 
             container.appendChild(img);
         });
+    }
+
+    //  ОТКРЫТИЕ
+    button.addEventListener("click", () => {
+        opened = !opened;
+
+        container.style.display = opened ? "grid" : "none";
+        search.style.display = opened ? "block" : "none";
+
+        if (opened) render();
+    });
+
+    //  ПОИСК
+    search.addEventListener("input", () => {
+        const q = search.value.toLowerCase();
+
+        filtered = options.filter(o =>
+            o.text.toLowerCase().includes(q)
+        );
+
+        visibleCount = 20;
+        render();
+    });
+
+    //  LAZY LOAD (SCROLL)
+    container.addEventListener("scroll", () => {
+        container.style.maxHeight = "400px";
+        container.style.overflowY = "auto";
+        if (
+
+            container.scrollTop + container.clientHeight >=
+            container.scrollHeight - 50
+
+        )
+
+        {
+            visibleCount += 20;
+            render();
+        }
     });
 });
