@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // КНОПКА
     const button = document.createElement("button");
-    button.innerText = "📁 Выбрать из S3";
+    button.innerText = " Выбрать из S3";
     button.type = "button";
     button.style.marginTop = "10px";
 
@@ -35,10 +35,10 @@ document.addEventListener("DOMContentLoaded", function () {
     // ПАГИНАЦИЯ
     const prevBtn = document.createElement("button");
     prevBtn.innerText = "←";
-
+    prevBtn.type = "button";
     const nextBtn = document.createElement("button");
     nextBtn.innerText = "→";
-
+    prevBtn.type = "button";
     const pageInfo = document.createElement("span");
 
     //  ОБЩИЙ КОНТЕЙНЕР ДЛЯ КНОПОК
