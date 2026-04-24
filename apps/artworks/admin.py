@@ -28,23 +28,33 @@ class ArtworkAdminForm(forms.ModelForm):
         if self.instance and self.instance.image:
             self.fields["s3_image"].initial = self.instance.image
 
-
     def save(self, commit=True):
         instance = super().save(commit=False)
 
         s3_image = self.cleaned_data.get("s3_image")
+        image_upload = self.cleaned_data.get("image_upload")
 
         if s3_image:
-            instance.image = s3_image  # сохраняем key
+            instance.image = s3_image
 
-        if not instance.image:
-            raise forms.ValidationError("Выберите изображение")
+        elif image_upload:
+            instance.image = image_upload.name
 
         if commit:
             instance.save()
 
         return instance
 
+    def clean(self):
+        cleaned_data = super().clean()
+
+        s3_image = cleaned_data.get("s3_image")
+        image_upload = cleaned_data.get("image_upload")
+
+        if not s3_image and not image_upload:
+            raise forms.ValidationError("Выберите изображение")
+
+        return cleaned_data
 
 # --- ADMIN ---
 @admin.register(Artwork)
@@ -89,7 +99,7 @@ class ArtworkAdmin(admin.ModelAdmin):
         if obj.image:
             url = obj.get_image_url()
             return format_html(
-                '<img id="preview-img" src="{}" style="height:120px; border-radius:8px;" />',
+                '<img src="{}" style="height:120px; border-radius:8px;" />',
                 url
             )
         return "Нет изображения"

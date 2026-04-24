@@ -23,7 +23,7 @@ def get_s3_images():
         key = obj["Key"]
 
         if key.lower().endswith((".jpg", ".png", ".jpeg", ".webp")):
-            filename = key.split("/")[-1]  # 👈 только имя файла
+            filename = key.split("/")[-1]  # только имя файла
             files.append((
                 f"{settings.AWS_S3_ENDPOINT_URL}/{settings.AWS_STORAGE_BUCKET_NAME}/{key}",
                 filename
