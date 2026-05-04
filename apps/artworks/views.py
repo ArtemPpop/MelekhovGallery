@@ -11,29 +11,22 @@ from rest_framework import viewsets, permissions
 
 class ArtworkListAPIView(ListAPIView):
     serializer_class = ArtworkSerializer
-
     def get_queryset(self):
         return Artwork.objects.filter(is_published=True)
 
 
 class ArtworkViewSet(ModelViewSet):
-
     queryset = Artwork.objects.all()
     serializer_class = ArtworkSerializer
-
     @action(detail=False, methods=["get"])
     def search(self, request):
-
         query = request.GET.get("q")
-
         artworks = Artwork.objects.filter(
             Q(title__icontains=query) |
             Q(genre__icontains=query) |
             Q(technique__icontains=query)
         )
-
         serializer = ArtworkSerializer(artworks, many=True)
-
         return Response(serializer.data)
 
 class FavoriteViewSet(viewsets.ModelViewSet):

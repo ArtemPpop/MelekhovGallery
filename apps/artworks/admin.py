@@ -6,7 +6,7 @@ from .models import Artwork, Genre, Technique, ArtworkType
 from .services.s3_service import get_s3_images
 
 
-# --- ФОРМА ---
+#  форма для админки
 class ArtworkAdminForm(forms.ModelForm):
     s3_image = forms.ChoiceField(
         choices=[],
@@ -20,43 +20,32 @@ class ArtworkAdminForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-
-        #  загружаем S3
+        #  загрузка из S3
         self.fields["s3_image"].choices = [("", "----")] + get_s3_images()
-
-        #  если редактирование — подставляем текущее
         if self.instance and self.instance.image:
             self.fields["s3_image"].initial = self.instance.image
 
     def save(self, commit=True):
         instance = super().save(commit=False)
-
         s3_image = self.cleaned_data.get("s3_image")
         image_upload = self.cleaned_data.get("image_upload")
-
         if s3_image:
             instance.image = s3_image
-
         elif image_upload:
             instance.image = image_upload.name
-
         if commit:
             instance.save()
-
         return instance
 
     def clean(self):
         cleaned_data = super().clean()
-
         s3_image = cleaned_data.get("s3_image")
         image_upload = cleaned_data.get("image_upload")
-
         if not s3_image and not image_upload:
             raise forms.ValidationError("Выберите изображение")
-
         return cleaned_data
 
-# --- ADMIN ---
+# ADMIN
 @admin.register(Artwork)
 class ArtworkAdmin(admin.ModelAdmin):
     form = ArtworkAdminForm
@@ -94,7 +83,7 @@ class ArtworkAdmin(admin.ModelAdmin):
 
     ordering = ('-year', 'title')
 
-    #  ПРЕВЬЮ
+    #  отображение картинок в админке
     def preview_image(self, obj):
         if obj.image:
             url = obj.get_image_url()
@@ -111,7 +100,6 @@ class ArtworkAdmin(admin.ModelAdmin):
         js = ("admin/js/image_preview.js",)
 
 
-# --- СПРАВОЧНИКИ ---
 @admin.register(Genre)
 class GenreAdmin(admin.ModelAdmin):
     search_fields = ('name',)

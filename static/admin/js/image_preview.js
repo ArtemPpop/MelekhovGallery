@@ -10,19 +10,19 @@ document.addEventListener("DOMContentLoaded", function () {
     let currentPage = 0;
     const perPage = 25;
 
-    // КНОПКА
+    // кнопка ы3
     const button = document.createElement("button");
     button.innerText = " Выбрать из S3";
     button.type = "button";
     button.style.marginTop = "10px";
 
-    // ПОИСК
+    // Поиск
     const search = document.createElement("input");
     search.placeholder = "Поиск...";
     search.style.padding = "6px";
     search.style.width = "250px";
 
-    // СЕТКА
+    //  сетка для картинок
     const container = document.createElement("div");
     container.style.display = "none";
     container.style.gridTemplateColumns = "repeat(auto-fill, 120px)"; //  адаптив
@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
     container.style.overflowX = "auto";
     container.style.maxWidth = "700px";
 
-    // ПАГИНАЦИЯ
+    //кнопки для перелистования
     const prevBtn = document.createElement("button");
     prevBtn.innerText = "←";
     prevBtn.type = "button";
@@ -41,14 +41,13 @@ document.addEventListener("DOMContentLoaded", function () {
     nextBtn.type = "button";
     const pageInfo = document.createElement("span");
 
-    //  ОБЩИЙ КОНТЕЙНЕР ДЛЯ КНОПОК
+    //   общий контейнер для кнопок
     const controls = document.createElement("div");
     controls.style.display = "none";
     controls.style.alignItems = "center";
     controls.style.gap = "10px";
     controls.style.flexWrap = "wrap";
     controls.style.marginTop = "10px";
-
     controls.appendChild(search);
     controls.appendChild(prevBtn);
     controls.appendChild(pageInfo);
@@ -61,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let opened = false;
 
-    //  РЕНДЕР
+    //  рендер картинок
     function render() {
         container.innerHTML = "";
 
@@ -115,7 +114,7 @@ document.addEventListener("DOMContentLoaded", function () {
         pageInfo.innerText = `Страница ${currentPage + 1} / ${totalPages}`;
     }
 
-    //  ОТКРЫТИЕ
+    //  открытие
     button.addEventListener("click", () => {
         opened = !opened;
 
@@ -125,7 +124,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (opened) render();
     });
 
-    //  ПОИСК
+    //  поимк
     search.addEventListener("input", () => {
         const q = search.value.toLowerCase();
 
@@ -137,14 +136,13 @@ document.addEventListener("DOMContentLoaded", function () {
         render();
     });
 
-    // ПАГИНАЦИЯ
+    // пагинация кнопок
     prevBtn.addEventListener("click", () => {
         if (currentPage > 0) {
             currentPage--;
             render();
         }
     });
-
     nextBtn.addEventListener("click", () => {
         if ((currentPage + 1) * perPage < filtered.length) {
             currentPage++;

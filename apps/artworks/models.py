@@ -55,10 +55,8 @@ class Artwork(models.Model):
     def get_image_url(self):
         if not self.image:
             return None
-
         if self.image.startswith("http"):
             return self.image
-
         return f"{settings.AWS_S3_ENDPOINT_URL}/{settings.AWS_STORAGE_BUCKET_NAME}/{quote(self.image)}"
 
     class Meta:
