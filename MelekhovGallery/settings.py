@@ -88,6 +88,7 @@ INSTALLED_APPS = [
     'apps.accounts',
     'apps.contact',
     'apps.shop',
+    'apps.photos',
 
     'storages',
     "corsheaders",
