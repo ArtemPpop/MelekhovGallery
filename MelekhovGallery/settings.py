@@ -60,8 +60,8 @@ MEDIA_URL = f"{AWS_S3_ENDPOINT_URL}/{AWS_STORAGE_BUCKET_NAME}/"
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "http://82.97.252.48",
-    "186.246.4.27",
-    "melekhovgallery.ru",
+    "http://186.246.4.27",
+    "http://melekhovgallery.ru",
 ]
 CSRF_TRUSTED_ORIGINS = CORS_ALLOWED_ORIGINS.copy()
 # SESSION_COOKIE_DOMAIN = "82.97.252.48"
