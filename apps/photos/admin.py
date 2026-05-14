@@ -36,7 +36,7 @@ class PhotoAdminForm(forms.ModelForm):
             instance.image = s3_image
 
         elif image_upload:
-            instance.image = image_upload.name
+            instance.image = None
 
         if commit:
             instance.save()

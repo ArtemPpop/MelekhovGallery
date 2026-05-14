@@ -56,12 +56,12 @@ AWS_DEFAULT_ACL = "public-read"
 
 MEDIA_URL = f"{AWS_S3_ENDPOINT_URL}/{AWS_STORAGE_BUCKET_NAME}/"
 
-print("BUCKET:", AWS_STORAGE_BUCKET_NAME)
-
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "http://82.97.252.48",
+    "186.246.4.27",
+    "melekhovgallery.ru",
 ]
 CSRF_TRUSTED_ORIGINS = CORS_ALLOWED_ORIGINS.copy()
 # SESSION_COOKIE_DOMAIN = "82.97.252.48"

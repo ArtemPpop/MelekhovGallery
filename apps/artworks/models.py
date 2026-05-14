@@ -53,19 +53,20 @@ class Artwork(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def get_image_url(self):
-        if not self.image:
-            return None
-        if self.image.startswith("http"):
-            return self.image
-        return f"{settings.AWS_S3_ENDPOINT_URL}/{settings.AWS_STORAGE_BUCKET_NAME}/{quote(self.image)}"
+        if self.image_upload:
+            return self.image_upload.url
 
-    class Meta:
-        verbose_name = "Произведение"
-        verbose_name_plural = "Произведения"
-        ordering = ['-year', 'title']
+        if self.image:
+            if self.image.startswith("http"):
+                return self.image
 
-    def __str__(self):
-        return self.title
+            return (
+                f"{settings.AWS_S3_ENDPOINT_URL}/"
+                f"{settings.AWS_STORAGE_BUCKET_NAME}/"
+                f"/{quote(self.image)}"
+            )
+
+        return None
 
 class Favorite(models.Model):
 

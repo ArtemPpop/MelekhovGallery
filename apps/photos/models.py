@@ -42,17 +42,21 @@ class Photo(models.Model):
     )
 
     def get_image_url(self):
-        if not self.image:
-            return None
 
-        if self.image.startswith("http"):
-            return self.image
+        if self.image_upload:
+            return self.image_upload.url
 
-        return (
-            f"{settings.AWS_S3_ENDPOINT_URL}/"
-            f"{settings.AWS_STORAGE_BUCKET_NAME}/"
-            f"{quote(self.image)}"
-        )
+        if self.image:
+            if self.image.startswith("http"):
+                return self.image
+
+            return (
+                f"{settings.AWS_S3_ENDPOINT_URL}/"
+                f"{settings.AWS_STORAGE_BUCKET_NAME}/"
+                f"/{quote(self.image)}"
+            )
+
+        return None
 
     class Meta:
         verbose_name = "Фотография"
