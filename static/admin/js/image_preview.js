@@ -4,67 +4,149 @@ document.addEventListener("DOMContentLoaded", function () {
 
     select.style.display = "none";
 
+    const options = Array.from(select.options).filter(o => o.value);
+
+    let filtered = [...options];
+    let currentPage = 0;
+    const perPage = 25;
+
+    // кнопка ы3
+    const button = document.createElement("button");
+    button.innerText = " Выбрать из S3";
+    button.type = "button";
+    button.style.marginTop = "10px";
+
+    // Поиск
+    const search = document.createElement("input");
+    search.placeholder = "Поиск...";
+    search.style.padding = "6px";
+    search.style.width = "250px";
+
+    //  сетка для картинок
     const container = document.createElement("div");
-    container.style.display = "grid";
-    container.style.gridTemplateColumns = "repeat(auto-fill, 120px)";
+    container.style.display = "none";
+    container.style.gridTemplateColumns = "repeat(auto-fill, 120px)"; //  адаптив
     container.style.gap = "10px";
     container.style.marginTop = "10px";
+    container.style.justifyContent = "start";
+    container.style.overflowX = "auto";
+    container.style.maxWidth = "700px";
 
+    //кнопки для перелистования
+    const prevBtn = document.createElement("button");
+    prevBtn.innerText = "←";
+    prevBtn.type = "button";
+    const nextBtn = document.createElement("button");
+    nextBtn.innerText = "→";
+    nextBtn.type = "button";
+    const pageInfo = document.createElement("span");
+
+    //   общий контейнер для кнопок
+    const controls = document.createElement("div");
+    controls.style.display = "none";
+    controls.style.alignItems = "center";
+    controls.style.gap = "10px";
+    controls.style.flexWrap = "wrap";
+    controls.style.marginTop = "10px";
+    controls.appendChild(search);
+    controls.appendChild(prevBtn);
+    controls.appendChild(pageInfo);
+    controls.appendChild(nextBtn);
+
+    // вставка
+    select.parentNode.appendChild(button);
+    select.parentNode.appendChild(controls);
     select.parentNode.appendChild(container);
 
+    let opened = false;
 
+    //  рендер картинок
+    function render() {
+        container.innerHTML = "";
 
-    // --- ПРЕВЬЮ ---
-    const livePreview = document.createElement("img");
-    livePreview.style.display = "block";
-    livePreview.style.marginTop = "15px";
-    livePreview.style.maxHeight = "200px";
-    livePreview.style.borderRadius = "8px";
+        const start = currentPage * perPage;
+        const pageItems = filtered.slice(start, start + perPage);
 
-    select.parentNode.appendChild(livePreview);
+        pageItems.forEach(option => {
+            const wrapper = document.createElement("div");
+            wrapper.style.textAlign = "center";
+            wrapper.style.width = "120px";
 
-    Array.from(select.options).forEach(option => {
-        if (!option.value) return;
+            const img = document.createElement("img");
+            img.src = option.value;
+            img.loading = "lazy";
 
-        const img = document.createElement("img");
-        img.src = option.value;
-        img.style.width = "120px";
-        img.style.height = "120px";
-        img.style.objectFit = "cover";
-        img.style.borderRadius = "8px";
-        img.style.cursor = "pointer";
-        img.style.border = "2px solid transparent";
+            img.style.width = "120px";
+            img.style.height = "100px";
+            img.style.objectFit = "cover";
+            img.style.cursor = "pointer";
+            img.style.borderRadius = "6px";
+            img.style.border = option.selected
+                ? "2px solid #007bff"
+                : "2px solid transparent";
 
-        // если выбрано
-        if (option.selected) {
-            img.style.border = "2px solid #007bff";
-            livePreview.src = img.src;
-        }
+            const label = document.createElement("div");
+            label.innerText = option.text;
+            label.style.fontSize = "12px";
+            label.style.marginTop = "4px";
+            label.style.whiteSpace = "nowrap";
+            label.style.overflow = "hidden";
+            label.style.textOverflow = "ellipsis";
 
-        img.addEventListener("click", () => {
-            // снять выделение
-            container.querySelectorAll("img").forEach(i => {
-                i.style.border = "2px solid transparent";
+            img.addEventListener("click", () => {
+                container.querySelectorAll("img").forEach(i => {
+                    i.style.border = "2px solid transparent";
+                });
+
+                img.style.border = "2px solid #007bff";
+                select.value = option.value;
+
+                const preview = document.querySelector("#preview-img");
+                if (preview) preview.src = option.value;
             });
 
-            // выделить
-            img.style.border = "2px solid #007bff";
-
-            // выбрать в select
-            select.value = option.value;
-
-            // 🔥 ОБНОВИТЬ ПРЕВЬЮ СРАЗУ
-            livePreview.src = img.src;
-
-            // 🔥 триггер change (важно для Django)
-            select.dispatchEvent(new Event("change"));
+            wrapper.appendChild(img);
+            wrapper.appendChild(label);
+            container.appendChild(wrapper);
         });
 
-        container.appendChild(img);
+        const totalPages = Math.ceil(filtered.length / perPage) || 1;
+        pageInfo.innerText = `Страница ${currentPage + 1} / ${totalPages}`;
+    }
+
+    //  открытие
+    button.addEventListener("click", () => {
+        opened = !opened;
+
+        container.style.display = opened ? "grid" : "none";
+        controls.style.display = opened ? "flex" : "none";
+
+        if (opened) render();
     });
 
-    // если уже выбрано (при редактировании)
-    if (select.value) {
-        livePreview.src = `${S3_BASE}/${select.value}`;
-    }
+    //  поимк
+    search.addEventListener("input", () => {
+        const q = search.value.toLowerCase();
+
+        filtered = options.filter(o =>
+            o.text.toLowerCase().includes(q)
+        );
+
+        currentPage = 0;
+        render();
+    });
+
+    // пагинация кнопок
+    prevBtn.addEventListener("click", () => {
+        if (currentPage > 0) {
+            currentPage--;
+            render();
+        }
+    });
+    nextBtn.addEventListener("click", () => {
+        if ((currentPage + 1) * perPage < filtered.length) {
+            currentPage++;
+            render();
+        }
+    });
 });

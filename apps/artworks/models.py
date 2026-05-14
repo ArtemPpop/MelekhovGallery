@@ -46,9 +46,8 @@ class Artwork(models.Model):
     width_cm = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
     height_cm = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
     image = models.CharField(max_length=500, blank=True, null=True)
-    image_upload = models.ImageField(upload_to="artworks/", blank=True, null=True)
+    image_upload = models.ImageField(upload_to="images/", blank=True, null=True)
     preview = models.CharField(max_length=500, blank=True, null=True)
-    preview_upload = models.ImageField(upload_to="previews/", blank=True, null=True)
     is_published = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -56,9 +55,9 @@ class Artwork(models.Model):
     def get_image_url(self):
         if not self.image:
             return None
-
-        encoded = quote(self.image)
-        return f"{settings.AWS_S3_ENDPOINT_URL}/{settings.AWS_STORAGE_BUCKET_NAME}/{encoded}"
+        if self.image.startswith("http"):
+            return self.image
+        return f"{settings.AWS_S3_ENDPOINT_URL}/{settings.AWS_STORAGE_BUCKET_NAME}/{quote(self.image)}"
 
     class Meta:
         verbose_name = "Произведение"
