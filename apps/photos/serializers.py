@@ -8,6 +8,9 @@ class PhotoSerializer(serializers.ModelSerializer):
     def get_image_url(self, obj):
         return obj.get_image_url()
 
+    category = serializers.CharField(
+        source='category.name'
+    )
     class Meta:
         model = Photo
 
@@ -19,4 +22,5 @@ class PhotoSerializer(serializers.ModelSerializer):
             'image_url',
             'is_published',
             'created_at',
+            'category',
         )

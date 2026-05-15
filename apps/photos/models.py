@@ -3,6 +3,20 @@ from django.conf import settings
 from urllib.parse import quote
 
 
+class PhotoCategory(models.Model):
+    name = models.CharField(
+        max_length=100,
+        unique=True
+    )
+
+    class Meta:
+        verbose_name = "Категория фотографии"
+        verbose_name_plural = "Категории фотографий"
+
+    def __str__(self):
+        return self.name
+
+
 class Photo(models.Model):
     title = models.CharField(
         max_length=255
@@ -11,6 +25,14 @@ class Photo(models.Model):
     year = models.PositiveIntegerField(
         null=True,
         blank=True
+    )
+
+    category = models.ForeignKey(
+        PhotoCategory,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="photos"
     )
 
     description = models.TextField(
@@ -53,7 +75,7 @@ class Photo(models.Model):
             return (
                 f"{settings.AWS_S3_ENDPOINT_URL}/"
                 f"{settings.AWS_STORAGE_BUCKET_NAME}/"
-                f"/{quote(self.image)}"
+                f"{quote(self.image)}"
             )
 
         return None
