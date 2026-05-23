@@ -55,14 +55,13 @@ AWS_QUERYSTRING_AUTH = False
 AWS_DEFAULT_ACL = "public-read"
 
 MEDIA_URL = f"{AWS_S3_ENDPOINT_URL}/{AWS_STORAGE_BUCKET_NAME}/"
-
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 USE_X_FORWARDED_HOST = True
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "http://82.97.252.48",
     "http://186.246.4.27",
-    "http://melekhovgallery.ru",
+    "https://melekhovgallery.ru",
 ]
 CSRF_TRUSTED_ORIGINS = CORS_ALLOWED_ORIGINS.copy()
 # SESSION_COOKIE_DOMAIN = "82.97.252.48"
