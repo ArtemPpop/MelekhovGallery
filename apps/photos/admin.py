@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils.html import format_html
 from django import forms
-from .models import Photo
+from .models import Photo, PhotoCategory
 from .services.s3_service import get_s3_images
 
 
@@ -36,7 +36,7 @@ class PhotoAdminForm(forms.ModelForm):
             instance.image = s3_image
 
         elif image_upload:
-            instance.image = image_upload.name
+            instance.image = None
 
         if commit:
             instance.save()
@@ -56,6 +56,9 @@ class PhotoAdminForm(forms.ModelForm):
 
         return cleaned_data
 
+@admin.register(PhotoCategory)
+class PhotoCategoryAdmin(admin.ModelAdmin):
+    search_fields = ("name",)
 
 @admin.register(Photo)
 class PhotoAdmin(admin.ModelAdmin):
@@ -65,6 +68,7 @@ class PhotoAdmin(admin.ModelAdmin):
 
     list_display = (
         'title',
+        'category',
         'preview_image',
         'year',
         'is_published',

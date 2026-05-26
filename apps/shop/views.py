@@ -13,15 +13,6 @@ def get_products(request):
     serializer = ProductSerializer(products, many=True)
 
     return Response(serializer.data)
-@api_view(["POST"])
-def add_to_cart(request):
-    serializer = AddToCartSerializer(data=request.data)
-    serializer.is_valid(raise_exception=True)
-    cart = get_or_create_cart(request)
-    variant = serializer.validated_data["variant"]
-    quantity = serializer.validated_data["quantity"]
-    add_item(cart, variant, quantity)
-    return Response({"message": "Added"})
 
 @api_view(["POST"])
 def create_order(request):
@@ -44,6 +35,17 @@ def create_order(request):
         print("ORDER ERROR:", str(e))
         return Response({"error":str(e)},
                         status=400)
+
+
+@api_view(["POST"])
+def add_to_cart(request):
+    serializer = AddToCartSerializer(data=request.data)
+    serializer.is_valid(raise_exception=True)
+    cart = get_or_create_cart(request)
+    variant = serializer.validated_data["variant"]
+    quantity = serializer.validated_data["quantity"]
+    add_item(cart, variant, quantity)
+    return Response({"message": "Added"})
 
 @api_view(["GET"])
 def get_cart(request):

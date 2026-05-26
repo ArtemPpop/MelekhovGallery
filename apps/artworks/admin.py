@@ -32,7 +32,7 @@ class ArtworkAdminForm(forms.ModelForm):
         if s3_image:
             instance.image = s3_image
         elif image_upload:
-            instance.image = image_upload.name
+            instance.image = None
         if commit:
             instance.save()
         return instance
