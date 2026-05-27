@@ -1,7 +1,7 @@
 import React from 'react'
 import './kontakt.css'
 import card from './img/CardImg.png'
-import call from './img/Call.png'
+import call from './img/call.png'
 import mess from './img/mess.png'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
