@@ -1,0 +1,438 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.contTop {
+    display: flex;
+    width: clamp(300px, 85vw, 1480px);
+    max-width: 1480px;
+    height: clamp(80px, 10.4vw, 154px);
+    margin: 0 auto;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(195, 185, 172, 1);
+    padding: 0 clamp(10px, 2.7vw, 40px);
+}
+
+.contThemes {
+   width:49.7%;
+    height: clamp(70px, 8.6vw, 127px);
+    display: flex;
+    align-items: center;
+    border-right: 1px solid rgba(195, 185, 172, 1);
+}
+
+.contTop p {
+    color: rgba(52, 65, 99, 1);
+    font-weight: 400;
+    font-family: 'Geologica';
+    font-size: clamp(20px, 3.24vw, 48px);
+    line-height: 93%;
+}
+.MergeHeader{
+       opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+.MergeHeader.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+.contactMain {
+    width: 100%;
+    border-top: 1px solid rgba(195, 185, 172, 1);
+    max-width: 1920px;
+    min-width: none;
+      opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+.contactMain.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+.contBottom {
+    padding-bottom: 2%;
+    margin-bottom: 2%;
+    display: flex;
+ width: clamp(320px, 85vw, 1480px);
+    border-bottom: 1px solid rgba(195, 185, 172, 1);
+    margin: 0 auto;
+    gap: clamp(20px, 2.7vw, 40px);
+}
+
+.contBotLeft {
+    height: clamp(395px, 48.6vw, 720px);
+     width:49.7%; 
+    border-right: 1px solid rgba(195, 185, 172, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    padding-top: clamp(20px, 2.36vw, 35px);
+    padding-left:1%;
+    padding-right:1%; 
+    gap: clamp(15px, 1.35vw, 20px);
+    flex-shrink: 0;
+}
+
+.contBlocks {
+  width: clamp(264px, 38.6vw, 688px);
+   height: clamp(180px, 18.8vw, 272px);
+    border-radius: 8px;
+    border: 1px solid rgba(195, 185, 172, 1);
+    padding-top: clamp(10px, 1.35vw, 20px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contBlocks h5 {
+    font-weight: 700;
+    font-family: 'Geologica';
+    font-size: clamp(14px, 1.62vw, 24px);
+    line-height: 140%;
+    color: rgba(52, 65, 99, 1);
+}
+
+.contBlocks h6 {
+    font-weight: 300;
+    font-family: 'Geologica';
+    font-size: clamp(12px, 1.35vw, 20px);
+    line-height: 140%;
+    color: rgba(52, 65, 99, 1);
+}
+
+.contBlockTop {
+    height: clamp(87px, 7.4vw, 125px);
+   width: clamp(260px, 33.8vw, 633px);
+     padding-left: 2%;
+    padding-right: 1%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-bottom: 1px solid rgba(195, 185, 172, 1);
+}
+
+.contBlockBot {
+    padding-top: clamp(10px, 1.35vw, 20px);
+    height: clamp(60px, 6.75vw, 100px);
+   width: clamp(260px, 33.8vw, 633px);
+    padding-left: 2%;
+    padding-right: 1%;
+    display: flex;
+    flex-direction: column;
+}
+
+.contBotRight {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    justify-content: space-evenly;
+}
+
+.label1Contact {
+    margin-top: clamp(8px, 1.01vw, 15px);
+    width: clamp(280px, 41.7vw, 617px);
+    height: clamp(50px, 5.62vw, 83.2px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.label1Contact input {
+    width: 100%;
+    height: clamp(32px, 3.63vw, 53.78px);
+    border-radius: 5px;
+    border: 1px solid rgba(195, 185, 172, 1);
+    cursor: pointer;
+    font-size: clamp(12px, 1.62vw, 24px);
+    font-family: 'Geologica';
+    font-weight: 100;
+    padding: 0 clamp(5px, 0.34vw, 5px);
+    color: rgba(195, 185, 172, 1);
+}
+
+.contLabels p {
+    font-size: clamp(14px, 1.62vw, 24px);
+    font-family: 'Geologica';
+    font-weight: 400;
+    color: rgba(0, 0, 0, 1);
+}
+
+.contSend {
+    width: 50%;
+    display: flex;
+    justify-content: end;
+}
+
+.contSend p {
+    width: clamp(280px, 41.7vw, 617px);
+    font-size: clamp(18px, 2.7vw, 48px);
+    padding-right: clamp(10px, 2vw, 0);
+    text-align: -moz-center;
+}
+
+.label2Contact {
+    margin-top: clamp(8px, 1.01vw, 15px);
+    height: clamp(120px, 12.5vw, 185px);
+    width: clamp(280px, 41.7vw, 617px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.label2Contact textarea {
+    height: clamp(80px, 9.32vw, 138px);
+    border-radius: 5px;
+    border: 1px solid rgba(195, 185, 172, 1);
+    font-weight: 400;
+    font-size: clamp(10px, 1.05vw, 15.5px);
+    color: rgba(170, 170, 170, 1);
+    font-family: 'Geologica';
+    padding: 8px;
+}
+
+.label2Contact h6 {
+    width: 100%;
+    text-align: end;
+    font-weight: 400;
+    font-size: clamp(8px, 0.81vw, 12px);
+    color: rgba(170, 170, 170, 1);
+    font-family: 'Geologica';
+    margin-top: 2px;
+}
+
+.checkboxcontact {
+    width: clamp(280px, 41.7vw, 617px);
+    height: auto;
+    min-height: 25px;
+    display: flex;
+    gap: clamp(8px, 1.35vw, 20px);
+    margin: clamp(8px, 1vw, 0) 0;
+}
+
+.checkboxcontact input {
+    height: clamp(14px, 1.35vw, 25px);
+    width: clamp(14px, 1.35vw, 25px);
+}
+
+.checkboxcontact p {
+    font-family: 'Geologica';
+    font-size: clamp(9px, 1.08vw, 16px);
+    font-weight: 300;
+    color: rgba(89, 74, 74, 1);
+}
+
+.contBotRight button {
+    width: clamp(325px, 25vw, 370px);
+    height: clamp(38px, 4.05vw, 60px);
+    background-color: rgba(100, 71, 53, 1);
+    cursor: pointer;
+    border: 0;
+    color: rgba(247, 246, 244, 1);
+    font-family: 'Geologica';
+    font-size: clamp(12px, 1.62vw, 24px);
+    font-weight: 300;
+}
+
+.butForContact {
+    height: fit-content;
+    width: clamp(280px, 41.7vw, 617px);
+    display: flex;
+    justify-content: center;
+    margin-top: clamp(10px, 2vw, 0);
+}
+ 
+.AddresContact {
+  width: clamp(300px, 85vw, 1480px);
+    height: auto;
+    margin: 0 auto;
+    margin-bottom: 2.5%;
+    padding: 0 clamp(10px, 2vw, 0);
+}
+
+.addresBloc {
+    display: flex;
+    height: auto;
+    justify-content: space-between;
+    gap: clamp(15px, 2.7vw, 40px);
+}
+
+.AddresContact h1 {
+    height: clamp(60px, 14.2vw, 210px);
+    font-family: 'Geologica';
+    font-size: clamp(24px, 6.5vw, 96px);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    color: #344163;
+    
+    border-bottom: 1px solid #C3B9AC;
+    margin-bottom: 2%;
+}
+
+.adressCards {
+    width: 25%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: clamp(10px, 1.35vw, 0);
+}
+
+.adresCard1 {
+    width: 100%;
+    max-width: 370px;
+    height: 31%;
+    border: 1px solid rgba(195, 185, 172, 1);
+    border-radius: 5px;
+}
+
+.adressPic {
+    height: auto;
+    width: 73.7;
+    flex: 2;
+}
+
+.adressPic img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1092 / 775;
+    object-fit: cover;
+}
+
+.AdresCardText {
+    height: clamp(50px, 6.75vw, 100px);
+   width: clamp(121px, 18.2vw, 329px);
+    border-top: 1px solid rgba(170, 170, 170, 1);
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    gap: clamp(2px, 0.54vw, 5px);
+    padding: clamp(3px, 0.68vw, 5px);
+}
+
+.adresCard1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.AdresCardText h5 {
+        font-size: clamp(12px, 1.62vw, 24px);
+    font-weight: 700;
+    color: rgba(59, 53, 52, 1);
+    line-height: 100%;
+    font-family: 'Geologica';
+
+}
+
+.AdresCardText h6 {
+    font-size: clamp(10px, 1.35vw, 20px);
+    font-weight: 300;
+    font-family: 'Geologica';
+    color: rgba(59, 53, 52, 1);
+    line-height: 120%;
+    font-size: clamp(10px, 1.35vw, 20px);
+}
+
+.imgsForCards {
+    flex: 1;
+    padding-top: clamp(6px, 1.01vw, 15px);
+    padding-left: clamp(5px, 0.68vw, 10px);
+    display: flex;
+    gap: clamp(3px, 0.54vw, 5px);
+    width: 100%;
+}
+
+.imgsForCards img {
+    height: clamp(23px, 3.5vw, 52px);
+    width: clamp(23px, 3.5vw, 52px);
+}
+
+.adresCard2 {
+    background-color: rgba(52, 65, 99, 1);
+}
+
+.adresCard2 h5,
+.adresCard2 h6 {
+    color: rgba(255, 255, 255, 1);
+}
+@media(max-width:685px){
+    .contBottom{
+        flex-direction: column;
+        align-items: center;
+    }
+    .contBotLeft{
+        width: 100%;
+        border-right: 0;
+    }
+    .contBlocks{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .contBlockTop{
+        width: 95%;
+    }
+    .contBlockBot{
+        width: 95%;
+    }
+    .contTop{
+        display: none;
+    }
+    .contBotRight{
+        width: 100%;
+    }
+    .contLabels{
+        width: 100%;
+    }
+    .label1Contact{
+        width: 100%;
+    }
+    .checkboxcontact{
+        width: 100%;
+    }
+    .butForContact{
+        width: 100%;
+    }
+    .contBottom{
+       
+        border: 0;
+    }
+    .addresBloc{
+        flex-direction: column;
+
+    }
+    .adressCards{
+        width: 100%;
+        
+        aspect-ratio: 325/309;
+    }
+    .adresCard1{
+        width: 100%;
+        aspect-ratio: 325/97;
+    max-width: 700px;
+    }
+    .AdresCardText{
+        align-items: start;
+        justify-content: center;
+        height: clamp(50px, 12.75vw, 191px);
+        width: clamp(274px, 78.2vw, 526px); 
+    }
+    .AdresCardText h5 {
+        font-size: clamp(11px, 3.2vw, 24px);
+    }
+    .AdresCardText h6 {
+    font-size: clamp(11px, 2.65vw, 20px);
+}
+.imgsForCards { 
+        padding-top: clamp(5px, 3.4vw, 24px);
+  padding-left: clamp(12px, 2.68vw, 18px);
+}
+}

@@ -1,0 +1,490 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.secGalery {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.Collectionh2 {
+    width: clamp(325px, 80vw, 1480px);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+height: clamp(75px, 18vw, 342px);
+   
+}
+
+.Collectionh2 h2 {
+    font-size: clamp(1.5rem, 6.25vw, 6rem);
+    width: 100%;
+    font-family: 'Geologica';
+    color: #344163;
+}
+
+.Collectionh2 p {
+    font-family: 'Geologica';
+    text-align: start;
+    font-size: clamp(12px, 2vw, 32px);
+    width: 100%;
+    color: #282424;
+}
+
+.filtresMain { 
+    margin: 0 auto;
+
+    width: clamp(325px, 80vw, 1480px);
+    max-width: 1480px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 24px;
+    padding-top: 1.5%;
+    padding-bottom: 1.5%;
+    height: auto;
+    background-color: blue;
+}
+
+.filtres {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 16px;
+    width: 100%;
+    
+}
+
+.filtr1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 8px;
+  flex: 1; 
+    min-width: 0; 
+    height: auto;
+}
+
+.filtr1 p {
+    font-size: clamp(10px, 2vw, 24px);
+    font-family: 'Geologica';
+    color: #282424;
+    text-align: start;
+    margin: 0;
+}
+
+.filtr1 select {
+    width: 100%;
+    border: 1px solid #CFCECC;
+    border-radius: 8px;
+    height: clamp(36px, 6vw, 49px); 
+    background-color: transparent;
+    font-size: clamp(10px, 2vw, 20px);
+    color: #282424;
+    padding-left: 8%;
+}
+ 
+.sorts {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px; 
+    width: 100%;
+    height: auto;
+}
+
+.sorts button {
+    width: clamp(89px, 20vw, 214px);
+      height: clamp(36px, 6vw, 49px); 
+    background-color: transparent;
+    border: 1px solid #CFCECC;
+    border-radius: 10px;
+    font-size: clamp(10px, 1.8vw, 16px);
+    cursor: pointer;
+}
+
+.sorts select {
+    width: clamp(117px, 25vw, 330px);
+      height: clamp(36px, 6vw, 49px); 
+    background-color: transparent;
+    border: 1px solid #CFCECC;
+    border-radius: 10px;
+    font-size: clamp(10px, 1.8vw, 16px);
+    padding-left: 4%;
+}
+
+.worksFounded {
+    width: 100%;    
+    max-width: 1480px;
+    margin: 0 auto;
+    padding: 0 16px; 
+    height: fit-content;
+}
+.worksFounded p{
+    font-family: "Geologica";
+    padding-top: 1%;
+    padding-bottom: 1%;
+    font-size: clamp(8px, 1.7vw,24px);
+    margin: 0 auto;
+    width: clamp(325px, 80vw, 1480px);
+    
+}
+.worksFoundedP {
+    
+    width: clamp(325px, 78vw, 1480px); 
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-family: 'Geologica';
+    font-size: clamp(9px, 2vw, 24px);
+    margin: 0 auto;
+}
+
+.works {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 16px;
+    margin: 0 auto;
+    width: clamp(325px, 80vw, 1480px);
+}
+
+.work {
+    width: clamp(160px, 26vw, 471px);
+    height: auto;
+    margin-bottom: 0; 
+    border: 1px solid #C3B9AC;
+    border-radius: 5px;
+    overflow: hidden;
+    display: flex;
+    background-color: #FFFFFF;
+    flex-direction: column;
+}
+
+.work img {
+    width: 100%;
+    aspect-ratio: 471 / 465;
+    object-fit: cover;
+    border-bottom: 0.5px solid #C3B9AC;
+}
+
+.work h1 {
+    font-size: clamp(10px, 2vw, 32px);
+    color: #282424;
+    font-family: 'Geologica';
+    font-weight: 300;
+    margin: 8px 0 4px 4%;
+}
+
+.work h3 {
+    font-size: clamp(8px, 1.7vw, 20px);
+    color: #282424;
+    font-family: 'Geologica';
+    font-weight: 200;
+    margin: 0 0 4px 4%;
+}
+
+.work h6 {
+    font-size: clamp(8px, 1.7vw, 20px);
+    color: #7B6E6E;
+    font-family: 'Geologica';
+    font-weight: 300;
+    margin: 0 0 12px 4%;
+    line-height: 1.3;
+}
+
+.h6work {
+    width: 100%;
+    max-width: 332px;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 4%;
+}
+@media (max-width: 1603px) {
+    .work {
+    width: clamp(160px, 25vw, 471px);
+}
+.filtres {
+    gap: 12px;
+}
+.sorts button {
+    width: clamp(89px, 25vw, 214px);
+    height: clamp(15px, 7vw, 46px);
+    border-radius: 10px;
+    font-family: 'ForumFont';
+    font-size: clamp(10px, 2.4vw, 16px);
+    cursor: pointer;
+}
+
+.sorts select {
+    width: clamp(117px, 33vw, 330px);
+    
+    font-family: 'ForumFont';
+    font-size: clamp(10px, 2.4vw, 16px);
+   
+    border-radius: 10px;
+}
+}
+.filtr2 {
+    display: flex;
+    transition: opacity 0.3s ease;
+}
+
+@media (max-width: 900px) {
+    .filtr2 {
+        display: none;
+        opacity: 0;
+    }
+    .filtres {
+    gap: 10px;
+}
+}
+
+@media (max-width: 419px) {
+.work {
+        width: clamp(50px, 40vw, 160px);
+    }
+    .works{
+        gap: clamp(5px, 1vw, 10px);
+    }
+.sorts button {
+    width: clamp(89px, 27vw, 214px);
+    height: clamp(15px, 7vw, 46px);
+    font-size: clamp(10px, 1vw, 16px);
+}
+
+.sorts select {
+    width: clamp(117px, 34vw, 330px);
+    height: clamp(15px, 7vw, 46px);
+}
+.filtr1 select { 
+    height: clamp(15px, 7vw, 46px);
+}
+}
+@media (max-width: 600px) {
+  
+   .filtres {
+    gap: 8px;
+}
+    .work {
+        width: clamp(140px, 44vw, 160px);
+    }
+
+    .work h1 {
+        font-size: clamp(10px, 2vw, 14px);
+    }
+
+    .work h3,
+    .work h6 {
+        font-size: clamp(8px, 2.5vw, 10px);
+    }
+}
+/* Добавьте это в конец вашего файла galery.css */
+
+/* Стили для анимации загрузки */
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    min-height: 400px;
+    width: 100%;
+}
+
+.spinner {
+    width: 60px;
+    height: 60px;
+    border: 4px solid rgba(195, 185, 172, 0.3);
+    border-top: 4px solid #344163;
+    border-right: 4px solid #344163;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.loading-container p {
+    margin-top: 20px;
+    font-size: clamp(14px, 4vw, 24px);
+    font-family: 'Geologica';
+    color: #344163;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+ 
+.work {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.5s ease forwards;
+}
+
+/* Задержка анимации для каждой карточки */
+.work:nth-child(1) { animation-delay: 0.05s; }
+.work:nth-child(2) { animation-delay: 0.1s; }
+.work:nth-child(3) { animation-delay: 0.15s; }
+.work:nth-child(4) { animation-delay: 0.2s; }
+.work:nth-child(5) { animation-delay: 0.25s; }
+.work:nth-child(6) { animation-delay: 0.3s; }
+.work:nth-child(7) { animation-delay: 0.35s; }
+.work:nth-child(8) { animation-delay: 0.4s; }
+.work:nth-child(9) { animation-delay: 0.45s; }
+.work:nth-child(10) { animation-delay: 0.5s; }
+.work:nth-child(11) { animation-delay: 0.55s; }
+.work:nth-child(12) { animation-delay: 0.6s; }
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+ 
+.work:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+ 
+.work img {
+    transition: transform 0.3s ease;
+}
+
+.work:hover img {
+    transform: scale(1.05);
+}
+ 
+.filtr1 select,
+.sorts button,
+.sorts select {
+    transition: all 0.3s ease;
+}
+
+.filtr1 select:hover,
+.sorts button:hover,
+.sorts select:hover {
+    border-color: #344163;
+    transform: translateY(-2px);
+}
+
+.sorts button:active {
+    transform: translateY(0);
+} 
+.worksFounded p {
+    animation: slideIn 0.5s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+} 
+.spinner-double {
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+
+.spinner-double::before,
+.spinner-double::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    animation: spinDouble 1.5s ease-in-out infinite;
+}
+
+.spinner-double::before {
+    width: 100%;
+    height: 100%;
+    border: 4px solid rgba(52, 65, 99, 0.2);
+    border-top: 4px solid #344163;
+}
+
+.spinner-double::after {
+    width: 60%;
+    height: 60%;
+    top: 20%;
+    left: 20%;
+    border: 4px solid rgba(195, 185, 172, 0.2);
+    border-bottom: 4px solid #C3B9AC;
+    animation-delay: 0.5s;
+}
+
+@keyframes spinDouble {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+ 
+.works {
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+} 
+.work img {
+    background: linear-gradient(
+        90deg,
+        #F6EEDC 0%,
+        #e8e0d0 50%,
+        #F6EEDC 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+/* Убираем skeleton эффект после загрузки изображения */
+.work img[src] {
+    background: none;
+    animation: none;
+}

@@ -1,0 +1,230 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.mergeSec {
+    margin-top: 2%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 320px;
+    max-width: 1920px;
+    width: 100%;
+    margin-bottom: 5%;
+}
+
+.MergeSlidMain {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    width: clamp(320px, 87vw, 1480px);
+    height: fit-content;
+}
+
+.mergeH2 {
+    
+  height: clamp(350px, 46.8vw, 722px);
+}
+
+.mergeH2 h2 {
+    color: #131313;
+    font-size: clamp(24px, 5vw, 96px);
+    font-weight: 600;
+}
+
+.mergeH2 p {
+    color: #3B3534;
+    width: clamp(80%, 80%, 100%);
+   font-size: clamp(14px, 1.56vw, 30px);
+}
+
+.rightMerge {
+    display: flex;
+    width: fit-content;
+    justify-content: start;
+}
+
+.rightMerge hr {
+    height: 100%;
+    border: #C3B9AC solid 1px;
+}
+
+.rightMainMerge {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    justify-content: end;
+    gap: 5%;
+    width: clamp(400px, 48.4vw, 930px);
+}
+
+.butsForMerge {
+    height: fit-content;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-right: -3%;
+    gap: 10px;
+}
+
+.butsForMerge div {
+    height: clamp(27px, 4.16vw, 80px);
+    width: clamp(27px, 4.16vw, 80px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(126, 123, 123, 0.2);
+    backdrop-filter: blur(20px);
+    border: 1px solid #344163;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.butsForMerge img{
+     height: clamp(5px, 3vw, 93px);
+     width: auto;
+}
+.butsForMerge hr {
+    margin: 0;
+    height: clamp(27px, 4.84vw, 93px);
+    border-color: #344163;
+    background-color: #344163;
+}
+
+.mergeSlid {  
+    height: clamp(350px, 46.8vw, 722px);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.slid {
+    width: 49%;
+    background-color: #FFFFFF;
+    border: #C5CBD3 solid 1px;
+    border-radius: 5px; 
+}
+
+.slid section {
+    height: 68%;
+    width: 100%;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    background-color: #ADA99C;
+}
+
+.slid div {
+    height: 32%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 2%;
+    box-sizing: border-box;
+}
+
+.slid h3 {
+ 
+    font-size: clamp(10px, 1.4vw, 32px);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: "Geologica";
+    text-align: left;
+}
+
+.slid h6 {
+    font-family: 'Geologica';
+    font-weight: 100;
+    padding: 0.5% 2%;
+    font-size: clamp(10px, 1.25vw, 24px);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: #C5CBD3 solid 1px;
+    background-color: #ece9db;
+    color: #B58641;
+    width: fit-content;
+    border-radius: 26px;
+    font-weight: 400;
+}
+
+.slid h5 {
+    font-family: 'Geologica';
+    font-size: clamp(8px, 0.9vw, 20px);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 100;
+    text-align: left;
+}
+
+.mergeSwiper { 
+    height: 98%;
+    width: 100%;
+    overflow: visible;
+}
+
+@media(max-width:685px) {
+    .butsForMerge{
+    display: none;
+}
+    .rightMerge{
+    width: clamp(320px, 87vw, 1480px);
+      
+    }
+    .rightMainMerge{
+        width: 100%;
+         height: clamp(321px, 70.8vw, 900px);
+               padding: 0; 
+    }
+    .mergeSlid{
+        height: 100%;
+        padding: 1px;
+    }
+    .MergeSlidMain{
+        flex-direction: column;
+        align-items: start;
+    }
+.mergeH2 h2 {
+    font-size: clamp(20px, 8.0vw, 55px); 
+}
+
+.mergeH2 p {
+    font-size: clamp(12px, 2.8vw, 18px); 
+}
+
+.slid h3 {
+    font-size: clamp(12px, 2.9vw, 20px); 
+}
+
+.slid h6 {
+    font-size: clamp(10px, 2.2vw, 15px); 
+}
+
+.slid h5 {
+    font-size: clamp(8px, 1.6vw, 11px); 
+}
+.mergeH2{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%; 
+    flex-direction: column; 
+    height: clamp(135px, 40.8vw, 900px);
+    justify-content: space-between;
+    padding-top: 3%;
+}
+
+.mergeH2 h2{   
+     display: flex;
+     vertical-align: top;
+}
+.mergeH2 p{ 
+    width: 100%; 
+    height: 70%;
+}
+.mergeH2 button{
+      margin-left: clamp( -9.5rem, -9.5rem, -1.6rem);
+}
+
+} 

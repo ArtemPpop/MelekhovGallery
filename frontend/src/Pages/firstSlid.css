@@ -1,0 +1,228 @@
+.firstSlider { 
+  width: 100%;
+  height: clamp(300px, 45.7291vw, 878px);
+  position: relative;
+}
+
+.slideFirst {
+  width: clamp(375px, 100%, 100%);
+  height: clamp(300px, 45.7291vw, 878px);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 22px;
+}
+ 
+.slid1Slider {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 13px;  
+  background: rgba(70, 67, 67, 0.2);
+  backdrop-filter: blur(20px);
+  border: 1px solid  #C3B9AC; 
+  width: clamp(187px, 24.6875vw, 474px);
+  height: clamp(66px, 8.6979vw, 167px);
+  display: flex;
+  flex-direction: column;
+  padding: clamp(5px, 1.0416vw, 20px);
+  align-items: start;
+  justify-content: end;
+  z-index: 10;
+  opacity: 0;
+  transform: translateX(-50%) translateY(20px);
+  animation: slideUpText 0.6s ease 0.3s forwards;
+}
+
+.slid1Slider p, h1 {
+  color: #FFFFFF;
+  font-family: 'Geologica';
+}
+
+.slid1Slider p {
+  font-size: clamp(9px, 1.91vw, 14px);
+  font-weight: 300;
+}
+
+.slid1Slider h1 {
+  font-size: clamp(16px, 1.9vw, 40px);
+  font-weight: 600;
+}
+
+.butsleftRightSlid1 {
+  position: absolute;
+  z-index: 100;
+  width: 85%;
+  left: 7.5%;
+  bottom: clamp(150px, 20.2083vw, 388px); 
+  display: flex;
+  justify-content: space-between;
+  height: fit-content; 
+  pointer-events: auto;
+  opacity: 0;
+  animation: fadeIn 0.5s ease 0.2s forwards;
+}
+
+.butsleftRightSlid1 div {
+  height: clamp(27px, 6.6667vw, 80px);
+  width: clamp(27px, 6.6667vw, 80px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(70, 67, 67, 0.2);
+  backdrop-filter: blur(20px);
+  border: 1px solid  #C3B9AC; 
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.butsleftRightSlid1 div:hover {
+  transform: scale(1.1);
+  background: rgba(70, 67, 67, 0.4);
+}
+
+.butsleftRightSlid1 div:active {
+  transform: scale(0.95);
+}
+
+.butsleftRightSlid1 img {
+  width: clamp(13px, 2.9167vw, 35px);
+  height: clamp(13px, 2.9167vw, 35px);
+}
+
+.first-slider-loading {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: clamp(300px, 45.7291vw, 878px);
+  width: 100%;
+  background: transparent;
+  border-radius: 22px;
+  opacity: 0;
+  animation: fadeIn 0.3s ease forwards;
+}
+
+.first-slider-spinner {
+  width: 60px;
+  height: 60px;
+  border: 4px solid rgba(52, 65, 99, 0.2);
+  border-top: 4px solid #344163;
+  border-right: 4px solid #C3B9AC;
+  border-radius: 50%;
+  animation: firstSliderSpin 0.8s linear infinite;
+}
+
+@keyframes firstSliderSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.first-slider-loading p {
+  margin-top: 20px;
+  font-size: clamp(14px, 2vw, 20px);
+  font-family: 'Geologica';
+  color: #344163;
+  animation: firstSliderPulse 1.2s ease-in-out infinite;
+}
+
+@keyframes firstSliderPulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+/* ДОБАВЛЕННЫЕ АНИМАЦИИ ДЛЯ ПЛАВНОГО ПОЯВЛЕНИЯ */
+
+/* Анимация для контейнера слайдера */
+.Slider1Relative {
+  opacity: 0;
+  animation: fadeIn 0.5s ease forwards;
+}
+
+/* Анимация для каждого слайда при переключении */
+.swiper-slide {
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.swiper-slide-active .slideFirst {
+  animation: scaleIn 0.7s ease forwards;
+}
+
+/* Анимация для элементов внутри слайда */
+.yearSlid, .nameSlid1, .tegsSlid1 {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeUp 0.4s ease forwards;
+}
+
+.yearSlid { animation-delay: 0.1s; }
+.nameSlid1 { animation-delay: 0.2s; }
+.tegsSlid1 { animation-delay: 0.3s; }
+
+/* Ключевые кадры для анимаций */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUpText {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0.7;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Анимация для изображений при загрузке */
+.slideFirst {
+  transition: all 0.5s ease;
+}
+
+/* Hover эффект для кнопок навигации */
+.butsleftRightSlid1 div {
+  transition: all 0.3s ease;
+}
+
+/* Анимация для текста при смене слайда */
+.slid1Slider {
+  transition: all 0.3s ease;
+}
