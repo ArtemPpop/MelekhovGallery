@@ -24,12 +24,12 @@ export default function Kontakt(){
     const [contactMessage, setContactMessage] = useState('')
     const [agree, setAgree] = useState(false)
 
-   const API_URL = 'http://82.97.252.48/api/artworks/artworks/';
-    const PRODUCTS_URL = 'http://82.97.252.48/api/products/';
-    const CART_URL = 'http://82.97.252.48/api/cart/';
-    const ADD_URL = 'http://82.97.252.48/api/cart/add/';
-    const ORDER_URL = 'http://82.97.252.48/api/orders/create/';
-    const CONTACT_URL = 'http://82.97.252.48/api/contact/';
+   const API_URL = '/api/artworks/artworks/';
+    const PRODUCTS_URL = '/api/products/';
+    const CART_URL = '/api/cart/';
+    const ADD_URL = '/api/cart/add/';
+    const ORDER_URL = '/api/orders/create/';
+    const CONTACT_URL = '/api/contact/';
 
 
     const handleMessageChange = (e) => {
