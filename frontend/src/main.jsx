@@ -6,6 +6,7 @@ import ReactDOM from 'react-dom/client'
 import './index.css'
 import App  from './App.jsx'
 import Fut  from './Components/Futter.jsx'
+import YandexMetrika  from './Components/YandexMetrika.jsx'
 import Home from './Pages/home.jsx'
 import Galery from './Pages/galery.jsx'
 import Bio from './Pages/biography.jsx'
@@ -19,9 +20,10 @@ import Merge from './Sections4/merge.jsx'
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
+       <YandexMetrika /> 
      <App />
       <Routes>
-        <Route path="/home" element={<Home/>} />
+        <Route path="/" element={<Home/>} />
         <Route path="/galery" element={<Galery/>} />
         <Route path="/bio" element={<Bio/>} />
         <Route path="/tvor" element={<Tvor/>} />

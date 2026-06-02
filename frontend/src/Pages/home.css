@@ -371,12 +371,13 @@ justify-content: space-between;
   border-radius: clamp(5px, 1.15vw, 22px);
 }
  .NameCreativity{
-    position: absolute;
-    background-color: red;
+    position: absolute; 
     right: 0;
     bottom: 0;
     padding-bottom: 30px;
     padding-right: 30px;
+    color: white;
+    font-family: "Geologica";
 
  }
 .mainCreat{

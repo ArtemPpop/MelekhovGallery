@@ -54,7 +54,7 @@ function App() {
             <span></span>
           </div>
           <div className={`links ${isMenuOpen ? 'open' : ''}`}>
-            <Link to="/home" onClick={closeMenu}>Главная</Link>
+            <Link to="/" onClick={closeMenu}>Главная</Link>
             <Link to="/galery" onClick={closeMenu}>Галерея</Link>
             <Link to="/merge" onClick={closeMenu}>Мерч</Link>
             <Link to="/bio" onClick={closeMenu}>Биография</Link>

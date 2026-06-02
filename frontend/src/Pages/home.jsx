@@ -118,7 +118,7 @@ export default function Home() {
                  </div>
                  
                </div>
-               <div className="h2-kartina NameCreativity">
+               <div className=" NameCreativity">
                 <h3>2007 год</h3>
                             <p>Закат</p>
                </div>
