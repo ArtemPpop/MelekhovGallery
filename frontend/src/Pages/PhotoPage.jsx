@@ -11,7 +11,7 @@ export default function PhotoPage() {
     const [loading, setLoading] = useState(true);
     const [zoomLevel, setZoomLevel] = useState(100);
 
-    const API_URL = 'http://82.97.252.48/api/artworks/artworks/';
+    const API_URL = '/api/artworks/artworks/';
 
     // Загрузка всех работ
     useEffect(() => {
