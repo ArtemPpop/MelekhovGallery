@@ -16,7 +16,7 @@ import Mus from './Sections4/Museum.jsx'
 import Kont from './Sections4/Kontakt.jsx'
 import merge from './Sections4/merge.jsx'
 import Merge from './Sections4/merge.jsx'
-import PhotoPage from './pages/PhotoPage';
+import PhotoPage from './Pages/PhotoPage.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
