@@ -23,7 +23,7 @@
   backdrop-filter: blur(20px);
   border: 1px solid  #C3B9AC; 
   width: clamp(187px, 24.6875vw, 474px);
-  height: clamp(66px, 8.6979vw, 167px);
+  min-height: clamp(66px, 8.6979vw, 167px);
   display: flex;
   flex-direction: column;
   padding: clamp(5px, 1.0416vw, 20px);

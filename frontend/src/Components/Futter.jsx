@@ -1,6 +1,6 @@
-import { useState } from 'react';
-
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+
 import './fut.css'
 export default function Futter() {
 
@@ -12,17 +12,20 @@ export default function Futter() {
                 <div className="logo logo2">
                     <h2>Олег Мелехов</h2>
                     <p>Заслуженный художник России</p>
-                </div>
-                <h5>Официальный сайт-галерея художника.<wbr /> Сохранение&nbsp; и&nbsp; популяризация творческого наследия.</h5>
+                </div> 
+                <h5>Официальный сайт-галерея художника. <br />
+Сохранение и популяризация творческого наследия.</h5>
             </div>
             <div className="rightfut">
                 <div className="kontakts2">
                     <h6>Навигация</h6>
-                    <Link to="/home" >Главная</Link>
-                    <Link to="/gallery" >Галерея</Link>
-                    <Link to="/creativity" >Творчество</Link>
-                    <Link to="/events"     >События</Link>
-                    <Link to="/contacts"   >Контакты</Link>
+                     <Link to="/" >Главная</Link>
+            <Link to="/galery" >Галерея</Link>
+            <Link to="/merge">Мерч</Link>
+            <Link to="/bio"  >Биография</Link>
+            <Link to="/coll" >Коллекция</Link>
+            <Link to="/tvor" >Творчество</Link>
+            <Link to="/mus"  >Музей</Link> 
                 </div>
                 <hr />
                 <div className="kontakts">

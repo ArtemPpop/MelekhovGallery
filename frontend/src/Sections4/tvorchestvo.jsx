@@ -33,7 +33,7 @@ export default function Tvorchestvo() {
                     </div>
                   
                 </div>
-
+                <hr className='hrTvor'/>
                 <div className="obzorCreat obzor">
                     <div className="obzorMain">
                         <h1>Мастерство цвета</h1>
@@ -45,6 +45,7 @@ export default function Tvorchestvo() {
                         </p>
                     </div>
                 </div>
+                <hr className='hrTvor' />
                 <div className="obzorCreat obzor">
                     <div className="obzorMain">
                         <h1>Построение композиции</h1>
@@ -58,9 +59,7 @@ export default function Tvorchestvo() {
                     </div>
                 </div>
                 
-                <div className="evolut">
-                    <p>Эволюция <br /> художественного стиля</p>
-                </div>
+                
                 
             </section>
             <section className='jivopis'>
@@ -102,6 +101,7 @@ export default function Tvorchestvo() {
                     </div>
                 </div>
             </section>
+            <hr className='hrTvor'/>
             <div className="academicPicture">
                 <h1>Академический рисунок</h1>
                 <div className="academText">
@@ -135,7 +135,7 @@ export default function Tvorchestvo() {
                 </div>
             </div>
             <div className="themesAnd">
-                <h1>Темы <br /> и направления</h1>
+                <h1>Темы  и направления</h1>
                 <div className="themeMain">
                     <div className="theme1">
                         <div>
@@ -147,32 +147,35 @@ export default function Tvorchestvo() {
                     </div>
                     <div className="theme1">
                         <div>
-                            <h3>Природа <br /> Балтийского побережья</h3>
-                            <p>Морские пейзажи, изменчивое небо,
-                                игра света на волнах — постоянные 
-                                темы в творчестве художника.</p>
+                            <h3>Архитектура <br />
+и городские мотивы</h3>
+                            <p>Исторические здания 
+                                Калининграда и Светлогорска, 
+                                передача атмосферы старинных улиц.</p>
                         </div>
                     </div>
                     <div className="theme1">
                         <div>
-                            <h3>Природа <br /> Балтийского побережья</h3>
-                            <p>Морские пейзажи, изменчивое небо,
-                                игра света на волнах — постоянные 
-                                темы в творчестве художника.</p>
+                            <h3>Философские <br />
+размышления</h3>
+                            <p>Абстрактные композиции, 
+                                посвященные темам времени, 
+                                памяти, вечности.</p>
                         </div>
                     </div>
                     <div className="theme1">
                         <div>
-                            <h3>Природа <br /> Балтийского побережья</h3>
-                            <p>Морские пейзажи, изменчивое небо,
-                                игра света на волнах — постоянные 
-                                темы в творчестве художника.</p>
+                            <h3>Портреты <br />
+современников</h3>
+                            <p>Психологические портреты, 
+                                стремление раскрыть 
+                                внутренний мир человека.</p>
                         </div>
                     </div>
                 </div>
             </div>
-            <div className="vliyanye">
-                <h1>Влияние <br /> на современное искусство</h1>
+            <div className="themesAnd ">
+                <h1>Влияние на современное искусство</h1>
             </div>
             <div className="Shedevr">
                 <div className="shedevrH2">
@@ -183,11 +186,11 @@ export default function Tvorchestvo() {
                     <div className="shedevrContent1">
                         <p>Олег Мелехов основал новое направление в искусстве третьего тысячелетия — <br />
                             «Искусство Глёз». Искусство красоты и добра сочетает в себе гармонию чистого 
-                            цвета, ясность <br />
+                            цвета, <br /> ясность  
                             композиционного строя и изысканную пластику форм. <br />
                             Художник поднимает живописное звучание своих произведений до высокой 
-                            степени гармонии, <br />с высоты которой утончённая энергетика картин отвечает благодарным 
-                            свечением, сияя светом, исходящим изнутри.</p>
+                            степени <br /> гармонии, с высоты которой утончённая энергетика картин отвечает благодарным 
+                            свечением, <br />    сияя светом, исходящим изнутри.</p>
                     </div>
                     <div className="shedevrContent2">
                         <p>
@@ -219,7 +222,7 @@ export default function Tvorchestvo() {
                     </div>
                     <div className="Hellop">
                         <p>
-                            Посетите виртуальную галерею, чтобы увидеть полную коллекцию произведений О.А. Мелехова
+                            Посетите виртуальную галерею, чтобы увидеть полную <br /> коллекцию произведений О.А. Мелехова
                         </p>
                     </div>
                     <div className="hellobuts">

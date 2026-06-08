@@ -48,8 +48,7 @@ height: clamp(75px, 18vw, 342px);
     gap: 24px;
     padding-top: 1.5%;
     padding-bottom: 1.5%;
-    height: auto;
-    background-color: blue;
+    height: auto; 
 }
 
 .filtres {

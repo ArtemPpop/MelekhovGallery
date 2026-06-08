@@ -370,16 +370,23 @@ justify-content: space-between;
     background-repeat: no-repeat;
   border-radius: clamp(5px, 1.15vw, 22px);
 }
- .NameCreativity{
+.NameCreativity {
     position: absolute; 
     right: 0;
     bottom: 0;
-    padding-bottom: 30px;
-    padding-right: 30px;
+    padding-bottom: clamp(10px, 4vw, 30px);
+    padding-right: clamp(10px, 4vw, 30px);
     color: white;
-    font-family: "Geologica";
+    font-family: "Geologica"; 
+}
+.NameCreativity p {
+    font-size: clamp(6px, 3.5vw, 14px);
+}
+.NameCreativity h3 {
+    font-size: clamp(11px, 6vw, 24px);
+}
 
- }
+
 .mainCreat{
     display: flex;
     height: 100%;
@@ -407,8 +414,8 @@ justify-content: space-between;
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start; 
-    width: clamp(228px, 35vw, 571px);
-    height: clamp(250px, 38vw, 710px);
+    width: clamp(228px, 35vw, 571px);  
+    height: clamp(291px, 38vw, 710px);
 }
 .h2Creativity h2{
     font-family: 'Geologica';
@@ -913,7 +920,7 @@ background:
     justify-content: end;
     border-radius: 22px 0 0 0;
     background-color: #344163;
-    padding: 15px;
+    padding: 23px;
 }
  
 .bottom-text section{

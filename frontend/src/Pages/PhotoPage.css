@@ -1,0 +1,287 @@
+/* Общий фон - белый */
+.photo-page {
+    min-height: 100vh;
+    background: white;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* Кнопка закрытия - крестик */
+.close-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: rgba(245, 245, 245, 0.9);
+    border: 1px solid #e0e0e0;
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    z-index: 100;
+    color: #333;
+}
+
+.close-button:hover {
+    background: #e8e8e8;
+    transform: scale(1.05);
+}
+
+/* Ползунок для зума */
+.zoom-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: rgba(245, 245, 245, 0.95);
+    padding: 12px 24px;
+    border-radius: 40px;
+    border: 1px solid #e0e0e0;
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    backdrop-filter: blur(10px);
+}
+
+.zoom-controls span {
+    font-size: 14px;
+    color: #555;
+    font-weight: 500;
+}
+
+.zoom-slider {
+    width: 250px;
+    height: 4px;
+    -webkit-appearance: none;
+    background: #ddd;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+}
+
+.zoom-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #333;
+    cursor: pointer;
+    border: none;
+    transition: transform 0.2s;
+}
+
+.zoom-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+    background: #000;
+}
+
+/* Контейнер с изображением */
+.image-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    overflow: auto;
+}
+
+.image-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.image-container img {
+    max-width: 90vw;
+    max-height: 85vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    transition: transform 0.2s ease;
+    user-select: none;
+}
+
+/* РАЗМЫТАЯ ПЛАШКА С ОПИСАНИЕМ - появляется только при наведении */
+.image-info-overlay {
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    padding: 20px 25px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    max-width: 300px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Показываем плашку при наведении на image-container */
+.image-container:hover .image-info-overlay {
+    opacity: 1;
+    visibility: visible;
+}
+
+.image-info-overlay h3 {
+    margin: 0 0 12px 0;
+    font-size: 20px;
+    color: #222;
+    font-weight: 600;
+}
+
+.image-info-overlay p {
+    margin: 8px 0;
+    font-size: 14px;
+    color: #444;
+    line-height: 1.4;
+}
+
+.image-info-overlay strong {
+    color: #000;
+    font-weight: 600;
+}
+
+/* Скролл для увеличенного изображения */
+.image-container::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.image-container::-webkit-scrollbar-track {
+    background: #f0f0f0;
+    border-radius: 10px;
+}
+
+.image-container::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
+}
+
+.image-container::-webkit-scrollbar-thumb:hover {
+    background: #aaa;
+}
+
+/* Анимация загрузки */
+.photo-loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.spinning-loader {
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+
+.loader-ring {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    animation: spin 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+}
+
+.loader-ring:nth-child(1) {
+    border-top-color: #ff6b6b;
+    animation-delay: -0.45s;
+}
+
+.loader-ring:nth-child(2) {
+    border-right-color: #4ecdc4;
+    animation-delay: -0.3s;
+}
+
+.loader-ring:nth-child(3) {
+    border-bottom-color: #45b7d1;
+    animation-delay: -0.15s;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.photo-loading p {
+    margin-top: 30px;
+    font-size: 16px;
+    color: #888;
+    letter-spacing: 0.5px;
+}
+
+/* Адаптив для мобилок */
+@media (max-width: 768px) {
+    .photo-page {
+        padding: 10px;
+    }
+
+    .close-button {
+        top: 10px;
+        right: 10px;
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+    }
+
+    .zoom-controls {
+        padding: 8px 16px;
+        gap: 10px;
+    }
+
+    .zoom-slider {
+        width: 180px;
+    }
+
+    .zoom-controls span {
+        font-size: 12px;
+    }
+
+    .image-info-overlay {
+        bottom: 15px;
+        left: 15px;
+        right: 15px;
+        max-width: none;
+        padding: 15px;
+    }
+
+    .image-info-overlay h3 {
+        font-size: 16px;
+        margin-bottom: 8px;
+    }
+
+    .image-info-overlay p {
+        font-size: 12px;
+        margin: 5px 0;
+    }
+
+    .image-container img {
+        max-width: 95vw;
+        max-height: 75vh;
+    }
+}

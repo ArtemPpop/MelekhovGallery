@@ -356,17 +356,14 @@ padding-right: 10px;
 .vistavki2 h1{
     width: 279px;
 }
-.desc2Bio{
-    gap: clamp(10px, 1.5vw, 20px);
-   height: clamp(110px, 21vw, 129px); 
-}
+ 
 .desc1Bio{
     gap: clamp(10px, 1.5vw, 20px);
    height: clamp(60px, 11vw, 129px); 
 }
 .desc2Bio{
     gap: clamp(10px, 1.5vw, 20px);
-   height: clamp(110px, 21vw, 129px); 
+  height: clamp(90px, 21vw, 129px);
 }
 
  .descBio{
@@ -390,6 +387,11 @@ padding-right: 5px;
     
 font-size: 24px;
 height: clamp(87px, 18.9vw, 90.6px);
+padding-right: 5px;
+}
+.yearsDesc2 p{
+font-size: 24px;
+height: clamp(70px, 19.2vw, 83.6px);
 padding-right: 5px;
 }
 

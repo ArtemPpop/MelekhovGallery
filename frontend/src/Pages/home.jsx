@@ -119,8 +119,9 @@ export default function Home() {
                  
                </div>
                <div className=" NameCreativity">
-                <h3>2007 год</h3>
-                            <p>Закат</p>
+               
+                            <p>2007 год</p>
+                             <h3>Закат</h3>
                </div>
                  
             </section>

@@ -39,15 +39,35 @@ border-radius: clamp(5px, 1.15vw, 22px) clamp(5px, 1.15vw, 22px) 0 0;
 .butsvk{
  
     display: flex;
-    width: fit-content;
-    height: clamp(10px, 5vw, 41px);
+    width: clamp(70px, 11vw, 208px);
+    height: clamp(27px, 5vw, 97px);  
     justify-content: space-between;
+    align-items: center;
     margin: 0;
+    aspect-ratio: 208/97;
 }
 .butsvk img{
+    height: clamp(14px, 3vw, 40px); 
     width: auto;
-    height: 100%;
+    aspect-ratio: 40/40; 
     cursor: pointer;
+}
+.butsvk div{
+    height: clamp(27px, 4.16vw, 80px);
+    width: clamp(27px, 4.16vw, 80px);
+    display: flex;
+    align-items: center;
+    justify-content: center;  
+    border: 1px solid #ffffff;
+    border-radius: 3px;
+    cursor: pointer;
+ 
+
+}
+.butsvk hr{
+    height: 100%;
+    border: 0.5px solid white;
+
 }
 .vkslider{
     margin-top: 2%;
@@ -56,6 +76,7 @@ border-radius: clamp(5px, 1.15vw, 22px) clamp(5px, 1.15vw, 22px) 0 0;
     padding-bottom: 5%;
     width: 100%;
     display: flex;
+    background-color: white;
     justify-content: space-between; 
 }
 .swiperVKSlider{
@@ -77,14 +98,7 @@ border-radius: clamp(5px, 1.15vw, 22px) clamp(5px, 1.15vw, 22px) 0 0;
 }
 @media(max-width:1100px){
 
-.butsvk{
-    
-    display: flex;
-    margin-right: 0;
-    width: clamp(36px, 15vw,136px);
-    height: clamp(10px, 5vw, 41px);
-    justify-content: space-between;
-}
+ 
  .vkh2 {
     flex-direction: column;
     align-items: end;
@@ -96,7 +110,7 @@ border-radius: clamp(5px, 1.15vw, 22px) clamp(5px, 1.15vw, 22px) 0 0;
   }
   .butsvk{
   margin-top: clamp(10%, 11.5%, 13%);
-margin-right: clamp(0%, 2%, 4%);
+margin-right: clamp(-2%, -2%, 5%);
     position: absolute;
   } 
 }

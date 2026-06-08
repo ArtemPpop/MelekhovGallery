@@ -17,14 +17,14 @@
 .MergeSlidMain {
     display: flex;
     justify-content: space-between;
-    align-items: end;
+    align-items: center;
     width: clamp(320px, 87vw, 1480px);
     height: fit-content;
 }
 
 .mergeH2 {
     
-  height: clamp(350px, 46.8vw, 722px);
+  height: clamp(350px, 24.7vw, 474px);
 }
 
 .mergeH2 h2 {
@@ -36,7 +36,7 @@
 .mergeH2 p {
     color: #3B3534;
     width: clamp(80%, 80%, 100%);
-   font-size: clamp(14px, 1.56vw, 30px);
+   font-size: clamp(14px, 1.56vw, 24px);
 }
 
 .rightMerge {
@@ -167,7 +167,7 @@
 
 @media(max-width:685px) {
     .butsForMerge{
-    display: none;
+   margin-right: 0;
 }
     .rightMerge{
     width: clamp(320px, 87vw, 1480px);
@@ -195,7 +195,8 @@
 }
 
 .slid h3 {
-    font-size: clamp(12px, 2.9vw, 20px); 
+    font-size: clamp(11px, 2.9vw, 20px);
+    font-weight: 400;
 }
 
 .slid h6 {
@@ -209,8 +210,8 @@
     display: flex;
     flex-wrap: wrap;
     width: 100%; 
-    flex-direction: column; 
-    height: clamp(135px, 40.8vw, 900px);
+    flex-direction: column;     
+    height: clamp(110px, 35.8vw, 900px);
     justify-content: space-between;
     padding-top: 3%;
 }
@@ -221,7 +222,22 @@
 }
 .mergeH2 p{ 
     width: 100%; 
-    height: 70%;
+    height: 65%; 
+
+}
+.hyphen-text {
+  hyphens: auto;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  max-width: 375px;
+}
+ 
+.hyphen-text {
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+.mergeH2 br{
+    display: none;
 }
 .mergeH2 button{
       margin-left: clamp( -9.5rem, -9.5rem, -1.6rem);

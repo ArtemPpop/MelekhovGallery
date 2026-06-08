@@ -31,7 +31,7 @@ export default function VkSection(){
          <section className='SliderVK'> 
             <div className="vkh2">
                 <h2>Cледите за событиями <br /> в  группе <u>ВКонтакте</u></h2>
-                  <div className=" butsvk butsForMerge butsvk">
+                  <div className="butsvk">
             <div>    <img onClick={handlePrev} src={left} alt="" /></div>
               <hr />
                 <div><img onClick={handleNext} src={right} alt="" /></div>

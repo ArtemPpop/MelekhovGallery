@@ -5,7 +5,7 @@ import call from './img/call.png'
 import mess from './img/mess.png'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-
+import GoogleMapReact from 'google-map-react';
 
 export default function Kontakt(){
     const [isVisible, setIsVisible] = useState(false)
@@ -183,7 +183,7 @@ export default function Kontakt(){
             <h1>Адрес музея</h1>
             <div className="addresBloc">
                 <div className="adressPic">
-                    <img src={card} alt="" />
+                    {/* апи ключ */}
                 </div>
 
                 <div className="adressCards">

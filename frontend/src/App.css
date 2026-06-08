@@ -40,7 +40,7 @@
 }
 
 .logo h2 {
-  font-size: clamp(16px, 3.7vw, 36px);
+  font-size: clamp(16px, 3.7vw, 48px);
     font-family: 'ForumFont';
     color: #4D3410;
     line-height: 1.2;
@@ -50,7 +50,7 @@
 }
 
 .logo p {
-    font-size: clamp(6px, 1.3vw, 15px);
+    font-size: clamp(6px, 1.4vw, 15px);
     font-family: 'Geologica';
     color: #B27D00;
     line-height: 1.3;
