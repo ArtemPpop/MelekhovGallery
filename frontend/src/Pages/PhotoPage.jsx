@@ -12,7 +12,7 @@ export default function PhotoPage() {
     const [zoomLevel, setZoomLevel] = useState(100);
     const imageWrapperRef = useRef(null);
 
-    const API_URL = 'http://82.97.252.48/api/artworks/artworks/';
+    const API_URL = '/api/artworks/artworks/';
  
     useEffect(() => {
         const fetchAllWorks = async () => {
