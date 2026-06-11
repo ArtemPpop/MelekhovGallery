@@ -20,29 +20,41 @@ export default function Museum() {
                 <div className="conceptMain">
                     <div className="MuseumH2">
                         <h1>Концепция музея</h1>
-                        <p>Vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a,
-                             venenatis vitae, justo. Nullam dictum felis eu pede mollis 
-                             pretium. Integer tincidunt. Cras dapibus. Vivamus elementum 
-                             semper nisi. Aenean vulputate eleifend tellus. Aenean leo 
-                            ligula, porttitor eu, consequat vitae, eleifend ac, enim.</p>
+                        <p>
+                            Это пространство, где будут жить
+                             только оригиналы заслуженного
+                              художника РФ Олега Мелехова. 
+                              Ничего лишнего — только холсты,
+                               кисть и авторский взгляд.
+                                По задумке музей будет в 
+                                Светлогорске, но точные даты 
+                                создания пока не известны.
+                             Следите за новостями на нашем
+                              сайте, чтобы узнать подробности.
+                        </p>
                     </div>
                     <div className="Museumimg1">
                     </div>
                 </div>
             </section>
+            
             <div className="concept2">
+                <div className="conceptMain">
+                    <div className="Museumimg2"></div>
                 <div className="concept2H2">
                     <h1>3D-визуализация помещений</h1>
-                </div>
-                <div className="museumButton">
-                    <div className="textAndBut">
-                        <p>Разрабатывается виртуальный тур по будущему музею, который позволит увидеть
-                        концепцию экспозиционных залов, расположение работ и общую атмосферу пространства.</p>
-                        <p>Виртуальный тур будет доступен на сайте после завершения архитектурного проекта.</p>
+                     <p>Разрабатывается виртуальный
+                         тур по будущему музею, который позволит увидеть 
+                         концепцию экспозиционных залов,
+                         расположение работ и общую атмосферу пространства.</p>
+                         <p>Виртуальный тур будет доступен на сайте после завершения
+                             архитектурного проекта.</p>
                         <button>В процессе</button>
-                    </div>
-                    <section></section>
                 </div>
+                </div>
+                
+                
+                     
             </div>
         </div>
     )

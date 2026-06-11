@@ -17,10 +17,12 @@ import Kont from './Sections4/Kontakt.jsx'
 import merge from './Sections4/merge.jsx'
 import Merge from './Sections4/merge.jsx'
 import PhotoPage from './Pages/PhotoPage.jsx';
+import ScrollToTop from './Components/scrollToTop.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
+    <ScrollToTop/>
        <YandexMetrika /> 
      <App />
       <Routes>

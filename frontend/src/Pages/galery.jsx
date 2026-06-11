@@ -9,7 +9,7 @@
             const [loading, setLoading] = useState(true);
             const [error, setError] = useState(null);
 
-            const API_URL = '/api/artworks/artworks/';
+            const API_URL = 'http://82.97.252.48/api/artworks/artworks/';
 
             const didLoad = useRef(false); 
             useEffect(() => {

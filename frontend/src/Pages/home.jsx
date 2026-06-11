@@ -7,7 +7,7 @@ import oleg from './imgs/oleg.png'
 import Creat1 from './imgs/Mask1.png'
 import Creat2 from './imgs/Mask2.png'
 import location from './imgs/location.png'
-
+import { Link } from 'react-router-dom'
 import Mergeslider from './mergeSlider.jsx'
 import { useRef } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -16,8 +16,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { Pagination, Navigation, Autoplay } from 'swiper/modules';
 import { useMediaQuery } from 'react-responsive';
-import Firstslid from './firstSlider.jsx'
-import { Link } from 'react-router-dom'
+import Firstslid from './firstSlider.jsx' 
 import VK from './vkSection.jsx'
 export default function Home() {
  const isMobile = useMediaQuery({ maxWidth: 768 });
@@ -90,7 +89,8 @@ export default function Home() {
                        
                        
                     </div>
-                      <button>Подробнее</button>
+
+            <Link to="/bio"  ><button>Подробнее</button> </Link> 
                     
                 </div> 
                 </div>
@@ -110,9 +110,9 @@ export default function Home() {
                              в своих чувствах и близких людях. Он впитывал знания, которыми делились более 
                              опытные художники, искал свой стиль. Он стал основателем стиля "Искусство Глёз" - 
                              искусства сияющей любви, и он посвятил в это искусство своих учеников.
-                             </p>
-         
-                        <button>Побробнее </button>
+                             </p> 
+                              <Link to="/tvor" ><button>Подробнее</button> </Link>
+             
                      
                 </div>
                  </div>
@@ -152,7 +152,11 @@ export default function Home() {
                        <section>
                          <p>Виртуальная галерея  предоставляет доступ к полной коллекции работ
                         в высоком разрешении с возможностью детального просмотра</p>
-                        <button>Галерея</button>
+                         <Link to="/galery" > <button>Галерея</button></Link>
+                           
+           
+                       
+
                        </section>
                     </div>
                 </div>
@@ -167,7 +171,7 @@ export default function Home() {
                     <h2>О проекте музея <br /> в Светлогорске</h2>
                     <div className="museumLocation">
                         <img src={location} alt="" />
-                        <p>г. Город, ул. Улица. д. 1, кв. 2 <br /> Мulputate eget, arcu.</p>
+                        <p>г. Светлогорск</p>
                     </div>
                 </div>
                         <p  className='museumP'>Это пространство, где будут 
@@ -176,13 +180,12 @@ export default function Home() {
                             взгляд. По задумке музей будет в Светлогорске, но точные даты 
                             создания пока не известны. 
                             Следите за новостями на нашем сайте, чтобы узнать подробности.
-
-    </p>
-     <div className="but-hr">
+                            </p>
+                            <div className="but-hr">
                        <div>
 
-                           <hr />
-                       <button>Узнать больше  </button>
+                           <hr /> 
+                            <Link to="/mus"  >  <button>Узнать больше  </button> </Link> 
                        </div>
               
                   </div>

@@ -1,37 +1,56 @@
 /* Общий фон - белый */
 .photo-page {
-    min-height: 100vh;
+    min-height: 50vh;
     background: white;
     position: relative;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
+    font-family: "Geologica";
+    flex-direction: column;
 }
 
-/* Кнопка закрытия - крестик */
-.close-button {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    background: rgba(245, 245, 245, 0.9);
-    border: 1px solid #e0e0e0;
-    font-size: 24px;
-    cursor: pointer;
+.controls-wrapper {  
+    left: 0;
+    right: 0; 
     display: flex;
-    align-items: center;
     justify-content: center;
-    transition: all 0.2s;
-    z-index: 100;
-    color: #333;
+    align-items: center;
+    width: 100%;
+    padding: 12px 20px;
+    background: transparent;
+    pointer-events: none;  
 }
 
-.close-button:hover {
-    background: #e8e8e8;
-    transform: scale(1.05);
+.controls-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%; 
+    backdrop-filter: blur(10px);  
+    padding: 8px 20px;
+    pointer-events: auto;  
+}
+
+.controls-left {
+    width: 45px;  
+}
+
+.controls-center {
+    width: fit-content;
+    display: flex;
+    padding: 0.5%;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    border: #ADA99C solid 1px;
+}
+
+.controls-right {
+    width: 45px;
+    display: flex;
+    border-radius: 50px;
+    justify-content: flex-end;
+    border: 1px solid #ADA99C;
 }
 
 /* Ползунок для зума */
@@ -39,16 +58,10 @@
     display: flex;
     align-items: center;
     gap: 15px;
-    background: rgba(245, 245, 245, 0.95);
-    padding: 12px 24px;
-    border-radius: 40px;
-    border: 1px solid #e0e0e0;
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 10;
-    backdrop-filter: blur(10px);
+    padding: 2%;
+    border: none;
+    background: transparent;
+    backdrop-filter: none;
 }
 
 .zoom-controls span {
@@ -83,6 +96,27 @@
     background: #000;
 }
 
+.close-button {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: transparent;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    color: #333;
+    padding: 0;
+}
+
+.close-button:hover {
+    background: rgba(0, 0, 0, 0.05);
+    transform: scale(1.05);
+}
+
 /* Контейнер с изображением */
 .image-container {
     position: relative;
@@ -90,8 +124,9 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 100vh;
+    height: calc(100vh - 80px);
     overflow: auto;
+    margin-top: 20px;
 }
 
 .image-wrapper {
@@ -99,37 +134,40 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 100%;
+    min-height: 100%;
 }
 
+/* ВАЖНО: для ПК версии убираем clamp, оставляем фиксированные значения */
 .image-container img {
     max-width: 90vw;
     max-height: 85vh;
     width: auto;
     height: auto;
     object-fit: contain;
-    transition: transform 0.2s ease;
+    transition: none;
     user-select: none;
+    display: block;
+    margin: auto;
 }
 
-/* РАЗМЫТАЯ ПЛАШКА С ОПИСАНИЕМ - появляется только при наведении */
+/* РАЗМЫТАЯ ПЛАШКА С ОПИСАНИЕМ */
 .image-info-overlay {
     position: absolute;
-    bottom: 30px;
-    left: 30px;
-    background: rgba(255, 255, 255, 0.85);
+    top: 55%;
+    right: 30px;
+    background: rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(12px);
     padding: 20px 25px;
     border-radius: 16px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
     max-width: 300px;
     opacity: 0;
     visibility: hidden;
     transition: all 0.3s ease;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    pointer-events: none;
+    z-index: 10;
 }
 
-/* Показываем плашку при наведении на image-container */
 .image-container:hover .image-info-overlay {
     opacity: 1;
     visibility: visible;
@@ -138,19 +176,22 @@
 .image-info-overlay h3 {
     margin: 0 0 12px 0;
     font-size: 20px;
-    color: #222;
+    color: black;
+    font-family: 'Geologica';
     font-weight: 600;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .image-info-overlay p {
     margin: 8px 0;
     font-size: 14px;
-    color: #444;
+    color: black;
+    font-family: 'Geologica';
     line-height: 1.4;
 }
 
 .image-info-overlay strong {
-    color: #000;
+    color: black;
     font-weight: 600;
 }
 
@@ -175,7 +216,7 @@
 }
 
 /* Анимация загрузки */
-.photo-loading {
+.loading-container {
     position: fixed;
     top: 0;
     left: 0;
@@ -189,85 +230,80 @@
     z-index: 1000;
 }
 
-.spinning-loader {
-    position: relative;
-    width: 80px;
-    height: 80px;
-}
-
-.loader-ring {
-    position: absolute;
-    width: 100%;
-    height: 100%;
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 3px solid #f0f0f0;
+    border-top-color: #333;
     border-radius: 50%;
-    border: 3px solid transparent;
-    animation: spin 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-}
-
-.loader-ring:nth-child(1) {
-    border-top-color: #ff6b6b;
-    animation-delay: -0.45s;
-}
-
-.loader-ring:nth-child(2) {
-    border-right-color: #4ecdc4;
-    animation-delay: -0.3s;
-}
-
-.loader-ring:nth-child(3) {
-    border-bottom-color: #45b7d1;
-    animation-delay: -0.15s;
+    animation: spin 1s linear infinite;
 }
 
 @keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
+    to { transform: rotate(360deg); }
 }
 
-.photo-loading p {
-    margin-top: 30px;
+.loading-container p {
+    margin-top: 20px;
     font-size: 16px;
     color: #888;
-    letter-spacing: 0.5px;
 }
 
-/* Адаптив для мобилок */
+/* ========== ТОЛЬКО МОБИЛЬНЫЕ СТИЛИ (НЕ ВЛИЯЮТ НА ПК) ========== */
 @media (max-width: 768px) {
     .photo-page {
         padding: 10px;
+        padding-top: 70px;
+    }
+
+    .controls-wrapper {
+        top: 60px;
+        padding: 8px 15px;
+    }
+
+    .controls-container {
+        padding: 5px 15px;
+    }
+
+    .controls-left, .controls-right {
+        width: 35px;
     }
 
     .close-button {
-        top: 10px;
-        right: 10px;
-        width: 40px;
-        height: 40px;
-        font-size: 20px;
+        width: 35px;
+        height: 35px;
+        font-size: 22px;
     }
 
     .zoom-controls {
-        padding: 8px 16px;
         gap: 10px;
     }
 
     .zoom-slider {
-        width: 180px;
+        width: 150px;
     }
 
     .zoom-controls span {
         font-size: 12px;
     }
 
+    .image-container {
+        height: calc(100vh - 60px);
+        margin-top: 70px;
+    }
+
+    .image-container img {
+        max-width: 95vw;
+        max-height: 70vh;
+    }
+
     .image-info-overlay {
         bottom: 15px;
-        left: 15px;
         right: 15px;
-        max-width: none;
-        padding: 15px;
+        left: auto;
+        top: auto;
+        max-width: calc(100% - 30px);
+        padding: 12px 16px;
     }
 
     .image-info-overlay h3 {
@@ -279,9 +315,6 @@
         font-size: 12px;
         margin: 5px 0;
     }
-
-    .image-container img {
-        max-width: 95vw;
-        max-height: 75vh;
-    }
 }
+
+ 

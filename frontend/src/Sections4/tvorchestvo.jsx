@@ -1,6 +1,6 @@
 import './tvor.css'
 import { useEffect, useState } from 'react'
-
+import { Link } from 'react-router-dom'
 export default function Tvorchestvo() {
     const [isVisible, setIsVisible] = useState(false)
 
@@ -183,14 +183,14 @@ export default function Tvorchestvo() {
                     <p>Искусство сияющей Любви</p>
                 </div>
                 <div className="shedevrContentMain">
-                    <div className="shedevrContent1">
-                        <p>Олег Мелехов основал новое направление в искусстве третьего тысячелетия — <br />
+                    <div className="shedevrContent2">
+                        <p>Олег Мелехов основал новое направление в искусстве третьего тысячелетия — 
                             «Искусство Глёз». Искусство красоты и добра сочетает в себе гармонию чистого 
-                            цвета, <br /> ясность  
-                            композиционного строя и изысканную пластику форм. <br />
+                            цвета, ясность  
+                            композиционного строя и изысканную пластику форм. 
                             Художник поднимает живописное звучание своих произведений до высокой 
-                            степени <br /> гармонии, с высоты которой утончённая энергетика картин отвечает благодарным 
-                            свечением, <br />    сияя светом, исходящим изнутри.</p>
+                            степени  гармонии, с высоты которой утончённая энергетика картин отвечает благодарным 
+                            свечением,     сияя светом, исходящим изнутри.</p>
                     </div>
                     <div className="shedevrContent2">
                         <p>
@@ -226,8 +226,10 @@ export default function Tvorchestvo() {
                         </p>
                     </div>
                     <div className="hellobuts">
-                        <button>Открыть галерею</button>
-                        <button>Полная коллекция</button>
+                         <Link to="/galery" > <button>Открыть галерею</button></Link> 
+                     
+                        <Link to="/coll" > <button>Полная коллекция</button></Link> 
+                       
                     </div>
                 </div>
             </div>

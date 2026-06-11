@@ -532,6 +532,7 @@ margin-bottom: 10%;
     width: clamp(138px, 22.35vw, 429px); 
 height: 100%;
 cursor: pointer;
+transition: 0.5s ease ;
 
 }
 .hellobuts button:first-child{
@@ -552,6 +553,20 @@ background-color: #ffffff;
 .tvorchestvo-container.show {
     opacity: 1;
     transform: translateY(0);
+}
+
+.hellobuts button:first-child:hover {
+    background-color: #4D3410;
+    color: #ffffff;
+    transform: translateY(-2px); /* Легкий подъем */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Вторая кнопка (Полная коллекция) */
+.hellobuts button:last-child {
+    color: #644735;
+    border: 1px solid #644735;
+    background-color: #ffffff;
 }
  @media(max-width:613px){
     .Hellop br{

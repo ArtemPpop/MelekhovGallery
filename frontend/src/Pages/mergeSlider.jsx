@@ -7,7 +7,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import left2 from './imgs/left2.png'
 import right2 from './imgs/right2.png'
-
+import { Link } from 'react-router-dom'
 // import required modules
 import { Pagination, Navigation } from 'swiper/modules';
 
@@ -39,12 +39,12 @@ import { Pagination, Navigation } from 'swiper/modules';
                         Мерч
                     </h2>
                     <p style={{
-  maxWidth: "375px",
-  wordBreak: "break-word"
-}}>
-  Теперь картины Олега Мелехова станут ближе: мы запустили линейку коллекционных карт с оцифро&shy;ванными работами художника, которые смогут радо&shy;вать вашу душу яркими и жизнерадостными тонами.
-</p>
-                    <button>Узнать больше </button>
+                      maxWidth: "375px",
+                      wordBreak: "break-word"
+                    }}>
+                      Теперь картины Олега Мелехова станут ближе: мы запустили линейку коллекционных карт с оцифро&shy;ванными работами художника, которые смогут радо&shy;вать вашу душу яркими и жизнерадостными тонами.
+                    </p>
+                    <Link to="/merge"><button>Узнать больше </button></Link> 
                 </div>
                 
                 <div className="rightMerge"> 
