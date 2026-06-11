@@ -1,0 +1,116 @@
+*{
+    margin: 0   ;
+    padding: 0;
+    box-sizing: border-box;
+}
+.sliderVkMain{
+    width: 100%;
+    min-width: 360px;
+    max-width: 1920px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.SliderVK{
+    display: flex;
+    flex-direction: column  ;
+   width: 100%;
+    align-items: center;  
+      background-color: #344163;
+      justify-content: center;
+border-radius: clamp(5px, 1.15vw, 22px) clamp(5px, 1.15vw, 22px) 0 0;
+}
+.vkh2{
+    height: fit-content;
+ width: clamp(320px, 85vw, 1480px);
+
+    display: flex;
+    border-radius: 22px 22px 0 0;
+    align-items: center;
+    justify-content: space-between;
+}
+ 
+.vkh2 h2{ font-family: 'Geologica';
+    color: #FFFFFF;
+    font-size: clamp(24px, 5vw, 96px);
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.butsvk{
+ 
+    display: flex;
+    width: clamp(70px, 11vw, 208px);
+    height: clamp(27px, 5vw, 97px);  
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+    aspect-ratio: 208/97;
+}
+.butsvk img{
+    height: clamp(14px, 3vw, 40px); 
+    width: auto;
+    aspect-ratio: 40/40; 
+    cursor: pointer;
+}
+.butsvk div{
+    height: clamp(27px, 4.16vw, 80px);
+    width: clamp(27px, 4.16vw, 80px);
+    display: flex;
+    align-items: center;
+    justify-content: center;  
+    border: 1px solid #ffffff;
+    border-radius: 3px;
+    cursor: pointer;
+ 
+
+}
+.butsvk hr{
+    height: 100%;
+    border: 0.5px solid white;
+
+}
+.vkslider{
+    margin-top: 2%;
+    height: fit-content;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    width: 100%;
+    display: flex;
+    background-color: white;
+    justify-content: space-between; 
+}
+.swiperVKSlider{
+    width: clamp(320px, 85vw, 1480px);
+}
+.vkslid{
+    width: clamp(218px, 24.48vw, 470px);
+    height: clamp(290px, 50.6vw, 702px);
+    
+    border: 1px solid #C3B9AC;
+    margin-bottom: 100px;
+}
+.butsvk div{
+    border-color: #FFFFFF;
+}
+.butsvk hr{
+      border-color: #FFFFFF;
+      background-color: #FFFFFF;
+}
+@media(max-width:1100px){
+
+ 
+ .vkh2 {
+    flex-direction: column;
+    align-items: end;
+    justify-content: space-around;
+    position: relative;
+ }
+  .vkh2 h2{
+    width: 100%;
+  }
+  .butsvk{
+  margin-top: clamp(10%, 11.5%, 13%);
+margin-right: clamp(-2%, -2%, 5%);
+    position: absolute;
+  } 
+}

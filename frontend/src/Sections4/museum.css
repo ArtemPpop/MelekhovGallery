@@ -1,0 +1,103 @@
+*{
+    margin: 0   ;
+    padding: 0;
+    box-sizing: border-box;
+}
+.concept{
+    display: flex;
+    width: 100%;
+    height:565px; 
+    border-top: 1px solid rgba(207, 206, 204, 1);
+}
+.conceptMain{
+    width: 100%;
+    height: 100%; 
+    margin: 0 auto;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid rgba(207, 206, 204, 1);
+}
+.Museumimg1{
+    height: 100%;
+    position: absolute;
+    width: 960px;
+    right: 0;
+    top: 0;
+    background-image: url(img/museum2.png);
+
+}
+.MuseumH2{
+    width: clamp(320px, 85vw, 1480px);
+    height: 358px; 
+    display: flex;
+    flex-direction: column; 
+    justify-content: space-evenly;
+    
+
+}
+.MuseumH2 h1{
+    font-family: 'Geologica';
+    color: rgba(52, 65, 99, 1);
+    
+    font-size: 48px;
+    font-weight: 600; 
+height: fit-content;
+}
+.concept p{
+    width: 617px;
+    
+    font-family: 'Geologica';
+    color: #3B3534;
+    font-weight: 300;  
+    font-size: 24px; 
+}
+.concept2{
+    display: flex;
+    width: 100%;
+    height:565px; 
+    border-top: 1px solid rgba(207, 206, 204, 1);
+}
+.Museumimg2{
+    position: absolute;
+    height: 100%;
+    width: 960px;
+    left: 0;
+    top: 0;
+    background-image: url(img/museum1.png);
+}
+.concept2H2{
+    width: clamp(320px, 85vw, 1480px);
+    height: 459px;
+    display: flex;
+    flex-direction: column;
+    align-items: end; 
+    justify-content: space-between;
+
+}
+.concept2 h1{
+    width: 617px;
+    text-align: start;
+     font-family: 'Geologica';
+    color: #B58641;
+    
+    font-size: 48px;
+    font-weight: 600;  
+}
+
+.concept2 p{
+    width: 617px;
+    
+    font-family: 'Geologica';
+    color: #3B3534;
+    font-weight: 300;  
+    font-size: 24px; 
+}
+.concept2 button{
+    width: 617px;
+    height: 65px;
+    background-color: #644735;
+     font-size: 24px; 
+     color: white;
+}

@@ -1,0 +1,615 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.secBiograph{ 
+    width: 100%; 
+    border-top: 1px solid #C3B9AC;
+
+}
+.bioOleg{
+    width: clamp(325px, 80vw, 1480px);
+    margin: 0 auto; 
+    height: 758px; 
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+
+.bioTop{
+    margin-top: 5%;
+    
+    width: 100%;  
+    display: flex; 
+    align-items: start;
+    justify-content: space-between;
+}
+.bioTop hr{
+    height: clamp(179px, 60.4vh, 567px);
+    border: 1px solid #C3B9AC;
+}
+.bioTop div{
+    width: clamp(300px, 45vw, 899px);
+    height: 474px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;  
+    padding-top: 2%; 
+}
+.mol{
+    height: 21px;
+    width: clamp(222px, 77vw, 1450px);
+    height: 57px;
+    margin-top: -3%;
+    margin-right: clamp(-5%, -1%, -1%);
+}
+.bioTop span{
+    
+    font-family: 'ForumFont';
+    font-size: clamp(22px, 3vw, 60px);
+}
+.bioTop h3{
+    font-family: 'Geologica';
+    font-size:  clamp(11px, 1.5vw, 30px);
+    line-height: clamp(0.8vh, 4.2vh, 4.2vh);
+    font-weight: 400;
+}
+.bioTop img{
+    
+    height: 226px;
+    width: 183px;
+    height: auto;
+    width: clamp(183px, 39vw, 470px);
+    
+}
+
+
+.detstva{
+    height: clamp(89px, 29vh,  265px);
+    width: clamp(325px, 80vw, 1480px);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: start; 
+    border-top: 2px solid #C3B9AC;
+    border-bottom: 2px solid #C3B9AC;
+}
+.detstva h3{
+    font-family: 'Geologica';
+    font-size: clamp(24px, 4.69vw, 90px);
+    color: #344163;
+    line-height: 83%;
+    font-weight: 600;
+}
+.contentBio{
+    height: fit-content; 
+    margin: 0 auto;
+    padding: 3.5% 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.contentBio p{
+    width: clamp(325px, 80vw, 1324px); 
+    font-size: clamp(11px, 1.7vw, 29px);
+    font-family: 'Geologica';
+    line-height: 145%;
+    font-weight: 400;
+}
+
+
+
+.vistavki{
+    
+    width: clamp(325px, 78vw, 1480px);
+    margin:  0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: start; 
+    height: clamp(350px, 35.5vw, 735px);
+    
+
+}
+.vistavki h1{
+  font-size: clamp(10px, 1.67vw, 32px);
+    height: 90px;
+    width: 100%;
+    padding-top: 2%;
+    font-family: 'Geologica';
+    color: #3B3534;
+    text-align: center;
+}
+.vistavki2{
+    gap: 2%;
+}
+.yearAndDesc{
+    display: flex; 
+    height: fit-content;
+    justify-content: end;
+}
+.desc1Bio{
+    gap: clamp(20px, 1.5vw, 28px); 
+   height: clamp(107px, 7.1vw, 119px);
+    align-items: start;
+    display: flex;
+    
+}
+.desc1Bio p{
+    width: clamp(850px, 53.75vw, 1032px); 
+   font-size: clamp(11px, 1.65vw, 30px);
+    font-family: 'Geologica';
+    font-weight: 200;
+}
+
+.desc1Bio img{
+    margin-top: 1.5%;
+    height: 2px;
+   width: clamp(34px, 3.23vw, 62px);
+}
+.descBio{
+    height: 100%;
+    padding-top: 1.3%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5%;
+}
+
+.yearsDesc p{
+font-size: clamp(40px, 2.5vw, 48px);
+    font-family: 'ForumFont';
+height: clamp(102px, 6.56vw, 112px); 
+padding-right: 30px;
+color: #344163;
+}
+
+.yearsDesc{
+     gap: clamp(6%, -0.5vw, 8.5%);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+
+}
+.vertical{
+   height: clamp(271px, 26.9vw, 516px);
+}
+.vistavki2 h1{
+margin-bottom: 2%;
+}
+.hrBiog{
+    background-color: #C3B9AC;
+    border-color: #C3B9AC;
+    border: 0;
+    height: 2px;
+}
+
+@media(max-width:1519px){
+ 
+    .desc1Bio p{ 
+   font-size: clamp(17px, 1.7vw, 27px);
+    width: clamp(135px, 60.75vw, 1032px);
+}
+.desc1Bio p br {
+        display: none;
+    }
+    
+    .descBio{
+    height: 100%;
+    padding-top: 1.3%;
+   
+    gap: 5%;
+}
+.desc1Bio{
+    gap: clamp(10px, 1.5vw, 20px);
+   height: clamp(97px, 8.1vw, 119px);
+}
+.desc1Bio img{
+    margin-top: 1.2%;
+}
+.vistavki2{
+    gap: 0;
+}
+.yearsDesc p{
+font-size: clamp(30px, 2.5vw, 40px);
+height: clamp(82px, 7.3vw, 112px);
+}
+}
+
+@media(max-width:1119px){
+
+    .vistavki{
+        justify-content: space-evenly;
+    height: clamp(390px, 45.5vw, 735px); 
+    }
+    .vistavki2{
+         height: clamp(430px, 45.5vw, 735px);
+    }
+    .desc1Bio p{ 
+   font-size: clamp(20px, 1.7vw, 37px);
+    width: clamp(350px, 60.75vw, 1032px);
+}
+   .descBio{
+    height: 100%;
+    padding-bottom: 1.3%;
+   
+    gap: 5%;
+}
+.desc1Bio p br {
+        display: none;
+    }
+
+.desc1Bio{
+    gap: clamp(10px, 1.5vw, 20px);
+   height: clamp(79px, 9vw, 89px); 
+}
+.desc2Bio{
+    gap: clamp(10px, 1.5vw, 20px);
+   height: clamp(79px, 9vw, 89px);
+}
+.vistavki h1 {
+  height: 0;
+  padding-bottom: 5%;
+}
+.desc1Bio img{
+    margin-top: 1.5%;
+}
+.vistavki2{
+    gap: 0;
+}
+.yearsDesc p{
+font-size: clamp(11px, 3vw, 35px);
+height: clamp(75px, 8.2vw, 82px);
+}
+.vertical{
+   height: clamp(300px, 21.9vw, 516px);
+}
+.vertical2{
+   height: clamp(360px, 21.9vw, 516px);
+}
+}
+@media(max-width:767px){
+    .vistavki2 h1 br {
+        display: none;
+    }
+       .vistavki h1{
+   font-size: clamp(11px, 0.5vw, 20px);
+   padding-bottom: 3%;
+}
+    .vistavki{
+        justify-content: space-evenly;
+    height: clamp(390px, 50.5vw, 735px); 
+    }
+      .vistavki2{
+        justify-content: space-evenly;
+    height: clamp(450px, 68.5vw, 735px);
+}
+    .desc1Bio p{ 
+   font-size: clamp(17px, 1.7vw, 37px);
+    width: clamp(150px, 420.75vw, 1032px);
+}
+   .descBio{
+    height: 100%;
+    padding-bottom: 1.3%;
+   
+    gap: 5%;
+}
+.desc1Bio p br {
+        display: none;
+    }
+
+.desc1Bio{
+    gap: clamp(10px, 1.5vw, 20px);
+   height: clamp(79px, 16vw, 89px); 
+}
+.desc1Bio p{
+    width: clamp(135px, 53.75vw, 932px);
+font-size: clamp(11px, 2.6vw, 20px);
+}
+    
+.vistavki h1 {
+  height: 0;
+  padding-bottom: 5%;
+}
+.desc1Bio img{
+    margin-top: 2.5%;
+}
+.vistavki2{
+    gap: 0;
+}
+.desc1Bio h1 br{
+    display: none;
+}
+.yearsDesc p{
+font-size: 24px;
+height: clamp(67px, 14vw, 81px);
+padding-right: 10px;
+}
+.vertical{
+   height: clamp(300px, 21.9vw, 516px);
+}
+.vertical2{
+   height: clamp(360px, 21.9vw, 516px);
+}
+.yearsDesc{
+     gap: 7%;
+
+    }
+
+}
+
+
+
+@media(max-width:479px){
+    .vistavki{
+        align-items: center;
+    }
+.vistavki h1 {
+  height: 0;
+  padding-bottom: 5%;
+  font-family: 'Geologica';
+  width: 259px;
+}
+.vistavki2 h1{
+    width: 279px;
+}
+ 
+.desc1Bio{
+    gap: clamp(10px, 1.5vw, 20px);
+   height: clamp(60px, 11vw, 129px); 
+}
+.desc2Bio{
+    gap: clamp(10px, 1.5vw, 20px);
+  height: clamp(90px, 21vw, 129px);
+}
+
+ .descBio{
+    height: 100%;
+    padding-bottom: 1.3%;
+   
+    gap: 20%;
+}
+ .descBio2{
+   
+   
+    gap: 5%;
+}
+
+.yearsDesc2 p{
+font-size: 24px;
+height: clamp(80px, 22.9vw, 83.6px);
+padding-right: 5px;
+}
+.yearsDesc p{
+    
+font-size: 24px;
+height: clamp(87px, 18.9vw, 90.6px);
+padding-right: 5px;
+}
+.yearsDesc2 p{
+font-size: 24px;
+height: clamp(70px, 19.2vw, 83.6px);
+padding-right: 5px;
+}
+
+.yearsDesc{
+     gap: 17%;
+
+    }
+    .yearsDesc2{
+     gap: 10.5%;
+
+    }
+    .desc1Bio img{
+    margin-top: 5%;
+}
+
+}
+
+.rewards{ 
+    width: clamp(325px, 78vw, 1480px);
+    height: clamp(177px, 26.4vw, 506px);
+    display: flex;
+    height:  fit-content;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    
+    padding: 5% 0;  
+}
+.zvaniya{
+    padding: 0 10%; 
+    height: clamp(177px, 18.4vw, 353px);
+
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-left: 1px solid #C3B9AC;
+    border-right: 1px solid #C3B9AC;
+}
+.zvaniya p{
+    font-size: clamp(24px, 1.67vw, 32px);
+    font-family: 'Geologica';
+
+}
+.fromZIP {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(clamp(140px, 20vw, 450px), 1fr));
+    gap: clamp(10px, 2vw, 24px);
+    margin: 0 auto;
+    width: clamp(280px, 85vw, 1480px);
+    padding: 3% 2.5% 7% 2.5%;
+}
+
+.fromZIP div {
+    aspect-ratio: 450 / 521; 
+    background-color: #C3B9AC;
+    width: 100%;
+    height: auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+@media(max-width:1519px){
+    .bioTop h3{
+    font-size:  clamp(11px, 1.7vw, 30px);
+    line-height: clamp(0.8vh, 3.79vh, 4.2vh);
+}
+.bioTop hr{
+    height: clamp(179px, 54.4vh, 567px);
+    border: 1px solid #C3B9AC;
+}
+.bioTop div{
+    width: clamp(100px, 42vw, 709px);
+    
+    height: 567px;
+    padding-top: 2%;
+}
+
+.detstva{
+    height: clamp(30px, 17vh,  265px);
+}
+
+}
+
+@media(max-width:1329px){
+    .bioTop h3{
+    font-size:  clamp(11px, 1.7vw, 30px);
+    line-height: clamp(0.8vh, 3vh, 4.2vh);
+}
+.bioTop hr{
+    height: clamp(179px, 54.4vh, 567px);
+    border: 1px solid #C3B9AC;
+}
+.bioTop div{
+    width: clamp(300px, 35vw, 550px);
+    padding-top: 2%;
+}
+}
+
+@media(max-width:1210px){
+    .bioTop {
+        height: fit-content; 
+    padding-right: 3%;
+
+    }
+    .bioTop div{
+    padding-top: 2%;
+    padding-left: 2%;
+    width: clamp(100px, 37vw, 450px);
+    height: fit-content;
+    border-left: 1px solid #C3B9AC;
+}
+
+.bioTop{ 
+    justify-content: space-evenly;
+
+}
+.bioTop hr{
+    display: none;
+}
+.detstva h3{
+  
+    font-size:  clamp(11px, 15vw, 60px);
+}
+.mol{
+    
+    margin-top: -4%;
+}
+}
+
+
+
+
+@media(max-width:1120px){
+    .bioTop h3{
+    font-size:  clamp(11px, 1.45vw, 30px);
+    line-height: 3vh;
+}
+.bioTop hr{
+    height: clamp(179px, 54.4vh, 567px);
+    border: 1px solid #C3B9AC;
+}
+.bioTop div{
+    width: clamp(400px, 30vw, 899px);
+    padding-top: 2%;
+}
+
+.detstva{
+    height: clamp(89px, 17vh,  140px);
+    width: clamp(325px, 80vw, 1480px);
+}
+.detstva h3{
+    font-size: clamp(24px, 5vw, 50px);
+}
+}
+
+@media(max-width:480px){
+    .detstva{
+    height: clamp(89px, 7vh,  120px);
+    width: clamp(325px, 80vw, 1480px);
+}
+.detstva h3{
+    font-size: clamp(24px, 4.69vw, 90px);
+}
+}
+
+@media(max-width:768px){
+    .bioTop{
+        padding: 0;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap:4%;
+    }
+    .mol{
+    margin-right: 0;
+    margin-top: -3%;
+    width: clamp(222px, 50vw, 1450px);
+    height:21px;
+}
+    .bioTop div{
+    width: 100%; 
+    padding-top: 2%;
+}
+    .bioTop h3{
+    font-size:  clamp(11px, 1.7hw, 30px);
+    line-height: 160%;
+}
+.bioOleg{ 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+    margin-bottom: 5%;
+}
+}
+.biography-container {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.biography-container.show {
+    opacity: 1;
+    transform: translateY(0);
+}

@@ -1,0 +1,208 @@
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.futSection{
+    width: 100%;
+    max-width: 1920px; 
+    background-color: #344163;
+    padding-top: clamp(10px, 10vh, 50px);
+    padding-bottom: clamp(10px, 10vh, 50px);
+}
+
+.logo2 h2{
+    color: #F6EEDC;
+}
+.logo2 p{
+    color: #F6EEDC;
+}
+.mainfut{
+    width: 77%;
+    margin: 0 auto; 
+    height: 100%;
+}
+.leftfut h5{
+    margin-top: 5%;
+    font-family: 'Geologica';
+    color: #F6EEDC;
+    font-size: clamp(12px, 2.4vw, 17px);
+    width: clamp(162px, 50vw, 473px);
+    font-weight: 400;
+    height: 54px; 
+
+
+}
+.leftfut{
+ 
+    height: fit-content;
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.topfut{
+    
+    padding-bottom: 2%;
+    display: flex;
+    justify-content: space-between;
+    height: fit-content; 
+}
+.rightfut{
+    display: flex;
+height: clamp(230px, 25vw, 406px);
+    gap: clamp(10%, 0.78vw, 15%);
+    
+    width: clamp(350px, 30vw, 500px);
+}
+.rightfut div{
+    font-family: 'Geologica';
+    display: flex;
+    flex-direction: column;
+    font-size: clamp(12px, 1.7vw, 17px);
+    
+}
+.rightfut div:first-child{
+    
+gap: 8%
+}
+.rightfut h6{
+    font-family: 'Geologica';
+   color: #EEE9E4;
+
+    font-size: clamp(14px, 2vw, 20px);
+}
+.rightfut a{
+    text-decoration: none;
+    
+    color: #9d9a95;
+    font-size: clamp(10px, 1.7vw, 16px);
+
+}
+.rightfut p{
+    
+    font-family: 'Geologica';   
+     color: #9d9a95;
+
+    font-size: clamp(10px, 1.7vw, 16px);
+}
+.bottomfut{
+    border-top: 1px solid #F6EEDC;
+  height: clamp(50px, 5vw, 100px); 
+    display: flex;
+    width: 100%; 
+    align-items: center;
+    justify-content: center;
+    }
+    .bottomfut p{
+    font-family: 'Geologica';
+    color: #F6EEDC;
+    font-size: clamp(10px, 1.7vw, 20px);
+}
+@media(max-width:1519px){
+    .rightfut{
+  
+    gap: clamp(10%, 0.78vw, 15%);
+    
+    width: clamp(350px, 32vw, 500px);}
+/* }
+.leftfut h5{
+
+    font-size: clamp(12px, 1vw, 17px);
+  
+    width: clamp(162px, 30vw, 473px);
+}
+
+.rightfut h6{
+   
+    font-size: clamp(14px, 1.5vw, 20px);
+}
+.rightfut a{
+    font-size: clamp(10px, 1.4vw, 16px);
+
+}
+.rightfut p{
+    
+    font-size: clamp(10px, 1.4vw, 16px);
+}
+
+.futSection{
+   
+    padding-top: clamp(10px, 3vw, 100px);
+} */
+}
+@media (max-width:1100px) {
+    .rightfut{
+    
+    gap: clamp(10%, 0.78vw, 15%);
+    width: clamp(350px, 4vw, 500px);
+}
+}
+@media (max-width:768px) {
+    .topfut{
+    
+    padding-bottom: 4%;
+}
+     
+.bottomfut p{
+    font-size: clamp(10px, 1.7vw, 20px);
+}
+
+.leftfut h5{
+
+    font-size: clamp(12px, 0.7vw, 17px);
+  
+    width: clamp(170px, 40vw, 473px);
+}
+.rightfut{
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid #F6EEDC;
+    padding-left: clamp(10px, 1.7vw, 16px);
+    align-items: start;
+    justify-content: start;
+   gap: 36%;
+    height: 264px;
+    width: 42%;
+    margin-top: 10%;
+    /* margin-left: clamp(62%, 50%, 50%); */
+}
+.rightfut p{
+     font-size: clamp(10px, 1vw, 16px);
+}
+.kontakts2{
+  width: 100%;
+    height: clamp(30%, 100vh, 50%);
+}
+.kontakts{
+  width: 100%;
+  
+    height: clamp(20%, 20vh, 40%);
+}
+.leftfut br{
+    display: none;
+}
+.rightfut hr{
+    visibility: hidden;
+    height: 0;
+    width: 0;
+    padding: 0;
+    margin: 0;
+}
+.rightfut hr{
+    display: none;
+}
+}
+@media (max-width:480px) {
+.rightfut p{
+     font-size:9px;
+} 
+.bottomfut p{
+    font-size: clamp(10px, 1.7vw, 20px);
+}
+.mainfut {
+  width: 324px;}
+}

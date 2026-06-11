@@ -1,0 +1,127 @@
+*{
+    margin: 0   ;
+    padding: 0;
+    box-sizing: border-box;
+}
+.collSort1{
+    width: 100%;
+    height: clamp(78px, 13vw, 250px);
+    max-width: 1920px;
+    min-width: none;
+    border-top: 1px solid #C3B9AC;
+    border-bottom: 1px solid #C3B9AC;
+    margin: auto;
+    display: flex;
+    align-items: center; 
+  
+}
+ 
+.ColSortMain{
+    width: clamp(320px, 78vw, 1480px);
+    align-items: end;
+    
+    margin: 0 auto;
+    height: 100%; 
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 56px;
+}
+.Collection1{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: clamp(60px, 9.16vw, 175px);
+}
+.Collection1 img{ 
+    height: clamp(42px, 7.2vw, 127px);
+  width: clamp(42px, 7.2vw, 127px);
+}
+.ColSortMain button{
+    background: transparent;
+    cursor: pointer;
+    border: none;
+}
+ 
+.ColSortMain p{
+    font-size: clamp(9px, 1.7vw, 24px);
+    font-weight: 400;
+    color: #000000;
+    font-family: 'Geologica';
+}
+ 
+.work-year-large {
+        font-size: clamp(8px, 1.7vw, 20px);
+    color: #B58641;
+    font-family: 'Geologica';
+    font-weight: 300;
+
+    text-align: center;
+    border-radius: 13px;
+}
+.work-year-large {
+        margin: 4% 0 12px 4%;
+    height: 31px;
+    width: 81px;
+    background-color: #e9d8c0;
+   
+}
+.work{
+    background-color: #ffffff;
+}
+.works{
+    padding-bottom: 5%;
+}
+
+.collection-loading {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    background-color: #FFFFFF;
+}
+
+.collection-spinner {
+    width: 70px;
+    height: 70px;
+    border: 4px solid rgba(52, 65, 99, 0.2);
+    border-top: 4px solid #344163;
+    border-right: 4px solid #C3B9AC;
+    border-radius: 50%;
+    animation: collectionSpin 0.9s linear infinite;
+}
+
+@keyframes collectionSpin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.collection-loading p {
+    margin-top: 25px;
+    font-size: clamp(14px, 4vw, 24px);
+    font-family: 'Geologica';
+    color: #344163;
+    animation: collectionPulse 1.2s ease-in-out infinite;
+}
+
+@keyframes collectionPulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.6;
+    }
+}
+@media(max-width:649px){
+    .ColSortMain{
+        gap: 0;
+        justify-content: space-between;
+    }
+}
