@@ -102,6 +102,14 @@ gap: 8%
     color: #F6EEDC;
     font-size: clamp(10px, 1.7vw, 20px);
 }
+.leftfut section{
+    display: flex;
+    gap: 2%;
+}
+.leftfut img{
+     height: clamp(23px, 3.5vw, 52px);
+    width: clamp(23px, 3.5vw, 52px);
+}
 @media(max-width:1519px){
     .rightfut{
   
@@ -156,6 +164,8 @@ gap: 8%
     font-size: clamp(12px, 0.7vw, 17px);
   
     width: clamp(170px, 40vw, 473px);
+    height: fit-content;
+    margin-bottom: 2%;
 }
 .rightfut{
     display: flex;

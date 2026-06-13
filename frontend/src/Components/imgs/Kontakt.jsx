@@ -14,8 +14,8 @@ export default function Kontakt(){
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
 
-    const API_URL = '/api/contacts/'
-    const CONTACT_URL = '/api/contact/';
+    const API_URL = 'http://82.97.252.48/api/contacts/'
+    const CONTACT_URL = 'http://82.97.252.48/api/contact/';
 
     useEffect(() => {
         const fetchData = async () => {
@@ -216,9 +216,9 @@ export default function Kontakt(){
                     <div className="adressCards">
                         <div className="adresCard1 adresCard2">
                             <div className="imgsForCards">
-                               <a href="https://vk.com/melekhov_art"><img src={vk} alt="" /></a>
-                                                  <a href="https://dzen.ru/id/69b30d967c578d071b889373?share_to=link"><img src={yandex} alt="" /></a>
-                                                  <a href="https://max.ru/join/acAzseAAZ1_PBeI6ETX2a7b0WXLoRST3cnHT32Ke8r8"><img src={max} alt="" /></a>
+                                <img src={vk} alt="VK" />
+                                <img src={yandex} alt="Yandex" />
+                                <img src={max} alt="Max" />
                             </div>
                             <div className="AdresCardText">
                                 <h5>Адрес <br />г. Светлогорск</h5>

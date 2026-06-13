@@ -17,7 +17,9 @@ import Kont from './Sections4/Kontakt.jsx'
 import merge from './Sections4/merge.jsx'
 import Merge from './Sections4/merge.jsx'
 import PhotoPage from './Pages/PhotoPage.jsx';
+import ComparePage from './Pages/ComparePage.jsx';
 import ScrollToTop from './Components/scrollToTop.jsx';
+import ProductPage from './Sections4/ProductPage.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -35,6 +37,8 @@ createRoot(document.getElementById('root')).render(
         <Route path="/kont" element={<Kont/>} />
         <Route path="/merge" element={<Merge/>} />
         <Route path="/work/:id" element={<PhotoPage />} />
+        <Route path="/compare" element={<ComparePage />} />
+        <Route path="/product/:id" element={<ProductPage />} />
       </Routes>
       <Fut/>
     </BrowserRouter>

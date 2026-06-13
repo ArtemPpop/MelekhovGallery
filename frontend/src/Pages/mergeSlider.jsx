@@ -7,6 +7,8 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import left2 from './imgs/left2.png'
 import right2 from './imgs/right2.png'
+import card1 from './imgs/MergeCard1.png'
+import card2 from './imgs/MergeCard2.png'
 import { Link } from 'react-router-dom'
 // import required modules
 import { Pagination, Navigation } from 'swiper/modules';
@@ -75,7 +77,7 @@ import { Pagination, Navigation } from 'swiper/modules';
   className="mergeSwiper"
 >
         <SwiperSlide className='slid'>
-              <section></section>
+              <section><img src={card1} alt="" /></section>
                 <div>
                   <h6> Открытки</h6>
                  <h3>Набор открыток  <br />“Балтийское побережье”</h3>
@@ -84,16 +86,7 @@ import { Pagination, Navigation } from 'swiper/modules';
                 </div>
         </SwiperSlide>
         <SwiperSlide className='slid'>
-              <section></section>
-                <div>
-                  <h6> Открытки</h6>
-                 <h3>Набор открыток  <br />“Балтийское побережье”</h3>
-                 <h5>Коллекция из 10 открыток <br /> с репродукциями морских пейзажей</h5>
-                 <h3>450 ₽</h3>
-                </div>
-        </SwiperSlide>
-         <SwiperSlide className='slid'>
-              <section></section>
+              <section><img src={card2} alt="" /></section>
                 <div>
                   <h6> Открытки</h6>
                  <h3>Набор открыток  <br />“Балтийское побережье”</h3>
@@ -102,16 +95,7 @@ import { Pagination, Navigation } from 'swiper/modules';
                 </div>
         </SwiperSlide>
         <SwiperSlide className='slid'>
-              <section></section>
-                <div>
-                  <h6> Открытки</h6>
-                 <h3>Набор открыток  <br />“Балтийское побережье”</h3>
-                 <h5>Коллекция из 10 открыток <br /> с репродукциями морских пейзажей</h5>
-                 <h3>450 ₽</h3>
-                </div>
-        </SwiperSlide>
-         <SwiperSlide className='slid'>
-              <section></section>
+              <section><img src={card1} alt="" /></section>
                 <div>
                   <h6> Открытки</h6>
                  <h3>Набор открыток  <br />“Балтийское побережье”</h3>
@@ -120,16 +104,7 @@ import { Pagination, Navigation } from 'swiper/modules';
                 </div>
         </SwiperSlide>
         <SwiperSlide className='slid'>
-              <section></section>
-                <div>
-                  <h6> Открытки</h6>
-                 <h3>Набор открыток  <br />“Балтийское побережье”</h3>
-                 <h5>Коллекция из 10 открыток <br /> с репродукциями морских пейзажей</h5>
-                 <h3>450 ₽</h3>
-                </div>
-        </SwiperSlide>
-         <SwiperSlide className='slid'>
-              <section></section>
+              <section><img src={card2} alt="" /></section>
                 <div>
                   <h6> Открытки</h6>
                  <h3>Набор открыток  <br />“Балтийское побережье”</h3>
@@ -138,7 +113,7 @@ import { Pagination, Navigation } from 'swiper/modules';
                 </div>
         </SwiperSlide>
         <SwiperSlide className='slid'>
-              <section></section>
+              <section><img src={card1} alt="" /></section>
                 <div>
                   <h6> Открытки</h6>
                  <h3>Набор открыток  <br />“Балтийское побережье”</h3>
@@ -146,6 +121,17 @@ import { Pagination, Navigation } from 'swiper/modules';
                  <h3>450 ₽</h3>
                 </div>
         </SwiperSlide>
+        <SwiperSlide className='slid'>
+              <section><img src={card2} alt="" /></section>
+                <div>
+                  <h6> Открытки</h6>
+                 <h3>Набор открыток  <br />“Балтийское побережье”</h3>
+                 <h5>Коллекция из 10 открыток <br /> с репродукциями морских пейзажей</h5>
+                 <h3>450 ₽</h3>
+                </div>
+        </SwiperSlide>
+        
+         
         
       </Swiper>
 

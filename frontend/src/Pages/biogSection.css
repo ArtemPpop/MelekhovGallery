@@ -8,6 +8,7 @@
     border-top: 1px solid #C3B9AC;
 
 }
+
 .bioOleg{
     width: clamp(325px, 80vw, 1480px);
     margin: 0 auto; 
@@ -453,7 +454,84 @@ padding-right: 5px;
 }
 
 
+.fromZIP {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(clamp(140px, 20vw, 450px), 1fr));
+    gap: clamp(10px, 2vw, 24px);
+    margin: 0 auto;
+    width: clamp(280px, 85vw, 1480px);
+    padding: 3% 2.5% 7% 2.5%;
+    max-width: 1480px;
+}
 
+.zip1 {
+    position: relative;
+    aspect-ratio: 450 / 521;
+    background-color: #C3B9AC;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.zip1 img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.zip1 img:hover {
+    transform: scale(1.05);
+}
+
+.photo-title {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    font-family: 'Geologica';
+    font-size: clamp(10px, 1.5vw, 14px);
+    padding: 8px 12px;
+    margin: 0;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.zip1:hover .photo-title {
+    opacity: 1;
+}
+
+@media (max-width: 768px) {
+    .fromZIP {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+        padding: 5% 2.5% 10% 2.5%;
+    }
+    
+    .photo-title {
+        font-size: 10px;
+        padding: 5px 8px;
+        opacity: 1;
+        background: rgba(0, 0, 0, 0.6);
+    }
+}
+
+@media (max-width: 480px) {
+    .fromZIP {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .zip1 {
+        aspect-ratio: 4 / 5;
+    }
+}
 
 
 
@@ -612,4 +690,7 @@ padding-right: 5px;
 .biography-container.show {
     opacity: 1;
     transform: translateY(0);
+}
+.bioTop hr{
+    display: none;
 }

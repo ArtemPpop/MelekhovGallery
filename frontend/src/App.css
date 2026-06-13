@@ -3,7 +3,10 @@
     margin: 0;
     box-sizing: border-box;
 }
-
+body{
+    width: 100%;
+    max-width: 1920px;
+}
 .headerSec {
     width: 100%;
     border-bottom: 1px solid #C3B9AC;
@@ -197,4 +200,42 @@
 
 .links a {
     -webkit-tap-highlight-color: transparent;
+}
+.cart-link-wrapper {
+    text-decoration: none;
+    color: #504746;
+    font-size: clamp(0.6rem, 1vw, 1rem);
+    transition: all 0.3s ease;
+    position: relative;
+    font-family: 'Geologica';
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.cart-link-wrapper:hover {
+    color: #4D3410;
+}
+
+.cart-badge {
+    background-color: #4D3410;
+    color: white;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    font-size: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 768px) {
+    .cart-link-wrapper {
+        font-size: 1.2rem;
+        width: 100%;
+        text-align: center;
+        padding: 0.5rem;
+        justify-content: center;
+    }
 }

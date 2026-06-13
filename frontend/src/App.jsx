@@ -1,28 +1,51 @@
-
 import './App.css'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import Cart from './Card.jsx'
 
 function App() {
-  const [count, setCount] = useState(0)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isCartOpen, setIsCartOpen] = useState(false)
+  const [cartItemsCount, setCartItemsCount] = useState(0)
 
   const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen)
+    if (isCartOpen) {
+      setIsCartOpen(false)
+      setTimeout(() => setIsMenuOpen(!isMenuOpen), 100)
+    } else {
+      setIsMenuOpen(!isMenuOpen)
+    }
+  }
+
+  const toggleCart = () => {
+    if (isMenuOpen) {
+      setIsMenuOpen(false)
+      setTimeout(() => setIsCartOpen(!isCartOpen), 100)
+    } else {
+      setIsCartOpen(!isCartOpen)
+    }
   }
 
   const closeMenu = () => {
     setIsMenuOpen(false)
   }
 
-  // Блокировка скролла при открытом меню
+  const closeCart = () => {
+    setIsCartOpen(false)
+  }
+
+  const handleCartUpdate = (cartData) => {
+    const count = cartData.reduce((sum, item) => sum + item.quantity, 0)
+    setCartItemsCount(count)
+  }
+
   useEffect(() => {
     if (isMenuOpen) {
       document.body.style.overflow = 'hidden'
       document.body.style.position = 'fixed'
       document.body.style.width = '100%'
       document.body.style.top = `-${window.scrollY}px`
-    } else {
+    } else if (!isCartOpen) {
       const scrollY = document.body.style.top
       document.body.style.overflow = ''
       document.body.style.position = ''
@@ -39,7 +62,7 @@ function App() {
       document.body.style.width = ''
       document.body.style.top = ''
     }
-  }, [isMenuOpen])
+  }, [isMenuOpen, isCartOpen])
 
   return (
     <>
@@ -63,11 +86,16 @@ function App() {
             <Link to="/tvor" onClick={closeMenu}>Творчество</Link>
             <Link to="/mus" onClick={closeMenu}>Музей</Link>
             <Link to="/kont" onClick={closeMenu}>Контакты</Link>
+            <div className="cart-link-wrapper" onClick={toggleCart}>
+              <span>Корзина</span>
+              {cartItemsCount > 0 && <span className="cart-badge">{cartItemsCount}</span>}
+            </div>
           </div>
         </div>
       </section>
+      <div className="headerSec2"></div>
       {isMenuOpen && <div className="menu-overlay" onClick={closeMenu}></div>}
-    <div className="headerSec2"></div>
+      <Cart isOpen={isCartOpen} onClose={closeCart} onCartUpdate={handleCartUpdate} />
     </>
   )
 }

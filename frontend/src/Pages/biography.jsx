@@ -1,233 +1,268 @@
+import { useEffect, useState } from 'react'
+import axios from 'axios'
 import oleg2 from './imgs/oleg2.png'
 import mol from './imgs/molnya.png'
 import hor from './imgs/horiz.png'
 import ver from './imgs/vertical.png'
 import './biogSection.css'
-import { useEffect, useState } from 'react'
 
 export default function Biography() {
     const [isVisible, setIsVisible] = useState(false)
+    const [bioData, setBioData] = useState(null)
+    const [archivePhotos, setArchivePhotos] = useState([])
+    const [loading, setLoading] = useState(true)
+    const [error, setError] = useState(null)
+
+    const API_URL = '/api/biography/'
+    const PHOTOS_URL = '/api/photos/'
+
+    const requiredTitles = [
+        'Начало церемонии открытия скульптуры Царевны Лягушки',
+        'Открытие скульптуры собравшимся',
+        'Первый заместитель, Олег снимает фату со скульптуры',
+        'Поэт Валерий Иванович Петровский',
+        'Слова благодарности художнику',
+        'Художник и его жена рядом со скульптурой Царевны лягушки'
+    ]
 
     useEffect(() => {
+        const fetchData = async () => {
+            try {
+                setLoading(true)
+                const [bioRes, photosRes] = await Promise.all([
+                    axios.get(API_URL),
+                    axios.get(PHOTOS_URL)
+                ])
+                const bioResult = Array.isArray(bioRes.data) ? bioRes.data[0] : bioRes.data
+                setBioData(bioResult)
+                
+                const allPhotos = Array.isArray(photosRes.data) ? photosRes.data : []
+                const selectedPhotos = allPhotos.filter(photo => requiredTitles.includes(photo.title))
+                selectedPhotos.sort((a, b) => {
+                    return requiredTitles.indexOf(a.title) - requiredTitles.indexOf(b.title)
+                })
+                setArchivePhotos(selectedPhotos)
+            } catch (err) {
+                console.error('Ошибка загрузки:', err)
+                setError('Не удалось загрузить данные')
+            } finally {
+                setLoading(false)
+            }
+        }
+        fetchData()
+
         setTimeout(() => {
             setIsVisible(true)
         }, 50)
     }, [])
 
+    if (loading) {
+        return (
+            <div className="loading-container">
+                <div className="spinner"></div>
+                <p>Загрузка биографии...</p>
+            </div>
+        )
+    }
+
+    if (error || !bioData) {
+        return <div className="error-container">{error || 'Данные не найдены'}</div>
+    }
+
+    const getSectionByTitle = (title) => {
+        return bioData.sections?.find(section => section.title === title)
+    }
+
+    const sections = {
+        childhood: getSectionByTitle('Детство и истоки творчества'),
+        schoolYears: getSectionByTitle('Школьные годы на Украине'),
+        method: getSectionByTitle('Становление метода и поиски вдохновения'),
+        apprenticeship: getSectionByTitle('Ученичество у мастеров'),
+        freedom: getSectionByTitle('Борьба за свободу творчества'),
+        leningrad: getSectionByTitle('Ленинградский период и закрытие выставок')
+    }
+
     return (
         <div className={`biography-container ${isVisible ? 'show' : ''}`}>
             <section className='secBiograph'>
                 <div className="Collectionh2">
-                    <h2>Биография</h2>
-                    <p>Олег Алексадрович Мелехов</p>
+                    <h2>{bioData.title || 'Биография'}</h2>
+                    <p>{bioData.artist_name || 'Олег Алексадрович Мелехов'}</p>
                 </div>
                 <hr className='hrBiog'/>
+                
                 <div className="bioOleg">
                     <div className="bioTop">
                         <hr />
                         <div>
                             <h3>
-                                <b>Мелехов Олег </b>— заслуженный художник Российской Федерации, объединивший в своём творчестве прусскую, немецкую и русскую культуры. Художник написал более 3000 картин и неоднократно участвовал в выставках не только в России, но и за её пределами.
+                                {bioData.intro_text?.split('Самыми значительными')[0]}
                                 <br /> Самыми значительными считает свои выставки в Москве. <br />
                             </h3>
                             <h3>
-                                В январе 2001 года под патронажем Правительства Москвы в «Новом Манеже» прошла персональная выставка Олега Александровича Мелехова «Начало Новой Эры». Эта выставка была показана зрителям телевидения как событие, открывающее Третье тысячелетие.
+                                {bioData.intro_text?.split('Самыми значительными')[1] || 
+                                 'В январе 2001 года под патронажем Правительства Москвы в «Новом Манеже» прошла персональная выставка Олега Александровича Мелехова «Начало Новой Эры». Эта выставка была показана зрителям телевидения как событие, открывающее Третье тысячелетие.'}
                             </h3>
                         </div>
-                        <img src={oleg2} alt="" />
+                        <img src={oleg2} alt={bioData.artist_name} />
                         <hr className='hrBioRight'/>
                     </div>
                 </div>
+
+                {sections.childhood && (
+                    <>
+                        <div className="detstva">
+                            <h3>{sections.childhood.title}</h3>
+                        </div>
+                        <div className="contentBio">
+                            <p>{sections.childhood.content}</p>
+                        </div>
+                    </>
+                )}
+
+                {sections.schoolYears && (
+                    <>
+                        <div className="detstva">
+                            <h3>{sections.schoolYears.title}</h3>
+                        </div>
+                        <div className="contentBio">
+                            <p>{sections.schoolYears.content}</p>
+                        </div>
+                    </>
+                )}
+
+                {sections.method && (
+                    <>
+                        <div className="detstva">
+                            <h3>{sections.method.title}</h3>
+                        </div>
+                        <div className="contentBio">
+                            <p>{sections.method.content}</p>
+                        </div>
+                    </>
+                )}
+
+                {sections.apprenticeship && (
+                    <>
+                        <div className="detstva">
+                            <h3>{sections.apprenticeship.title}</h3>
+                        </div>
+                        <div className="contentBio">
+                            <p>{sections.apprenticeship.content}</p>
+                        </div>
+                    </>
+                )}
+
+                {sections.freedom && (
+                    <>
+                        <div className="detstva">
+                            <h3>{sections.freedom.title}</h3>
+                        </div>
+                        <div className="contentBio">
+                            <p>{sections.freedom.content}</p>
+                        </div>
+                    </>
+                )}
+
+                {sections.leningrad && (
+                    <>
+                        <div className="detstva">
+                            <h3>{sections.leningrad.title}</h3>
+                        </div>
+                        <div className="contentBio">
+                            <p>{sections.leningrad.content}</p>
+                        </div>
+                    </>
+                )}
+
                 <div className="detstva">
-                    <h3>
-                        Детство <br /> и истоки творчества
-                    </h3>
-                </div>
-                <div className="contentBio">
-                    <p>Олег Александрович Мелехов родился 4 октября 1946 года в Берлине, в семье военных лётчиков. Отец, Александр Степанович, был военным лётчиком, мать, Аза Леонидовна — военным связистом. 
-                        Они познакомились на фронте в 1943 году. В 1949 году у Олега появилась сестра Наталья. <br />
-                        В 1952 году полк отца перевели в Россию, семья поселилась в Ропше Ленинградской области. 
-                        Там в 11 лет Олег создал свою первую масштабную работу — многофигурную батальную композицию 
-                        на тему Куликовской битвы. Заметив тягу сына к творчеству, мать разыскала Академию художеств
-                        в Ленинграде. Художники высоко оценили работы мальчика и подарили ему пластилин, открыв новый 
-                        этап в его творчестве. Позже появились цветные карандаши и медовая акварель.
-                    </p>
-                </div>
-                <div className="detstva">
-                    <h3>
-                        Школьные годы на Украине
-                    </h3>
-                </div>
-                <div className="contentBio">
-                    <p>Вскоре отца перевели на Украину, под Запорожье. В школе уроки рисования вёл военрук.
-                        Олег копировал мелом на доске иллюстрации великих художников. В школе была скульптурная мастерская, 
-                        где учитель географии предложил Мелехову стать главным скульптором: мальчик лепил барельефы, которые
-                        затем отливали в гипсе. <br />
-                        В те годы в городок приехал живописец Николай. Олег познакомился с ним, и художник, посмотрев рисунки  
-                        мальчика, предрёк ему будущее интересного колориста, предложив не учить, а показывать своё мастерство.
-                    </p>
-                </div>
-                <div className="detstva">
-                    <h3>
-                        Становление метода <br /> и поиски вдохновения
-                    </h3>
-                </div>
-                <div className="contentBio">
-                    <p>С годами Олег выработал собственную систему работы на пленэрах: он писал с весны до осени, анализировал этюды и ставил себе технические задачи, чтобы избегать шаблонов. Параллельно 
-                        он углублённо изучал старых мастеров — от импрессионистов до Врубеля и Филонова. Самым большим открытием стали для него Николай Рерих и Архип Куинджи. <br />
-                        С детства Олег мечтал побывать в Абхазии, в местах, где аргонавты добывали золотое руно. Однажды, когда он писал там пейзаж, дети спросили, 
-                        зачем он это делает. Одна девочка убеждённо ответила: «Для красоты!». Этот случай стал для художника символом истинного предназначения искусства.
-                    </p>
-                </div>
-                <div className="detstva">
-                    <h3>
-                        Ученичество у мастеров
-                    </h3>
-                </div>
-                <div className="contentBio">
-                    <p>Олег участвовал в пленэрах в Прибалтике и на Северном Кавказе, где мастера передавали 
-                        ему устные знания о законах композиции. Он убеждён, что именно они отличают творца от ремесленника. 
-                        В древности таких художников называли «сейенах» — воскреситель, способный наполнять пространство
-                        энергией гармонии.
-                    </p>
-                </div>
-                <div className="detstva">
-                    <h3>
-                        Борьба за свободу творчества
-                    </h3>
-                </div>
-                <div className="contentBio">
-                    <p>В 1977 году Мелехов начал выставляться на молодёжных выставках в Калининграде.
-                        В 1979 году, не удовлетворившись официальным искусством, он создал и возглавил 
-                        неформальное объединение «Время и мы». Выставки нонконформистов вызвали скандал
-                        и разгромную статью в прессе, после чего имя Мелехова попало под запрет в СМИ. <br />
-                        Несмотря на давление, художники продолжили выставляться. Выставки проходили с 
-                        большим успехом в здании 
-                        института «Калининградгражданпроект».
-                    </p>
-                </div>
-                <div className="detstva">
-                    <h3>
-                        Ленинградский период <br /> и закрытие выставок
-                    </h3>
-                </div>
-                <div className="contentBio">
-                    <p>В 1983 году Мелехов стал членом ленинградского Товарищества экспериментального изобразительного искусства (ТЭИИ).
-                        На выставке «Лик» во Дворце культуры имени Кирова он познакомился с коллекционером Максимовым, 
-                        который спасал картины от уничтожения. <br />
-                        В 1984 году на отчётной выставке ТЭИИ во Дворце Молодёжи Мелехов представил картины 
-                        «Щелкунчик и Мари» и «Бог Отец отправляет своего Сына на Землю». Выставка вызвала восторг
-                        зрителей, но через неделю была закрыта КГБ.
-                    </p>
-                </div>
-                <div className="detstva">
-                    <h3>
-                        Калининградский период <br /> и нонконформизм
-                    </h3>
+                    <h3>Калининградский период <br /> и нонконформизм</h3>
                 </div>
 
-                <div className="vistavki">
-                    <h1>С 1977 года Олег Мелехов активно участвует в выставочной жизни Калининграда.</h1>
-                    <div className="yearAndDesc">
-                        <div className="yearsDesc">
-                            <p>1979 г.</p>
-                            <p>1983 г.</p>
-                            <p>1984 г.</p>
-                        </div>
-                        <img className='vertical' src={ver} alt="" />
-                        <div className="descBio">
-                            <div className="desc1Bio">
-                                <img src={hor} alt="" />
-                                <p>
-                                    Организовал неформальный клуб «Время и мы», объединивший художников-нонконформистов, 
-                                    что привело к конфликту с официальными властями и запрету на упоминание в СМИ.
-                                </p>
+                {bioData.timeline && bioData.timeline.length > 0 && (
+                    <div className="vistavki">
+                        <h1>С 1977 года Олег Мелехов активно участвует в выставочной жизни Калининграда.</h1>
+                        <div className="yearAndDesc">
+                            <div className="yearsDesc">
+                                {bioData.timeline.slice(0, 3).map(item => (
+                                    <p key={item.id}>{item.year}</p>
+                                ))}
                             </div>
-                            <div className="desc1Bio">
-                                <img src={hor} alt="" />
-                                <p>
-                                    Вступил в ленинградское Товарищество экспериментального изобразительного 
-                                    искусства (ТЭИИ). До 1991 года был постоянным участником всех выставок ТЭИИ.
-                                </p>
-                            </div>
-                            <div className="desc1Bio">
-                                <img src={hor} alt="" />
-                                <p>
-                                    Участие в резонансной выставке в Ленинградском Дворце молодежи, закрытой КГБ.
-                                </p>
+                            <img className='vertical' src={ver} alt="" />
+                            <div className="descBio">
+                                {bioData.timeline.slice(0, 3).map((item) => (
+                                    <div className="desc1Bio" key={item.id}>
+                                        <img src={hor} alt="" />
+                                        <p>{item.description}</p>
+                                    </div>
+                                ))}
                             </div>
                         </div>
                     </div>
-                </div>
+                )}
+
                 <div className="detstva">
-                    <h3>
-                        Духовные искания <br />
-                        и наследие Рериха
-                    </h3>
+                    <h3>Духовные искания <br /> и наследие Рериха</h3>
                 </div>
-                <div className="vistavki vistavki2">
-                    <h1>В начале 1980-х, благодаря выставкам в Доме архитектора, <br /> 
-                        Мелехов открывает для себя наследие Николая Рериха.</h1>
-                    <div className="yearAndDesc">
-                        <div className="yearsDesc yearsDesc2">
-                            <p>1987 г.</p>
-                            <p>1988 г.</p>
-                            <p>1989 г.</p>
-                        </div>
-                        <img className='vertical vertical2' src={ver} alt="" />
-                        <div className="descBio descBio2">
-                            <div className="desc1Bio desc2Bio">
-                                <img src={hor} alt="" />
-                                <p>
-                                    Основал в Калининграде «Общество по изучению творческого наследия семьи Рерих».
-                                </p>
+
+                {bioData.timeline && bioData.timeline.length > 3 && (
+                    <div className="vistavki vistavki2">
+                        <h1>В начале 1980-х, благодаря выставкам в Доме архитектора, <br /> 
+                            Мелехов открывает для себя наследие Николая Рериха.</h1>
+                        <div className="yearAndDesc">
+                            <div className="yearsDesc yearsDesc2">
+                                {bioData.timeline.slice(3, 6).map(item => (
+                                    <p key={item.id}>{item.year}</p>
+                                ))}
                             </div>
-                            <div className="desc1Bio desc2Bio">
-                                <img src={hor} alt="" />
-                                <p>
-                                    Вместе с супругой Тамарой Алексеевной открывает Школу Живой Этики.
-                                </p>
-                            </div>
-                            <div className="desc1Bio desc2Bio">
-                                <img src={hor} alt="" />
-                                <p>
-                                    Переломный момент в творчестве. По свидетельству художника, 
-                                    во сне он получил указание от Девы Марии, результатом которого 
-                                    стал цикл из 22 картин «Из жизни Иисуса Христа». В том же году 
-                                    его работы (16 картин) 
-                                    были представлены на выставке в Ленинградском Манеже, посвященной 
-                                    1000-летию крещения Руси.
-                                </p>
+                            <img className='vertical vertical2' src={ver} alt="" />
+                            <div className="descBio descBio2">
+                                {bioData.timeline.slice(3, 6).map((item) => (
+                                    <div className="desc1Bio desc2Bio" key={item.id}>
+                                        <img src={hor} alt="" />
+                                        <p>{item.description}</p>
+                                    </div>
+                                ))}
                             </div>
                         </div>
                     </div>
-                </div>
+                )}
+
+                
+
                 <div className="detstva">
-                    <h3>
-                        Награды и звания
-                    </h3>
-                </div>
-                <div className="rewards">
-                    <div className="zvaniya">
-                        <p>Звание</p>
-                        <p>Звание</p>
-                        <p>Звание</p>
-                        <p>Звание</p>
-                        <p>Звание</p>
-                    </div>
-                </div>
-                <div className="detstva">
-                    <h3>
-                        Из личного <br /> архива
-                    </h3>
+                    <h3>Из личного <br /> архива</h3>
                 </div>
                 <div className="fromZIP">
-                    <div className='zip1'></div>
-                    <div className='zip1'></div>
-                    <div className='zip1'></div>
-                    <div className='zip1'></div>
-                    <div className='zip1'></div>
-                    <div className='zip1'></div>
+                    {archivePhotos.length === 6 ? (
+                        archivePhotos.map((photo, index) => (
+                            <div key={photo.id} className='zip1'>
+                                <img src={photo.image_url} alt={photo.title} />
+                                <p className="photo-title">{photo.title}</p>
+                            </div>
+                        ))
+                    ) : (
+                        <>
+                            <div className='zip1'>
+                                {archivePhotos[0] && <img src={archivePhotos[0].image_url} alt={archivePhotos[0].title} />}
+                            </div>
+                            <div className='zip1'>
+                                {archivePhotos[1] && <img src={archivePhotos[1].image_url} alt={archivePhotos[1].title} />}
+                            </div>
+                            <div className='zip1'>
+                                {archivePhotos[2] && <img src={archivePhotos[2].image_url} alt={archivePhotos[2].title} />}
+                            </div>
+                            <div className='zip1'>
+                                {archivePhotos[3] && <img src={archivePhotos[3].image_url} alt={archivePhotos[3].title} />}
+                            </div>
+                            <div className='zip1'>
+                                {archivePhotos[4] && <img src={archivePhotos[4].image_url} alt={archivePhotos[4].title} />}
+                            </div>
+                            <div className='zip1'>
+                                {archivePhotos[5] && <img src={archivePhotos[5].image_url} alt={archivePhotos[5].title} />}
+                            </div>
+                        </>
+                    )}
                 </div>
             </section>
         </div>

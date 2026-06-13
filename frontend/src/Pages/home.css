@@ -800,7 +800,7 @@ button{
         rgba(52, 65, 99, 0.12) 75%,
         rgba(52, 65, 99, 0.03) 100%
       ),
-      url(imgs/kartina3.png); 
+      url(imgs/middle.png); 
     padding: 15px;
     display: flex;
     align-items: end;
@@ -882,7 +882,7 @@ background:
         rgba(52, 65, 99, 0.12) 75%,
         rgba(52, 65, 99, 0.03) 100%   
       ),
-      url(imgs/kartina4.png);
+      url(imgs/rightone.png);
 
     background-size: cover;
     background-repeat: no-repeat; 
@@ -969,6 +969,8 @@ background:
     font-weight: 400;
     font-family: 'Geologica';
     color: #FFFFFF;
+    width: 100%;
+    text-align: end;
 }
 
 .smal1-kartina h6{
@@ -976,12 +978,17 @@ background:
     font-weight: 300;
     color: #FFFFFF;
     font-family: 'Geologica';
+    width: 100%;
+    text-align: end;
 }
 
 .left-big-kartina p{
     font-size: clamp(11px, 0.8vw, 14px);
     font-weight: 400;
     color: #FFFFFF;
+    
+    width: 100%;
+    text-align: end;
     font-family: 'Geologica';
 }
 
@@ -990,6 +997,9 @@ background:
     font-weight: 300;
     color: #FFFFFF;
     font-family: 'Geologica';
+    
+    width: 100%;
+    text-align: end;
 }
 
 .top1-kartina p{
@@ -997,23 +1007,24 @@ background:
     font-weight: 400;
     color: #FFFFFF;
     font-family: 'Geologica';
+
 }
 
 .top1-kartina h6{
-    font-size: clamp(14px, 1.2vw, 24px);
+    font-size: clamp(14px, 1.2vw, 20px);
     font-weight: 300;
     color: #FFFFFF;
     width: 100%;
     height: fit-content;
-    text-align: end;
+    text-align: start;
     font-family: 'Geologica';
 }
- 
-.left-kartina section,
+  
 .right-top section{
     display: flex;
     flex-direction: column;
-    align-items: end;
+    align-items: start;
+    width: 100%;
 }
 
 .h2-kartina{
@@ -1120,8 +1131,8 @@ background:
 }
 
 .h2-museum {
-    width: clamp(200px, 32.1vw, 617px); /* 375px: 200px | 1920px: 617px */
-    height: clamp(83px, 12.8vw, 246px); /* 375px: 83px | 1920px: 246px */
+    width: clamp(200px, 32.1vw, 617px); 
+    height: clamp(83px, 12.8vw, 246px); 
     border-bottom: 0.5px solid #FFFFFF;
     display: flex;
   flex-direction: column;
@@ -1129,7 +1140,7 @@ background:
 }
 
 .h2-museum h2 {
-    font-size: clamp(24px, 3.85vw, 74px); /* 375px: 24px | 1920px: 74px */
+    font-size: clamp(24px, 3.85vw, 74px); 
     font-weight: 400;
     font-family: "Geologica";
     line-height: 93.6%;
@@ -1137,19 +1148,20 @@ background:
 }
 
 .museumLocation {
-    font-size: clamp(9px, 0.83vw, 16px); /* 375px: 9px | 1920px: 16px */
-    font-weight: 400;
-    font-family: "Geologica";
-    color: #FFFFFF;
-    width: clamp(140px, 14.5vw, 278px); /* 375px: 140px | 1920px: 278px */
-    height: clamp(20px, 2.08vw, 40px); /* 375px: 20px | 1920px: 40px */
-    justify-content: space-between;
-    display: flex;
+  font-size: clamp(9px, 0.83vw, 16px);
+  font-weight: 400;
+  font-family: "Geologica";
+  color: #FFFFFF;
+  width: clamp(140px, 14.5vw, 278px);
+  height: clamp(20px, 2.08vw, 40px);
+  justify-content: start;
+  display: flex;
+  gap: 3%;
 }
 
 .museumLocation img {
-    height: clamp(14px, 1.46vw, 28px); /* 375px: 14px | 1920px: 28px */
-    width: clamp(14px, 1.46vw, 28px); /* 375px: 14px | 1920px: 28px */
+    height: clamp(14px, 1.46vw, 28px); 
+    width: clamp(14px, 1.46vw, 28px); 
 }
 
 .museumP {
@@ -1163,7 +1175,7 @@ width: clamp(171px, 33.2vw, 623px);
 
 .but-hr {
     width: 100%;
-    height: clamp(26px, 3.39vw, 65px); /* 375px: 26px | 1920px: 65px */
+    height: clamp(26px, 3.39vw, 65px); 
     display: flex;
     justify-content: start;
     align-items: baseline;
