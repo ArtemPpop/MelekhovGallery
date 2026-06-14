@@ -20,7 +20,7 @@ const SELECTED_TITLES = [
   'Балтийский берег. Вечерний бриз',
   'Ночь, огни фонарей'
 ];
-            const API_URL = 'http://82.97.252.48/api/artworks/artworks/';
+            const API_URL = '/api/artworks/artworks/';
 
 
 
