@@ -7,9 +7,9 @@ export default function Cart({ isOpen, onClose, onCartUpdate }) {
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
-    const CART_URL = 'api/cart/';
-    const CART_ADD_URL = '/api/cart/add/';
-    const CART_REMOVE_URL = '/api/cart/remove/';
+    const API_URL = 'https://melekhovgallery.ru/api/products/';
+const CART_URL = 'https://melekhovgallery.ru/api/cart/';
+const CART_ADD_URL = 'https://melekhovgallery.ru/api/cart/add/';
 
     const loadCart = async () => {
         try {

@@ -705,3 +705,261 @@
         min-height: 500px;
     }
 }
+/* ===== АЛЕРТ ВАЛИДАЦИИ ===== */
+.validation-alert-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    z-index: 10000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.3s ease;
+}
+
+.validation-alert {
+    background: white;
+    border-radius: 20px;
+    max-width: 500px;
+    width: 90%;
+    padding: 30px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: slideUp 0.3s ease;
+}
+
+.validation-alert-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.validation-alert-icon {
+    font-size: 42px;
+}
+
+.validation-alert-close {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: transparent;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #888;
+    transition: all 0.2s;
+}
+
+.validation-alert-close:hover {
+    background: #f0f0f0;
+}
+
+.validation-alert-content h3 {
+    font-family: 'Geologica', sans-serif;
+    font-size: 18px;
+    color: #1a1a1a;
+    margin-bottom: 16px;
+}
+
+.validation-errors {
+    background: #fef6f6;
+    border-left: 4px solid #e74c3c;
+    padding: 12px 16px;
+    border-radius: 8px;
+}
+
+.validation-errors p {
+    font-family: 'Geologica', sans-serif;
+    font-size: 14px;
+    color: #c0392b;
+    margin: 6px 0;
+    line-height: 1.4;
+}
+
+.validation-alert-footer {
+    margin-top: 20px;
+    text-align: right;
+}
+
+.validation-alert-btn {
+    padding: 10px 30px;
+    background: #273E91;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-family: 'Geologica', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.validation-alert-btn:hover {
+    background: #1a2a6a;
+    transform: scale(1.02);
+}
+
+/* ===== Модалка PDF ===== */
+.privacy-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.3s ease;
+}
+
+.privacy-modal {
+    background: white;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 900px;
+    height: 85vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: slideUp 0.3s ease;
+}
+
+.privacy-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    border-bottom: 1px solid #eee;
+}
+
+.privacy-modal-header h2 {
+    font-family: 'Geologica', sans-serif;
+    font-size: 20px;
+    color: #1a1a1a;
+    margin: 0;
+}
+
+.privacy-modal-close {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: transparent;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #888;
+    transition: all 0.2s;
+}
+
+.privacy-modal-close:hover {
+    background: #f0f0f0;
+}
+
+.privacy-modal-content {
+    flex: 1;
+    padding: 20px;
+    overflow: hidden;
+}
+
+.privacy-modal-content iframe {
+    border: none;
+    border-radius: 8px;
+}
+
+.privacy-modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    padding: 16px 24px;
+    border-top: 1px solid #eee;
+}
+
+.privacy-modal-footer .btn-close {
+    padding: 8px 24px;
+    background: #f0f0f0;
+    border: none;
+    border-radius: 30px;
+    font-family: 'Geologica', sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.privacy-modal-footer .btn-close:hover {
+    background: #e0e0e0;
+}
+
+.privacy-modal-footer .btn-download {
+    padding: 8px 24px;
+    background: #273E91;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-family: 'Geologica', sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.privacy-modal-footer .btn-download:hover {
+    background: #1a2a6a;
+}
+
+/* ===== Ссылка в чекбоксе ===== */
+.privacy-link {
+    color: #273E91;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.privacy-link:hover {
+    color: #1a2a6a;
+}
+
+/* ===== Анимации ===== */
+@keyframes slideUp {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* ===== Адаптив ===== */
+@media (max-width: 768px) {
+    .privacy-modal {
+        width: 95%;
+        height: 90vh;
+    }
+    
+    .validation-alert {
+        padding: 20px;
+    }
+    
+    .validation-alert-content h3 {
+        font-size: 16px;
+    }
+    
+    .validation-errors p {
+        font-size: 13px;
+    }
+}

@@ -19,29 +19,12 @@ export default function Kontakt() {
     const [contactMessage, setContactMessage] = useState('')
     const [agree, setAgree] = useState(false)
     const [showPrivacyModal, setShowPrivacyModal] = useState(false)
-
-    // Cookie согласие
-    const [cookieConsent, setCookieConsent] = useState(false)
-    const [showCookieBanner, setShowCookieBanner] = useState(false)
+    const [showValidationAlert, setShowValidationAlert] = useState(false)
+    const [validationMessage, setValidationMessage] = useState('')
 
     const API_URL = '/api/contacts/'
     const CONTACT_URL = '/api/contact/'
     const maxLength = 500
-
-    // Проверка cookie при загрузке
-    useEffect(() => {
-        const consent = localStorage.getItem('cookieConsent')
-        if (consent === 'true') {
-            setCookieConsent(true)
-            setShowCookieBanner(false)
-            // Показываем модальное окно с политикой при загрузке
-            setShowPrivacyModal(true)
-        } else {
-            setShowCookieBanner(true)
-            // Показываем модальное окно с политикой при загрузке
-            setShowPrivacyModal(true)
-        }
-    }, [])
 
     useEffect(() => {
         const fetchData = async () => {
@@ -71,55 +54,46 @@ export default function Kontakt() {
         }
     }
 
-    // Функции для cookie
-    const acceptConsent = () => {
-        localStorage.setItem('cookieConsent', 'true')
-        setCookieConsent(true)
-        setShowCookieBanner(false)
-        setAgree(true)
-        setShowPrivacyModal(false) // Закрываем модальное окно после согласия
-    }
-
-    const declineConsent = () => {
-        localStorage.setItem('cookieConsent', 'false')
-        setCookieConsent(false)
-        setShowCookieBanner(false)
-        setAgree(false)
-        setShowPrivacyModal(false) // Закрываем модальное окно после отказа
-    }
-
-    // Открыть PDF
-    const openPrivacyPolicy = (e) => {
-        if (e) e.preventDefault()
-        setShowPrivacyModal(true)
+    const closeValidationAlert = () => {
+        setShowValidationAlert(false)
     }
 
     const closePrivacyPolicy = () => {
         setShowPrivacyModal(false)
     }
 
-    // Проверка, можно ли отправить
-    const canSend = () => {
-        return agree && cookieConsent && contactName.trim() && contactEmail.trim() && contactMessage.trim()
-    }
-
     const sendContact = async () => {
-        if (!contactName.trim() || !contactEmail.trim() || !contactMessage.trim()) {
-            alert("⚠️ Заполните все обязательные поля")
+        // Проверяем все поля и собираем ошибки
+        const errors = []
+        
+        if (!contactName.trim()) {
+            errors.push('Укажите ваше имя и фамилию')
+        }
+        
+        if (!contactEmail.trim()) {
+            errors.push('Укажите ваш Email')
+        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contactEmail.trim())) {
+            errors.push('Введите корректный Email (например: name@mail.ru)')
+        }
+        
+        if (!contactMessage.trim()) {
+            errors.push('Напишите текст сообщения')
+        }
+
+        // Если есть ошибки валидации — показываем их все
+        if (errors.length > 0) {
+            setValidationMessage(errors.join('\n'))
+            setShowValidationAlert(true)
             return
         }
 
-        if (!cookieConsent) {
-            alert("⚠️ Для отправки сообщения необходимо принять политику обработки данных")
+        // Проверяем галочку согласия
+        if (!agree) {
             setShowPrivacyModal(true)
             return
         }
 
-        if (!agree) {
-            alert("⚠️ Для отправки сообщения необходимо согласие на обработку персональных данных")
-            return
-        }
-
+        // Отправка
         try {
             await axios.post(CONTACT_URL, {
                 name: contactName,
@@ -159,7 +133,7 @@ export default function Kontakt() {
 
     return (
         <>
-            {/* ===== МОДАЛЬНОЕ ОКНО С PDF ===== */}
+            {/* ===== МОДАЛКА С PDF ===== */}
             {showPrivacyModal && (
                 <div className="privacy-modal-overlay" onClick={closePrivacyPolicy}>
                     <div className="privacy-modal" onClick={(e) => e.stopPropagation()}>
@@ -169,7 +143,7 @@ export default function Kontakt() {
                         </div>
                         <div className="privacy-modal-content">
                             <iframe
-                                 src="/privacy-policy.pdf" 
+                                src="/privacy-policy.pdf"
                                 width="100%"
                                 height="100%"
                                 title="Политика конфиденциальности"
@@ -185,28 +159,26 @@ export default function Kontakt() {
                 </div>
             )}
 
-            {/* ===== COOKIE-БАННЕР ===== */}
-            {showCookieBanner && (
-                <div className="cookie-banner-overlay">
-                    <div className="cookie-banner">
-                        <div className="cookie-content">
-                            <h3>🍪 Политика использования файлов cookie</h3>
-                            <p>
-                                Мы используем файлы cookie для улучшения работы сайта, 
-                                анализа трафика и персонализации контента. 
-                                Подробнее в 
-                                <a href="#" className="privacy-link" onClick={openPrivacyPolicy}>
-                                    политике конфиденциальности
-                                </a>.
-                            </p>
-                            <div className="cookie-buttons">
-                                <button className="cookie-accept" onClick={acceptConsent}>
-                                    Согласиться
-                                </button>
-                                <button className="cookie-decline" onClick={declineConsent}>
-                                    Отказаться
-                                </button>
+            {/* ===== АЛЕРТ ВАЛИДАЦИИ ===== */}
+            {showValidationAlert && (
+                <div className="validation-alert-overlay" onClick={closeValidationAlert}>
+                    <div className="validation-alert" onClick={(e) => e.stopPropagation()}>
+                        <div className="validation-alert-header">
+                            <span className="validation-alert-icon">⚠️</span>
+                            <button className="validation-alert-close" onClick={closeValidationAlert}>✕</button>
+                        </div>
+                        <div className="validation-alert-content">
+                            <h3>Пожалуйста, заполните все обязательные поля</h3>
+                            <div className="validation-errors">
+                                {validationMessage.split('\n').map((msg, index) => (
+                                    <p key={index}>• {msg}</p>
+                                ))}
                             </div>
+                        </div>
+                        <div className="validation-alert-footer">
+                            <button className="validation-alert-btn" onClick={closeValidationAlert}>
+                                Понятно, исправлю
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -303,10 +275,14 @@ export default function Kontakt() {
                             <label htmlFor="consent-checkbox">
                                 <a 
                                     href="#"
-                                    className={`privacy-link ${!cookieConsent ? 'privacy-link-declined' : ''}`}
+                                    className="privacy-link"
                                     onClick={(e) => {
                                         e.preventDefault()
-                                        openPrivacyPolicy()
+                                        if (!agree) {
+                                            setShowPrivacyModal(true)
+                                        } else {
+                                            setShowPrivacyModal(true)
+                                        }
                                     }}
                                 >
                                     {data.consent_text || 'Я соглашаюсь на обработку персональных данных.'}
@@ -315,11 +291,7 @@ export default function Kontakt() {
                         </div>
 
                         <div className="butForContact">
-                            <button 
-                                onClick={sendContact}
-                                disabled={!canSend()}
-                                className={!canSend() ? 'button-disabled' : ''}
-                            >
+                            <button onClick={sendContact}>
                                 {data.form_title || 'Отправить сообщение'}
                             </button>
                         </div>
