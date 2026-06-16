@@ -80,7 +80,7 @@ function App() {
           <div className={`links ${isMenuOpen ? 'open' : ''}`}>
             <Link to="/" onClick={closeMenu}>Главная</Link>
             <Link to="/galery" onClick={closeMenu}>Галерея</Link>
-            <Link to="/merge" onClick={closeMenu}>Мерч</Link>
+            <Link to="/merge" onClick={closeMenu}>Сувенирные изделия</Link>
             <Link to="/bio" onClick={closeMenu}>Биография</Link>
             <Link to="/coll" onClick={closeMenu}>Коллекция</Link>
             <Link to="/tvor" onClick={closeMenu}>Творчество</Link>
