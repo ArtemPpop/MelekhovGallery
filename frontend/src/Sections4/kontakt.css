@@ -442,3 +442,266 @@
   padding-left: clamp(12px, 2.68vw, 18px);
 }
 }
+/* ===== МОДАЛЬНОЕ ОКНО С PDF ===== */
+.privacy-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(253, 253, 253, 0.85);
+    z-index: 100000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.3s ease;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+@keyframes fadeIn {
+    from { 
+        opacity: 0; 
+        transform: scale(0.95);
+    }
+    to { 
+        opacity: 1; 
+        transform: scale(1);
+    }
+}
+
+.privacy-modal {
+    background: #ffffff;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 900px;
+    max-height: 90vh;
+    position: relative;
+    padding: 20px 20px 20px 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Заголовок модального окна */
+.privacy-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    flex-shrink: 0;
+}
+
+.privacy-modal-header h2 {
+    color: #000000;
+    font-size: 20px;
+    font-weight: 400;
+    margin: 0;
+}
+
+.privacy-modal-close {
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(0, 0, 0, 0.6);
+  border: none;
+  font-size: 24px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.privacy-modal-close:hover {
+   background: rgba(54, 43, 43, 0.08);
+    color: #000000;
+    transform: rotate(90deg);
+}
+
+/* Контент с PDF */
+.privacy-modal-content {
+    flex: 1;
+    padding-top: 15px;
+    min-height: 400px;
+    overflow: hidden;
+}
+
+.privacy-modal-content iframe {
+    border: none;
+    border-radius: 8px;
+    background: #fff;
+    width: 100%;
+    height: 65vh;
+    min-height: 400px;
+}
+
+/* Кнопки внизу модального окна */
+.privacy-modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    flex-shrink: 0;
+    margin-top: 15px;
+}
+
+.privacy-modal-footer button {
+    padding: 10px 30px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.privacy-modal-footer .btn-close {
+    background: rgba(92, 85, 85, 0.08);
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.privacy-modal-footer .btn-close:hover {
+    background: rgba(60, 53, 53, 0.6);
+    color: #000000;
+}
+
+.privacy-modal-footer .btn-download {
+    background: #4CAF50;
+    color: white;
+}
+
+.privacy-modal-footer .btn-download:hover {
+    background: #43a047;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+}
+
+/* ===== АДАПТИВНОСТЬ МОДАЛЬНОГО ОКНА ===== */
+
+/* Планшеты */
+@media (max-width: 1024px) {
+    .privacy-modal {
+        max-width: 95%;
+        padding: 18px;
+    }
+    
+    .privacy-modal-content iframe {
+        height: 55vh;
+        min-height: 350px;
+    }
+}
+
+/* Телефоны */
+@media (max-width: 768px) {
+    .privacy-modal-overlay {
+        padding: 10px;
+        align-items: flex-end;
+    }
+    
+    .privacy-modal {
+        max-height: 95vh;
+        border-radius: 16px 16px 0 0;
+        padding: 16px;
+        animation: slideUpModal 0.3s ease;
+    }
+    
+    @keyframes slideUpModal {
+        from {
+            transform: translateY(100%);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+    
+    .privacy-modal-header h2 {
+        font-size: 17px;
+    }
+    
+    .privacy-modal-close {
+        width: 36px;
+        height: 36px;
+        font-size: 20px;
+    }
+    
+    .privacy-modal-content {
+        padding-top: 12px;
+        min-height: 250px;
+    }
+    
+    .privacy-modal-content iframe {
+        height: 45vh;
+        min-height: 250px;
+        border-radius: 6px;
+    }
+    
+    .privacy-modal-footer {
+        flex-direction: column;
+        gap: 8px;
+        padding-top: 12px;
+        margin-top: 12px;
+    }
+    
+    .privacy-modal-footer button {
+        padding: 12px 20px;
+        font-size: 14px;
+        width: 100%;
+    }
+}
+
+/* Маленькие телефоны */
+@media (max-width: 480px) {
+    .privacy-modal-overlay {
+        padding: 5px;
+    }
+    
+    .privacy-modal {
+        padding: 12px;
+        max-height: 98vh;
+    }
+    
+    .privacy-modal-header h2 {
+        font-size: 15px;
+    }
+    
+    .privacy-modal-close {
+        width: 32px;
+        height: 32px;
+        font-size: 18px;
+    }
+    
+    .privacy-modal-content {
+        padding-top: 10px;
+        min-height: 200px;
+    }
+    
+    .privacy-modal-content iframe {
+        height: 40vh;
+        min-height: 200px;
+    }
+    
+    .privacy-modal-footer button {
+        padding: 10px 16px;
+        font-size: 13px;
+    }
+}
+
+/* Для очень больших экранов */
+@media (min-width: 1920px) {
+    .privacy-modal {
+        max-width: 1100px;
+        max-height: 85vh;
+    }
+    
+    .privacy-modal-content iframe {
+        height: 70vh;
+        min-height: 500px;
+    }
+}

@@ -1,0 +1,468 @@
+/* Затемнение фона */
+.archive-viewer-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.9);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Основной контейнер */
+.archive-viewer {
+    position: relative;
+    width: 95%;
+    max-width: 1920px;
+    height: 100vh;
+    background-color: #FFFFFF;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Кнопка закрытия */
+.close-button {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border:1px solid #3B3534 ;
+    color: rgb(0, 0, 0);
+    border: none;
+    font-size: 28px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s;
+}
+
+.close-button:hover {
+    background: rgba(12, 0, 0, 0.2);
+}
+
+/* Основной контент */
+.archive-viewer-content {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+    padding: 20px;
+    gap: 20px;
+}
+
+/* Левая колонка с миниатюрами */
+.thumbnails-column {
+    width: 200px;
+    min-width: 200px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-right: 10px;
+}
+
+.thumbnails-column::-webkit-scrollbar {
+    width: 6px;
+}
+
+.thumbnails-column::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+}
+
+.thumbnails-column::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+}
+
+.thumbnail-item {
+    cursor: pointer;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s;
+    padding: 5px;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.thumbnail-item:hover {
+    border-color: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.thumbnail-item.active {
+    border-color: #4CAF50;
+    background: rgba(76, 175, 80, 0.15);
+    box-shadow: 0 0 15px rgba(76, 175, 80, 0.3);
+}
+
+.thumbnail-item img {
+    width: 100%;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.thumbnail-item p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 11px;
+    margin: 5px 0 0 0;
+    text-align: center;
+    display: -webkit-box; 
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.thumbnail-item.active p {
+    color: white;
+}
+
+/* Центральная часть с фото */
+.main-photo-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    min-width: 0;
+}
+
+.main-photo {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 60px;
+}
+
+.main-photo img {
+    max-width: 100%;
+    max-height: 75vh;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+}
+
+.photo-caption {
+    margin-top: 15px;
+    text-align: center;
+    color: #3B3534;
+    font-family: 'Geologica';
+}
+
+.photo-caption h3 {
+    font-size: 18px;
+    margin: 0 0 5px 0;
+    color: #3B3534;
+    font-family: 'Geologica';
+    
+}
+
+.photo-caption p {
+    margin: 3px 0;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+    font-family: 'Geologica';
+    
+    color: #3B3534;
+}
+
+/* Навигационные стрелки */
+.nav-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.9);
+    color: rgb(0, 0, 0);
+    border: none;
+    font-size: 48px;
+    width: 60px;
+    height: 80px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+    border-radius: 8px;
+    z-index: 5;
+    
+    border: 1px solid black;
+}
+
+.nav-button:hover {
+      background: rgba(255, 255, 255, 0.2);
+    color: rgb(255, 255, 255);
+    border: 1px solid black;
+}
+
+.nav-left {
+    left: 0;
+}
+
+.nav-right {
+    right: 0;
+}
+
+/* Счетчик фото */
+.photo-counter {
+    text-align: center;
+    font-family: 'Geologica';
+    
+    color: #3B3534;
+    font-size: 14px;
+    padding: 10px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Загрузка и ошибка */
+.archive-viewer-loading,
+.archive-viewer-error {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.9);
+    color: white;
+    z-index: 9999;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(109, 106, 106, 0.1);
+    border-top: 4px solid #000000;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.archive-viewer-error button {
+    margin-top: 20px;
+    padding: 10px 30px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+}
+/* Адаптивность для мобильных устройств */
+@media (max-width: 768px) {
+    .archive-viewer {
+        width: 100%;
+        height: 100vh;
+        border-radius: 0;
+    }
+    
+    .archive-viewer-content {
+        flex-direction: column;
+        padding: 10px;
+        gap: 8px;
+    }
+     
+    .thumbnails-column {
+        width: 100%;
+        min-width: auto;
+        flex-direction: row;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding-bottom: 5px;
+        height: 110px;
+        gap: 8px;
+        padding-right: 0;
+    }
+    
+    .thumbnails-column::-webkit-scrollbar {
+        height: 3px;
+    }
+    
+    .thumbnails-column::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 2px;
+    }
+    
+    .thumbnails-column::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 2px;
+    }
+    
+    .thumbnail-item {
+        min-width: 80px;
+        max-width: 80px;
+        flex-shrink: 0;
+        padding: 3px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+    }
+    
+    .thumbnail-item img {
+        width: 100%;
+        height: 55px;
+        object-fit: contain;
+        background-color: #2a2a2a;
+        border-radius: 4px;
+    }
+    
+    .thumbnail-item p {
+        font-size: 9px;
+        margin-top: 3px;
+        -webkit-line-clamp: 1;
+        line-height: 1.2;
+        color: black;
+    }
+     
+    .main-photo-container {
+        flex: 1;
+        min-height: 0;
+    }
+    
+    .main-photo {
+        padding: 0 35px;
+        height: calc(100vh - 280px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .main-photo img {
+        max-width: 100%;
+        max-height: 100%;
+        width: auto;
+        height: auto;
+        object-fit: contain;
+        border-radius: 6px;
+    }
+    
+    .photo-caption {
+        margin-top: 8px;
+        padding: 0 10px;
+    }
+    
+    .photo-caption h3 {
+        font-size: 13px;
+        margin: 0 0 3px 0;
+    }
+    
+    .photo-caption p {
+        font-size: 11px;
+        margin: 2px 0;
+    }
+    
+    /* Навигационные стрелки */
+    .nav-button {
+        font-size: 24px;
+        width: 32px;
+        height: 50px;
+        border-radius: 6px;
+        background: rgba(0, 0, 0, 0.5);
+    }
+    
+    .nav-button:hover {
+        background: rgba(255, 255, 255, 0.2);
+    }
+    
+    .nav-left {
+        left: 5px;
+    }
+    
+    .nav-right {
+        right: 5px;
+    }
+    
+    /* Кнопка закрытия */
+    .close-button {
+        top: 8px;
+        right: 10px;
+        width: 32px;
+        height: 32px;
+        font-size: 20px;
+        background: rgba(0, 0, 0, 0.6);
+    }
+    
+    /* Счетчик */
+    .photo-counter {
+        font-size: 12px;
+        padding: 8px 0;
+    }
+}
+
+/* Очень маленькие телефоны */
+@media (max-width: 480px) {
+    .thumbnails-column {
+        height: 90px;
+        gap: 6px;
+    }
+    
+    .thumbnail-item {
+        min-width: 60px;
+        max-width: 60px;
+    }
+    
+    .thumbnail-item img {
+        height: 40px;
+    }
+    
+    .thumbnail-item p {
+        font-size: 7px;
+    }
+    
+    .main-photo {
+        padding: 0 25px;
+        height: calc(100vh - 230px);
+    }
+    
+    .nav-button {
+        font-size: 20px;
+        width: 28px;
+        height: 40px;
+    }
+    
+    .main-photo img {
+        max-height: 45vh;
+    }
+    
+    .photo-caption h3 {
+        font-size: 11px;
+    }
+    
+    .photo-caption p {
+        font-size: 10px;
+    }
+    
+    .close-button {
+        width: 28px;
+        height: 28px;
+        font-size: 16px;
+        top: 5px;
+        right: 8px;
+    }
+}

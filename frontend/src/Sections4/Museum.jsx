@@ -18,6 +18,8 @@ export default function Museum() {
             </div>
             <section className="concept">
                 <div className="conceptMain">
+                      <div className="Museumimg1">
+                    </div>
                     <div className="MuseumH2">
                         <h1>Концепция музея</h1>
                         <p>
@@ -33,13 +35,12 @@ export default function Museum() {
                               сайте, чтобы узнать подробности.
                         </p>
                     </div>
-                    <div className="Museumimg1">
-                    </div>
+                  
                 </div>
             </section>
             
             <div className="concept2">
-                <div className="conceptMain">
+                <div className="conceptMain conceptMain2">
                     <div className="Museumimg2"></div>
                 <div className="concept2H2">
                     <h1>3D-визуализация помещений</h1>

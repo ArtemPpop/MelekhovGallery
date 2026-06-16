@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import oleg2 from './imgs/oleg2.png'
 import mol from './imgs/molnya.png'
@@ -13,9 +14,12 @@ export default function Biography() {
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
 
+    const navigate = useNavigate()
+
     const API_URL = '/api/biography/'
     const PHOTOS_URL = '/api/photos/'
 
+    // Только эти 6 фотографий
     const requiredTitles = [
         'Начало церемонии открытия скульптуры Царевны Лягушки',
         'Открытие скульптуры собравшимся',
@@ -37,11 +41,19 @@ export default function Biography() {
                 setBioData(bioResult)
                 
                 const allPhotos = Array.isArray(photosRes.data) ? photosRes.data : []
-                const selectedPhotos = allPhotos.filter(photo => requiredTitles.includes(photo.title))
+                
+                // Фильтруем только те фото, которые есть в requiredTitles
+                const selectedPhotos = allPhotos.filter(photo => 
+                    requiredTitles.includes(photo.title)
+                )
+                
+                // Сортируем в нужном порядке
                 selectedPhotos.sort((a, b) => {
                     return requiredTitles.indexOf(a.title) - requiredTitles.indexOf(b.title)
                 })
-                setArchivePhotos(selectedPhotos)
+                
+                // Берем только первые 6 (на всякий случай, если придет больше)
+                setArchivePhotos(selectedPhotos.slice(0, 6))
             } catch (err) {
                 console.error('Ошибка загрузки:', err)
                 setError('Не удалось загрузить данные')
@@ -55,6 +67,11 @@ export default function Biography() {
             setIsVisible(true)
         }, 50)
     }, [])
+
+    // Обработчик клика по фото
+    const handlePhotoClick = (photoId) => {
+        navigate(`/archive/${photoId}`)
+    }
 
     if (loading) {
         return (
@@ -228,41 +245,22 @@ export default function Biography() {
                     </div>
                 )}
 
-                
-
                 <div className="detstva">
                     <h3>Из личного <br /> архива</h3>
                 </div>
+                
                 <div className="fromZIP">
-                    {archivePhotos.length === 6 ? (
-                        archivePhotos.map((photo, index) => (
-                            <div key={photo.id} className='zip1'>
-                                <img src={photo.image_url} alt={photo.title} />
-                                <p className="photo-title">{photo.title}</p>
-                            </div>
-                        ))
-                    ) : (
-                        <>
-                            <div className='zip1'>
-                                {archivePhotos[0] && <img src={archivePhotos[0].image_url} alt={archivePhotos[0].title} />}
-                            </div>
-                            <div className='zip1'>
-                                {archivePhotos[1] && <img src={archivePhotos[1].image_url} alt={archivePhotos[1].title} />}
-                            </div>
-                            <div className='zip1'>
-                                {archivePhotos[2] && <img src={archivePhotos[2].image_url} alt={archivePhotos[2].title} />}
-                            </div>
-                            <div className='zip1'>
-                                {archivePhotos[3] && <img src={archivePhotos[3].image_url} alt={archivePhotos[3].title} />}
-                            </div>
-                            <div className='zip1'>
-                                {archivePhotos[4] && <img src={archivePhotos[4].image_url} alt={archivePhotos[4].title} />}
-                            </div>
-                            <div className='zip1'>
-                                {archivePhotos[5] && <img src={archivePhotos[5].image_url} alt={archivePhotos[5].title} />}
-                            </div>
-                        </>
-                    )}
+                    {archivePhotos.map((photo) => (
+                        <div 
+                            key={photo.id} 
+                            className='zip1'
+                            onClick={() => handlePhotoClick(photo.id)}
+                            style={{ cursor: 'pointer' }}
+                        >
+                            <img src={photo.image_url} alt={photo.title} />
+                            <p className="photo-title">{photo.title}</p>
+                        </div>
+                    ))}
                 </div>
             </section>
         </div>

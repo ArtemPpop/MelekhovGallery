@@ -12,15 +12,17 @@ export default function ProductPage() {
     const [error, setError] = useState(null);
     const [addingToCart, setAddingToCart] = useState(false);
 
+    // Используем правильные URL (как в TestShop)
     const API_URL = '/api/products/';
-    const CART_URL = '/api/cart/add/';
+    const CART_ADD_URL = '/api/cart/add/';
 
     useEffect(() => {
         const loadProduct = async () => {
             try {
                 setLoading(true);
                 const res = await axios.get(API_URL);
-                const products = res.data;
+                const products = Array.isArray(res.data) ? res.data : [];
+                
                 const found = products.find(p => p.id === parseInt(id));
                 if (found) {
                     setProduct(found);
@@ -40,6 +42,7 @@ export default function ProductPage() {
         loadProduct();
     }, [id]);
 
+    // ТОЧНО КАК В TESTSHOP
     const addToCart = async () => {
         if (!selectedVariant) {
             alert('Выберите вариант товара');
@@ -48,28 +51,37 @@ export default function ProductPage() {
         
         setAddingToCart(true);
         try {
-            await fetch(CART_URL, {
-                method: 'POST',
-                credentials: 'include',
+            await fetch(CART_ADD_URL, {
+                method: "POST",
+                credentials: "include",
                 headers: {
-                    'Content-Type': 'application/json'
+                    "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
                     variant_id: selectedVariant.id,
                     quantity: 1
                 })
             });
+
             alert('Товар добавлен в корзину');
+            window.dispatchEvent(new CustomEvent('cartUpdated'));
+            
         } catch (error) {
-            console.error(error);
+            console.error('Ошибка добавления:', error);
             alert('Ошибка добавления в корзину');
         } finally {
             setAddingToCart(false);
         }
     };
 
-    const buyNow = () => {
-        addToCart();
+    const goToCheckout = () => {
+        const checkoutData = {
+            product: product,
+            variant: selectedVariant,
+            quantity: 1
+        };
+        sessionStorage.setItem('checkoutData', JSON.stringify(checkoutData));
+        navigate('/checkout');
     };
 
     if (loading) {
@@ -113,7 +125,10 @@ export default function ProductPage() {
                         >
                             {addingToCart ? 'Добавление...' : 'В корзину'}
                         </button>
-                        <button className="btn-buy" onClick={buyNow}>
+                        <button 
+                            className="btn-buy" 
+                            onClick={goToCheckout}
+                        >
                             Купить сейчас
                         </button>
                     </div>
@@ -140,7 +155,10 @@ export default function ProductPage() {
                         </div>
                     </div>
 
-                   
+                    <div className="product-description">
+                        <h3>Описание</h3>
+                        <p>Коллекция из 10 открыток с репродукциями морских пейзажей</p>
+                    </div>
 
                     <div className="product-tags">
                         <h3>Тэги</h3>
@@ -151,12 +169,7 @@ export default function ProductPage() {
                         </div>
                     </div>
                 </div>
-                 <div className="product-description">
-                        <h3>Описание</h3>
-                        <p>Коллекция из 10 открыток с репродукциями морских пейзажей</p>
-                    </div>
             </div>
-            
         </div>
     );
 }

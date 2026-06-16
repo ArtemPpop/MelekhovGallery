@@ -1,18 +1,20 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Cart.css';
 
 export default function Cart({ isOpen, onClose, onCartUpdate }) {
     const [cartItems, setCartItems] = useState([]);
     const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
 
-    const CART_URL = '/api/cart/';
+    const CART_URL = 'api/cart/';
     const CART_ADD_URL = '/api/cart/add/';
     const CART_REMOVE_URL = '/api/cart/remove/';
 
     const loadCart = async () => {
         try {
             const response = await fetch(CART_URL, {
-                credentials: 'include'
+                credentials: "include"
             });
             const data = await response.json();
             setCartItems(data);
@@ -28,21 +30,30 @@ export default function Cart({ isOpen, onClose, onCartUpdate }) {
         }
     }, [isOpen]);
 
-    // Исправленная функция: quantityChange — это изменение (+1 или -1)
+    useEffect(() => {
+        const handleCartUpdate = () => {
+            loadCart();
+        };
+        window.addEventListener('cartUpdated', handleCartUpdate);
+        return () => {
+            window.removeEventListener('cartUpdated', handleCartUpdate);
+        };
+    }, []);
+
     const updateQuantity = async (variantId, quantityChange) => {
-        if (quantityChange === 0) return;
+        if (quantityChange === 0 || !variantId) return;
 
         try {
             setLoading(true);
             const response = await fetch(CART_ADD_URL, {
-                method: 'POST',
-                credentials: 'include',
+                method: "POST",
+                credentials: "include",
                 headers: {
-                    'Content-Type': 'application/json'
+                    "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
                     variant_id: variantId,
-                    quantity: quantityChange   // отправляем +1 или -1
+                    quantity: quantityChange
                 })
             });
 
@@ -63,13 +74,15 @@ export default function Cart({ isOpen, onClose, onCartUpdate }) {
     };
 
     const removeItem = async (variantId) => {
+        if (!variantId) return;
+        
         try {
             setLoading(true);
             await fetch(CART_REMOVE_URL, {
-                method: 'POST',
-                credentials: 'include',
+                method: "POST",
+                credentials: "include",
                 headers: {
-                    'Content-Type': 'application/json'
+                    "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
                     variant_id: variantId
@@ -85,19 +98,27 @@ export default function Cart({ isOpen, onClose, onCartUpdate }) {
     };
 
     const getTotalItems = () => {
-        return cartItems.reduce((sum, item) => sum + item.quantity, 0);
+        return cartItems.reduce((sum, item) => sum + (item.quantity || 0), 0);
     };
 
     const getSubtotal = () => {
         return cartItems.reduce((sum, item) => {
             const price = parseFloat(item.product_variant?.price) || 0;
-            return sum + (price * item.quantity);
+            return sum + (price * (item.quantity || 0));
         }, 0);
     };
 
     const shippingCost = 50;
     const subtotal = getSubtotal();
     const total = subtotal + shippingCost;
+
+    // Переход на страницу оформления заказа
+    const handleCheckout = () => {
+        // Сохраняем данные корзины в sessionStorage
+        sessionStorage.setItem('checkoutCart', JSON.stringify(cartItems));
+        onClose(); // Закрываем корзину
+        navigate('/checkout'); // Переходим на страницу оформления
+    };
 
     return (
         <>
@@ -115,25 +136,38 @@ export default function Cart({ isOpen, onClose, onCartUpdate }) {
                         </div>
                     ) : (
                         <>
-                            {cartItems.map(item => (
-                                <div key={item.id} className="cart-item">
-                                    <div className="cart-item-info">
-                                        <h4>{item.product_variant?.product_name}</h4>
-                                        <p className="cart-item-price">{item.product_variant?.price} ₽</p>
+                            {cartItems.map(item => {
+                                const variantId = item.product_variant?.id;
+                                const quantity = item.quantity || 0;
+                                const productName = item.product_variant?.product_name || 'Товар';
+                                const price = item.product_variant?.price || 0;
+                                
+                                return (
+                                    <div key={item.id} className="cart-item">
+                                        <div className="cart-item-info">
+                                            <h4>{productName}</h4>
+                                            <p className="cart-item-price">{price} ₽</p>
+                                        </div>
+                                        <div className="cart-item-quantity">
+                                            <button 
+                                                onClick={() => {
+                                                    if (quantity <= 1) {
+                                                        removeItem(variantId);
+                                                    } else {
+                                                        updateQuantity(variantId, -1);
+                                                    }
+                                                }}
+                                                disabled={loading || quantity <= 0}
+                                            >–</button>
+                                            <span>{quantity}</span>
+                                            <button 
+                                                onClick={() => updateQuantity(variantId, 1)}
+                                                disabled={loading}
+                                            >+</button>
+                                        </div>
                                     </div>
-                                    <div className="cart-item-quantity">
-                                        <button 
-                                            onClick={() => updateQuantity(item.product_variant?.id, -1)}
-                                            disabled={loading || item.quantity <= 1}
-                                        >–</button>
-                                        <span>{item.quantity}</span>
-                                        <button 
-                                            onClick={() => updateQuantity(item.product_variant?.id, +1)}
-                                            disabled={loading}
-                                        >+</button>
-                                    </div>
-                                </div>
-                            ))}
+                                );
+                            })}
 
                             <div className="cart-summary">
                                 <div className="cart-row">
@@ -148,7 +182,7 @@ export default function Cart({ isOpen, onClose, onCartUpdate }) {
                                     <span>Сумма заказа</span>
                                     <span>{total} ₽</span>
                                 </div>
-                                <button className="cart-checkout">
+                                <button className="cart-checkout" onClick={handleCheckout}>
                                     К оформлению заказа
                                 </button>
                             </div>

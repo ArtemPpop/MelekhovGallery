@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './merge.css';
@@ -7,6 +7,7 @@ export default function Merge() {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [selectedCategory, setSelectedCategory] = useState('все товары');
     const navigate = useNavigate();
 
     const API_URL = '/api/products/';
@@ -16,7 +17,6 @@ export default function Merge() {
             try {
                 setLoading(true);
                 const res = await axios.get(API_URL);
-                // API возвращает массив продуктов
                 setProducts(res.data);
             } catch (err) {
                 console.error(err);
@@ -27,6 +27,31 @@ export default function Merge() {
         };
         loadProducts();
     }, []);
+
+    // Категории для фильтрации
+    const categories = ['все товары', 'Открытки', 'Карточки', 'Магниты', 'Брелоки', 'Значки', 'Закладки для книг'];
+
+    // Фильтрация продуктов по категории
+    const filteredProducts = useMemo(() => {
+        if (selectedCategory === 'все товары') {
+            return products;
+        }
+        return products.filter(product => 
+            product.name && product.name.toLowerCase().includes(selectedCategory.toLowerCase())
+        );
+    }, [products, selectedCategory]);
+
+    // Функция для получения категории товара (из названия)
+    const getProductCategory = (productName) => {
+        if (!productName) return 'другое';
+        for (const cat of categories) {
+            if (cat === 'все товары') continue;
+            if (productName.toLowerCase().includes(cat.toLowerCase())) {
+                return cat;
+            }
+        }
+        return 'другое';
+    };
 
     if (loading) {
         return (
@@ -48,11 +73,25 @@ export default function Merge() {
                 <p>Авторские сувениры с репродукциями работ О.А. Мелехова</p>
             </div>
             <hr />
+            
+            <div className="filtresMergeMain">
+                <div className="filtresmerge">
+                    {categories.map(category => (
+                        <button
+                            key={category}
+                            className={selectedCategory === category ? 'active' : ''}
+                            onClick={() => setSelectedCategory(category)}
+                        >
+                            {category}
+                        </button>
+                    ))}
+                </div>
+            </div>
 
             <div className="worksFounded">
-                <p>Найдено: {products.length} товаров</p>
+                <p>Найдено: {filteredProducts.length} товаров</p>
                 <div className="works">
-                    {products.map(product => (
+                    {filteredProducts.map(product => (
                         <div
                             key={product.id}
                             className="work"
@@ -68,8 +107,8 @@ export default function Merge() {
                             <h3>{product.price} ₽</h3>
                             {product.variants && product.variants.length > 0 && (
                                 <div className="variants-info">
-                                    {product.variants[0].size && <span>Размер: {product.variants[0].size}</span>}
-                                    {product.variants[0].color && <span> / {product.variants[0].color}</span>}
+                                    <h3>{product.variants[0].size && <span>Размер: {product.variants[0].size}</span>}</h3>
+                                    <h3>{product.variants[0].color && <span>  {product.variants[0].color}</span>}</h3>
                                 </div>
                             )}
                         </div>

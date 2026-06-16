@@ -217,8 +217,7 @@ height: clamp(75px, 18vw, 342px);
 .sorts button {
     width: clamp(89px, 25vw, 214px);
     height: clamp(15px, 7vw, 46px);
-    border-radius: 10px;
-    font-family: 'ForumFont';
+    border-radius: 10px; 
     font-size: clamp(10px, 2.4vw, 16px);
     cursor: pointer;
 }

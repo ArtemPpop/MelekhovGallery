@@ -10,16 +10,19 @@ import frame5 from './img/Frame204.png'
 export default function Collection() {
 
     const [allWorks, setAllWorks] = useState([])
+    const [allPhotos, setAllPhotos] = useState([])
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
 
     const [searchQuery, setSearchQuery] = useState("")
     const [sortType, setSortType] = useState("year")
     const [categoryFilter, setCategoryFilter] = useState("all")
+    
+    // Режим отображения: "artworks" или "photos"
+    const [viewMode, setViewMode] = useState("artworks")
 
-                           const API_URL = '/api/artworks/artworks/';
-
-
+    const API_URL = ' /api/artworks/artworks/'
+    const PHOTOS_URL = '/api/photos/'
 
     const didLoad = useRef(false)
 
@@ -30,10 +33,14 @@ export default function Collection() {
         const loadData = async () => {
             try {
                 setLoading(true)
+                
+                const [artworksRes, photosRes] = await Promise.all([
+                    axios.get(API_URL),
+                    axios.get(PHOTOS_URL)
+                ])
 
-                const res = await axios.get(API_URL)
-
-                setAllWorks(res.data)
+                setAllWorks(artworksRes.data)
+                setAllPhotos(photosRes.data)
 
             } catch (e) {
                 console.error(e)
@@ -48,35 +55,89 @@ export default function Collection() {
 
     const handleSearchChange = (e) => setSearchQuery(e.target.value)
     const handleSortChange = (e) => setSortType(e.target.value)
+    
     const handleCategoryFilter = (category) => {
-        // Если нажимаем на уже активную категорию - сбрасываем фильтр (показываем все)
+        // Если нажимаем на уже активную категорию - сбрасываем фильтр
         if (categoryFilter === category) {
             setCategoryFilter("all")
+            setViewMode("artworks")
+            return
+        }
+
+        setCategoryFilter(category)
+        
+        // Для фотографий, скульптуры и архива - переключаемся на режим фотографий
+        if (category === "photo" || category === "sculpture" || category === "archive") {
+            setViewMode("photos")
         } else {
-            setCategoryFilter(category)
+            setViewMode("artworks")
         }
     }
 
     const filteredAndSortedWorks = useMemo(() => {
+        // Если режим фотографий (Фотографии, Скульптура или Архив)
+        if (viewMode === "photos") {
+            let result = [...allPhotos]
+            
+            // Фильтрация по категории
+            if (categoryFilter !== "all") {
+                let categoryMap = {
+                    "photo": "Фотографии",
+                    "sculpture": "Скульптура",
+                    "archive": "Архив"
+                }
+                
+                const targetCategory = categoryMap[categoryFilter]
+                if (targetCategory) {
+                    result = result.filter(photo => 
+                        (photo.category || "").toLowerCase() === targetCategory.toLowerCase()
+                    )
+                }
+            }
+            
+            // Поиск
+            if (searchQuery.trim()) {
+                const query = searchQuery.toLowerCase()
+                result = result.filter(photo =>
+                    (photo.title || "").toLowerCase().includes(query) ||
+                    (photo.description || "").toLowerCase().includes(query) ||
+                    (photo.year || "").toString().includes(query) ||
+                    (photo.category || "").toLowerCase().includes(query)
+                )
+            }
+            
+            // Сортировка
+            switch (sortType) {
+                case "year":
+                    result.sort((a, b) => (a.year || 0) - (b.year || 0))
+                    break
+                case "year-desc":
+                    result.sort((a, b) => (b.year || 0) - (a.year || 0))
+                    break
+                case "title":
+                    result.sort((a, b) => (a.title || "").localeCompare(b.title || ""))
+                    break
+                default:
+                    break
+            }
+            
+            return result
+        }
+
+        // Режим произведений (Живопись, Графика)
         let result = [...allWorks]
 
-        if (categoryFilter !== "all") {
+        if (categoryFilter !== "all" && categoryFilter !== "photo" && categoryFilter !== "sculpture" && categoryFilter !== "archive") {
             result = result.filter(work => {
-                const technique = (work.technique || "").toLowerCase()
-                const genre = (work.genre || "").toLowerCase()
-                const title = (work.title || "").toLowerCase()
+                const type = (work.artwork_type || "").toLowerCase()
                 
                 switch(categoryFilter) {
-                    case "sculpture":
-                        return technique.includes("скульпт") || genre.includes("скульпт") || title.includes("скульпт")
                     case "painting":
-                        return technique.includes("живопис") || genre.includes("живопис") || title.includes("живопис")
+                        // Живопись - ищем "живопись" или "картина"
+                        return type.includes("живопис") || type.includes("картина")
                     case "graphics":
-                        return technique.includes("график") || genre.includes("график") || title.includes("график")
-                    case "photo":
-                        return technique.includes("фото") || genre.includes("фото") || title.includes("фото")
-                    case "archive":
-                        return technique.includes("архив") || genre.includes("архив") || title.includes("архив")
+                        // Графика - ищем "графика"
+                        return type.includes("график")
                     default:
                         return true
                 }
@@ -85,14 +146,14 @@ export default function Collection() {
 
         if (searchQuery.trim()) {
             const query = searchQuery.toLowerCase()
-
             result = result.filter(work =>
                 (work.title || "").toLowerCase().includes(query) ||
                 (work.description || "").toLowerCase().includes(query) ||
                 (work.genre || "").toLowerCase().includes(query) ||
                 (work.theme || "").toLowerCase().includes(query) ||
                 (work.technique || "").toLowerCase().includes(query) ||
-                (work.year || "").toString().includes(query)
+                (work.year || "").toString().includes(query) ||
+                (work.artwork_type || "").toLowerCase().includes(query)
             )
         }
 
@@ -111,7 +172,25 @@ export default function Collection() {
         }
 
         return result
-    }, [allWorks, searchQuery, sortType, categoryFilter])
+    }, [allWorks, allPhotos, searchQuery, sortType, categoryFilter, viewMode])
+
+    // Определяем заголовок для количества
+    const getCountLabel = () => {
+        if (viewMode === "photos") {
+            switch(categoryFilter) {
+                case "photo": return "Фотографии"
+                case "sculpture": return "Скульптуры"
+                case "archive": return "Архив"
+                default: return "Фотографии"
+            }
+        }
+        
+        switch(categoryFilter) {
+            case "painting": return "Живопись"
+            case "graphics": return "Графика"
+            default: return "Найдено"
+        }
+    }
 
     if (loading) return (
         <div className="collection-loading">
@@ -180,33 +259,30 @@ export default function Collection() {
 
             <div className="worksFounded">
                 <div className='worksFoundedP'>
-                    <p>Найдено: {filteredAndSortedWorks.length}</p>
+                    <p>{getCountLabel()}: {filteredAndSortedWorks.length}</p>
                 </div>
 
                 <div className="works">
-                    {filteredAndSortedWorks.map(work => (
-                        <div key={work.id} className="work">
+                    {filteredAndSortedWorks.map(item => (
+                        <div key={item.id} className="work">
                             <div className="work-image-placeholder">
-                                {work.image_url ? (
-                                    <img src={work.image_url} alt={work.title} />
+                                {item.image_url ? (
+                                    <img src={item.image_url} alt={item.title} />
                                 ) : (
                                     <div className="no-image"></div>
                                 )}
                             </div>
                             <div className="work-year-large">
-                                <p>{work.year}</p>
+                                <h6>{item.year}</h6>
                             </div>
 
                             <div className="work-info">
-                                <h1>{work.title}</h1>
-
-                                {/* <h6 className="work-description">
-                                    {work.description || "Описание отсутствует"}
-                                </h6> */}
-
-                                <h6>
-                                    {work.tags && `Размеры: ${work.size}`}
-                                </h6>
+                                <h1>{item.title}</h1>
+                                {viewMode === "photos" ? (
+                                    <h6> {item.description}</h6>
+                                ) : (
+                                    <h6>#{item.technique} </h6>
+                                )}
                             </div>
                         </div>
                     ))}

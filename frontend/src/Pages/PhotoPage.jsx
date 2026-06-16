@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import './PhotoPage.css';
+import './PhotoPage.css'; 
 
 export default function PhotoPage() {
     const { id } = useParams();

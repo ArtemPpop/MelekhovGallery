@@ -593,8 +593,7 @@ padding-right: 5px;
     padding-top: 2%;
     padding-left: 2%;
     width: clamp(100px, 37vw, 450px);
-    height: fit-content;
-    border-left: 1px solid #C3B9AC;
+    height: fit-content; 
 }
 
 .bioTop{ 

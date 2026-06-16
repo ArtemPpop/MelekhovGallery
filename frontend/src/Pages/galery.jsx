@@ -147,7 +147,7 @@ export default function Galery() {
                             ))}
                         </select>
                     </label>
-                    <label className='filtr1'>
+                    {/* <label className='filtr1'>
                         <p>Тема</p>
                         <select value={theme} onChange={e => setTheme(e.target.value)}>
                             <option value="">Все темы</option>
@@ -155,7 +155,7 @@ export default function Galery() {
                                 <option key={t} value={t}>{t}</option>
                             ))}
                         </select>
-                    </label>
+                    </label> */}
                 </div>
 
                 <div className="sorts">

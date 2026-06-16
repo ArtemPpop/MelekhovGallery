@@ -31,7 +31,7 @@
     font-size: clamp(12px, 2.4vw, 17px);
     width: clamp(162px, 50vw, 473px);
     font-weight: 400;
-    height: 54px; 
+    height: 70px; 
 
 
 }
@@ -101,6 +101,10 @@ gap: 8%
     font-family: 'Geologica';
     color: #F6EEDC;
     font-size: clamp(10px, 1.7vw, 20px);
+}
+.bottomfut a{
+    text-decoration: underline;
+    color: #F6EEDC;
 }
 .leftfut section{
     display: flex;

@@ -10,6 +10,7 @@ import right2 from './imgs/right2.png'
 import card1 from './imgs/MergeCard1.png'
 import card2 from './imgs/MergeCard2.png'
 import { Link } from 'react-router-dom'
+ 
 // import required modules
 import { Pagination, Navigation } from 'swiper/modules';
 
@@ -38,7 +39,7 @@ import { Pagination, Navigation } from 'swiper/modules';
                 
                     <div className="h2Creativity mergeH2">
                     <h2>
-                        Мерч
+                        Сувенирная <br /> продукция
                     </h2>
                     <p style={{
                       maxWidth: "375px",
@@ -81,56 +82,73 @@ import { Pagination, Navigation } from 'swiper/modules';
                 <div>
                   <h6> Открытки</h6>
                  <h3>Набор открыток  <br />“Балтийское побережье”</h3>
-                 <h5>Коллекция из 10 открыток <br /> с репродукциями морских пейзажей</h5>
-                 <h3>450 ₽</h3>
+                 <h5>Коллекция из 5 открыток с репродукциями популярных работ художника на тему "Светлогорска"</h5>
+                 <h5>В разработке</h5>
                 </div>
         </SwiperSlide>
         <SwiperSlide className='slid'>
               <section><img src={card2} alt="" /></section>
                 <div>
-                  <h6> Открытки</h6>
+                  <h6> Книжные закладки</h6>
                  <h3>Набор открыток  <br />“Балтийское побережье”</h3>
-                 <h5>Коллекция из 10 открыток <br /> с репродукциями морских пейзажей</h5>
-                 <h3>450 ₽</h3>
+                 <h5>Коллекция из 5 книжных закладок <br /> с репродукциями популярных работ<br /> художника на тему "Светлогорска"</h5>
+                 <h5>В разработке</h5>
                 </div>
-        </SwiperSlide>
+        </SwiperSlide> 
         <SwiperSlide className='slid'>
               <section><img src={card1} alt="" /></section>
                 <div>
                   <h6> Открытки</h6>
                  <h3>Набор открыток  <br />“Балтийское побережье”</h3>
-                 <h5>Коллекция из 10 открыток <br /> с репродукциями морских пейзажей</h5>
-                 <h3>450 ₽</h3>
+                 <h5>Коллекция из 5 открыток с репродукциями популярных работ художника на тему "Светлогорска"</h5>
+                 <h5>В разработке</h5>
                 </div>
         </SwiperSlide>
         <SwiperSlide className='slid'>
               <section><img src={card2} alt="" /></section>
                 <div>
-                  <h6> Открытки</h6>
+                  <h6> Книжные закладки</h6>
                  <h3>Набор открыток  <br />“Балтийское побережье”</h3>
-                 <h5>Коллекция из 10 открыток <br /> с репродукциями морских пейзажей</h5>
-                 <h3>450 ₽</h3>
+                 <h5>Коллекция из 5 книжных закладок <br /> с репродукциями популярных работ<br /> художника на тему "Светлогорска"</h5>
+                 <h5>В разработке</h5>
                 </div>
-        </SwiperSlide>
+        </SwiperSlide> 
         <SwiperSlide className='slid'>
               <section><img src={card1} alt="" /></section>
                 <div>
                   <h6> Открытки</h6>
                  <h3>Набор открыток  <br />“Балтийское побережье”</h3>
-                 <h5>Коллекция из 10 открыток <br /> с репродукциями морских пейзажей</h5>
-                 <h3>450 ₽</h3>
+                 <h5>Коллекция из 5 открыток с репродукциями популярных работ художника на тему "Светлогорска"</h5>
+                 <h5>В разработке</h5>
                 </div>
         </SwiperSlide>
         <SwiperSlide className='slid'>
               <section><img src={card2} alt="" /></section>
                 <div>
+                  <h6> Книжные закладки</h6>
+                 <h3>Набор открыток  <br />“Балтийское побережье”</h3>
+                 <h5>Коллекция из 5 книжных закладок <br /> с репродукциями популярных работ<br /> художника на тему "Светлогорска"</h5>
+                 <h5>В разработке</h5>
+                </div>
+        </SwiperSlide> 
+        <SwiperSlide className='slid'>
+              <section><img src={card1} alt="" /></section>
+                <div>
                   <h6> Открытки</h6>
                  <h3>Набор открыток  <br />“Балтийское побережье”</h3>
-                 <h5>Коллекция из 10 открыток <br /> с репродукциями морских пейзажей</h5>
-                 <h3>450 ₽</h3>
+                 <h5>Коллекция из 5 открыток с репродукциями популярных работ художника на тему "Светлогорска"</h5>
+                 <h5>В разработке</h5>
                 </div>
         </SwiperSlide>
-        
+        <SwiperSlide className='slid'>
+              <section><img src={card2} alt="" /></section>
+                <div>
+                  <h6> Книжные закладки</h6>
+                 <h3>Набор открыток  <br />“Балтийское побережье”</h3>
+                 <h5>Коллекция из 5 книжных закладок <br /> с репродукциями популярных работ<br /> художника на тему "Светлогорска"</h5>
+                 <h5>В разработке</h5>
+                </div>
+        </SwiperSlide> 
          
         
       </Swiper>

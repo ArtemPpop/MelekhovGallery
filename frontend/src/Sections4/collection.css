@@ -53,7 +53,7 @@
  
 .work-year-large {
         font-size: clamp(8px, 1.7vw, 20px);
-    color: #B58641;
+    color: #000000;
     font-family: 'Geologica';
     font-weight: 300;
 
@@ -62,8 +62,12 @@
 }
 .work-year-large {
         margin: 4% 0 12px 4%;
-    height: 31px;
-    width: 81px;
+ height: fit-content;
+ width: fit-content;
+ padding: 0 2% ;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: #e9d8c0;
    
 }
@@ -124,4 +128,7 @@
         gap: 0;
         justify-content: space-between;
     }
+}
+.work-year-large h6{
+margin: 0;
 }

@@ -20,6 +20,8 @@ import PhotoPage from './Pages/PhotoPage.jsx';
 import ComparePage from './Pages/ComparePage.jsx';
 import ScrollToTop from './Components/scrollToTop.jsx';
 import ProductPage from './Sections4/ProductPage.jsx';
+import ArchiveViewer from './pages/ArchiveViewer'
+import Checkout from './checkout.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -39,6 +41,9 @@ createRoot(document.getElementById('root')).render(
         <Route path="/work/:id" element={<PhotoPage />} />
         <Route path="/compare" element={<ComparePage />} />
         <Route path="/product/:id" element={<ProductPage />} />
+        <Route path="/archive/:photoId" element={<ArchiveViewer />} />
+        <Route path="/archive" element={<ArchiveViewer />} />
+        <Route path="/checkout" element={<Checkout />} />
       </Routes>
       <Fut/>
     </BrowserRouter>

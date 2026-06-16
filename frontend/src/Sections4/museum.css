@@ -5,8 +5,8 @@
 }
 .concept{
     display: flex;
-    width: 100%;
-    height:565px; 
+    width: 100%;    
+    height: clamp(210px, 29.4vw, 565px);
     border-top: 1px solid rgba(207, 206, 204, 1);
 }
 .conceptMain{
@@ -19,18 +19,21 @@
     align-items: center;
     border-bottom: 1px solid rgba(207, 206, 204, 1);
 }
-.Museumimg1{
-    height: 100%;
+.Museumimg1 {
+    width: clamp(350px, 50vw, 960px);
+    height: clamp(210px, 29.4vw, 565px);
     position: absolute;
-    width: 960px;
     right: 0;
     top: 0;
     background-image: url(img/museum2.png);
-
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
 }
+
 .MuseumH2{
-    width: clamp(320px, 85vw, 1480px);
-    height: 358px; 
+    width: clamp(320px, 80vw, 1480px);
+    height:  fit-content; 
     display: flex;
     flex-direction: column; 
     justify-content: space-evenly;
@@ -40,36 +43,42 @@
 .MuseumH2 h1{
     font-family: 'Geologica';
     color: rgba(52, 65, 99, 1);
-    
-    font-size: 48px;
+    margin-bottom: 5%;
+  
+    font-size: clamp(20px, 3.3vw, 48px);
     font-weight: 600; 
 height: fit-content;
 }
 .concept p{
-    width: 617px;
+    width: clamp(350px, 33vw, 617px);
     
     font-family: 'Geologica';
     color: #3B3534;
     font-weight: 300;  
-    font-size: 24px; 
+    font-size: clamp(11px, 1.2vw, 24px);
 }
 .concept2{
     display: flex;
     width: 100%;
-    height:565px; 
+   height: clamp(210px, 29.4vw, 565px);
     border-top: 1px solid rgba(207, 206, 204, 1);
 }
 .Museumimg2{
+   width: clamp(350px, 50vw, 960px);
+    height: clamp(210px, 29.4vw, 565px);
     position: absolute;
-    height: 100%;
-    width: 960px;
+    
+    background-image: url(img/museum1.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
     left: 0;
     top: 0;
-    background-image: url(img/museum1.png);
+    
 }
 .concept2H2{
     width: clamp(320px, 85vw, 1480px);
-    height: 459px;
+    height: fit-content; 
     display: flex;
     flex-direction: column;
     align-items: end; 
@@ -77,27 +86,109 @@ height: fit-content;
 
 }
 .concept2 h1{
-    width: 617px;
+ 
+    margin-bottom: 3%;
+    width: clamp(128px, 32.1vw, 617px);
     text-align: start;
      font-family: 'Geologica';
     color: #B58641;
-    
-    font-size: 48px;
+    font-size: clamp(20px, 3.3vw, 48px);
     font-weight: 600;  
 }
 
 .concept2 p{
-    width: 617px;
+    margin-bottom: 3%;
+    width: clamp(128px, 32.1vw, 617px);
     
     font-family: 'Geologica';
     color: #3B3534;
     font-weight: 300;  
-    font-size: 24px; 
+    font-size: clamp(11px, 1.2vw, 24px);
 }
 .concept2 button{
-    width: 617px;
-    height: 65px;
+    width: clamp(128px, 32.1vw, 617px);
+    height: clamp(23px, 3.38vw, 65px);
     background-color: #644735;
-     font-size: 24px; 
+    font-size: clamp(11px, 1.2vw, 24px);
      color: white;
+     border: none;
+}
+@media(max-width:950px){
+    .concept p {
+  width: clamp(200px, 33vw, 617px);
+}
+.concept2 h1{
+ 
+         width: clamp(128px, 34.1vw, 617px);
+    margin-bottom: 1%;}
+    .concept2 p{
+         width: clamp(128px, 34.1vw, 617px);
+    margin-bottom: 1%;}
+    .concept2 button{
+         width: clamp(128px, 34.1vw, 617px);
+    }
+}
+
+@media(max-width:672px){
+    .conceptMain{
+        position: static;
+
+    }
+    .Museumimg2{
+        position: static;
+        width: clamp(350px, 50vw, 960px);
+  height: clamp(210px, 29.4vw, 565px);
+    }
+    .Museumimg1{
+        position: static;
+        width: clamp(350px, 50vw, 960px);
+  height: clamp(210px, 29.4vw, 565px);
+    }
+    .conceptMain{
+        display: flex;
+        flex-direction: column;
+        align-items: end ;
+    }
+     .conceptMain2{
+        align-items: start ;
+     }
+    .concept {
+        height: fit-content;
+        align-items: end;
+        
+    }
+    .concept2 {
+        height: fit-content;
+    }
+    .concept p {
+  width: clamp(305px, 80vw, 617px);
+  margin-bottom: 2%;
+}
+.conceptMain{
+    border: none;
+}
+.concept2 h1{
+ 
+       
+  width: clamp(305px, 80vw, 617px);
+    margin-bottom: 1%;}
+    .concept2 p{
+      
+  width: clamp(305px, 80vw, 617px);
+    margin-bottom: 1%;}
+    .concept2 button{
+        width: clamp(128px, 32.1vw, 617px);
+    }
+    .concept2H2 {
+        align-items: start;
+        
+    width: clamp(320px, 80vw, 1480px);
+    margin: 0 auto;
+    }
+    .MuseumH2{
+        margin: 0 auto;
+    }
+    .conceptMain2{
+        margin-bottom: 5%;
+    }
 }

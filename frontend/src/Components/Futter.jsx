@@ -29,11 +29,10 @@ export default function Futter() {
                     <h6>Навигация</h6>
                      <Link to="/" >Главная</Link>
             <Link to="/galery" >Галерея</Link>
-            <Link to="/tvor" >Творчество</Link>
-            <Link to="/mus"  >Музей</Link> 
-            <Link to="/merge">Мерч</Link>
-            <Link to="/bio"  >Контакты</Link>
-            <Link to="/coll" >Адрес музея</Link>
+            <Link to="/coll" >Коллекция</Link>
+            <Link to="/bio"  >Биография</Link>
+            <Link to="/tvor" >Творчество</Link> 
+            <Link to="/merge">Сувенирная продукция</Link>
                 </div>
                 <hr />
                 <div className="kontakts">
@@ -45,7 +44,7 @@ export default function Futter() {
             </div>
            </div>
            <div className="bottomfut">
-            <p>© 2026 Олег Александрович Мелехов. Все права защищены.</p>
+            <p>© 2026 Олег Александрович Мелехов. Все права защищены. <a a href="/public/privacy-policy.pdf" target="_blank">  Политика конфиденциальности</a>  </p> 
            </div>
            </div>
         </section>
