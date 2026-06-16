@@ -20,7 +20,7 @@ import PhotoPage from './Pages/PhotoPage.jsx';
 import ComparePage from './Pages/ComparePage.jsx';
 import ScrollToTop from './Components/scrollToTop.jsx';
 import ProductPage from './Sections4/ProductPage.jsx';
-import ArchiveViewer from './pages/ArchiveViewer'
+import ArchiveViewer from './Pages/ArchiveViewer.jsx'
 import Checkout from './checkout.jsx';
 
 createRoot(document.getElementById('root')).render(
